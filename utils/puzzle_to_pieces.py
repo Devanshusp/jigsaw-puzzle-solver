@@ -20,6 +20,7 @@ def puzzle_to_pieces(
 
     Args:
         image_path (str): Path to the input puzzle image.
+        kernel_size (Tuple[int, int], optional): Kernel size for Gaussian blur.
 
     Returns:
         Tuple[int, List[np.ndarray]]:

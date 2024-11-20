@@ -6,7 +6,7 @@ from functions import preprocess_puzzle
 
 if __name__ == "__main__":
     # set settings before run
-    SAVE_PREPROCESS = True
+    SAVE_PREPROCESS = False
     SAVE_PREPROCESS_FOLDER = ".images"
     PUZZLES_TO_PROCESS = [
         "aurora12",

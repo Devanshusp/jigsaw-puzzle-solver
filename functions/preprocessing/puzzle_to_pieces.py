@@ -1,6 +1,6 @@
 """
 puzzle_to_pieces.py -  This script processes an image of a puzzle, extracts individual
-pieces, and displays them as separate components.
+pieces as separate components.
 """
 
 from typing import List, Tuple
@@ -9,12 +9,10 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utils.display_pieces import display_pieces
-
 
 def puzzle_to_pieces(
     image_path: str, kernel_size: Tuple[int, int] = (25, 25)
-) -> Tuple[int, List[np.ndarray]]:
+) -> List[np.ndarray]:
     """
     Processes an image of a puzzle to extract individual pieces as separate images.
 
@@ -24,7 +22,6 @@ def puzzle_to_pieces(
 
     Returns:
         Tuple[int, List[np.ndarray]]:
-            - int: The number of puzzle pieces detected (excluding the background).
             - List[np.ndarray]: A list of extracted puzzle pieces as image arrays.
     """
     # Read the image in BGR using OpenCV and convert it to RGB for Matplotlib.
@@ -111,7 +108,4 @@ def puzzle_to_pieces(
         img_piece_cropped = img_piece[horizontal_indices, vertical_indices]
         pieces.append(img_piece_cropped)
 
-    # Display all extracted pieces.
-    display_pieces(pieces)
-
-    return len(pieces), pieces
+    return pieces

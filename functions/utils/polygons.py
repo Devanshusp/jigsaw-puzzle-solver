@@ -1,3 +1,4 @@
+import pprint
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,25 +8,78 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
     # Reading image and converting to grayscale 
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
+    plt.figure(figsize=(12, 6))
+    plt.title("Original Img")
+    plt.imshow(img, cmap="gray")
+    plt.tight_layout()
+    plt.show()
+
     # Detecting edges using canny 
     edges = cv2.Canny(img, 100, 200)
 
     # Finding contours: takes in edges, returns only external contours, no approx 
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-    # Polygonal Approx 
+    # Polygonal approximation  
     approx_contours = []
     for contour in contours:
-        # Approximation accuracy: epsilon is the max distance from the contour to the approximated curve
         epsilon = epsilon_ratio * cv2.arcLength(contour, True)
         approx = cv2.approxPolyDP(contour, epsilon, True)
         approx_contours.append(approx)
         
     approx_contours = np.array(approx_contours)
-    reshaped = approx_contours.reshape(-1, 2)  # Combine all slices into one 2D array
+    # Combine all slices into one 2D array
+    reshaped = approx_contours.reshape(-1, 2) 
     
     # Combine into a single mean x-y pair
     mean_xy = np.round(np.mean(reshaped, axis=0)).astype(int)
+    
+    # Testing Coordinates + Mean 
+    print("coordinates:", reshaped)
+    print("mean:", mean_xy)
+    
+    
+    dT = []
+
+    for i in range(0, len(reshaped)):
+        
+        # Center and Border Points: 
+        cX = mean_xy[0] 
+        #print("Center X:", cX)
+        cY = mean_xy[1]
+        #print("Center Y:", cY)
+        bX = reshaped[i,0]
+        print("Border X:", bX)
+        bY = reshaped[i,1]
+        print("Border Y:", bY)
+        
+        # Delta Values: 
+        dX = bX - cX 
+        print("Delta X:", dX)
+        dY = -(bY - cY)
+        print("Delta Y:", dY)
+        
+        # Distance Eqn: 
+        dX2 = np.square(dX)
+        dY2 = np.square(dY)
+        dR = np.sqrt(dX2 + dY2) 
+        #print("Distance:", dR)
+        
+        # Angle 
+        theta = np.arctan2(dY,dX) * 180 / np.pi
+        
+        if theta < 0: 
+            theta += 360 
+            
+        print("Theta:", theta)
+        
+        dT.append({ 
+                "coords": (bX, bY), 
+                "dist": dR, 
+                "angle": theta
+        })
+    
+    pprint.pprint(dT)
     
     # Initiazing empty images to draw contours on 
     img_contours = np.zeros_like(img) 

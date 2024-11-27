@@ -1,5 +1,15 @@
 # Jigsaw Puzzle Solver
 
+[what this project is]
+
+## Try It Out
+
+[steps to try out this project]
+
+## BYOP: Bring Your Own Puzzle
+
+[steps to implement your own puzzle]
+
 ## Environment
 
 ```bash

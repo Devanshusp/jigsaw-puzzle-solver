@@ -48,7 +48,7 @@ def preprocess_puzzle(
     PIECES_SAVE_PATH = f"{SAVE_FOLDER}/pieces/{PUZZLE_IMAGE_NAME}"
     PIECES_GRID_SAVE_PATH = f"{SAVE_FOLDER}/pieces_grid"
 
-    pieces = puzzle_to_pieces(PUZZLE_IMAGE_PATH, kernel_size=(5, 5))
+    pieces, centers = puzzle_to_pieces(PUZZLE_IMAGE_PATH, kernel_size=(5, 5))
 
     # Print the result
     print(f"Number of puzzle pieces detected: {len(pieces)}")
@@ -63,8 +63,17 @@ def preprocess_puzzle(
 
         # Save individual pieces
         for i, piece in enumerate(pieces):
+            # Save clean crops of pieces
             piece = cv2.cvtColor(piece, cv2.COLOR_BGR2RGB)
             cv2.imwrite(f"{PIECES_SAVE_PATH}/piece_{i}.png", piece)
+
+            # Save clean crops of pieces with a red dot at the center
+            piece_with_center = cv2.circle(
+                piece, centers[i], radius=5, color=(0, 0, 255), thickness=-1
+            )
+            cv2.imwrite(
+                f"{PIECES_SAVE_PATH}/piece_with_center_{i}.png", piece_with_center
+            )
 
         # Update save path for the grid visualization
         PIECES_GRID_SAVE_PATH += f"/{PUZZLE_IMAGE_NAME}_pieces"

@@ -34,7 +34,7 @@ def display_pieces(
     for i, piece in enumerate(pieces):
         plt.subplot(rows, cols, i + 1)
         plt.imshow(piece)
-        plt.title(f"Piece {i+1}")
+        plt.title(f"Piece {i}")
         plt.axis("off")
 
     # Adjust layout to avoid overlap.

@@ -12,7 +12,7 @@ import numpy as np
 
 def puzzle_to_pieces(
     image_path: str, kernel_size: Tuple[int, int] = (25, 25)
-) -> List[np.ndarray]:
+) -> Tuple[List[np.ndarray], List[Tuple[int, int]]]:
     """
     Processes an image of a puzzle to extract individual pieces as separate images.
 
@@ -90,6 +90,7 @@ def puzzle_to_pieces(
     # Initialize a list to store the extracted puzzle pieces and loop through each
     # label, skipping 0 (background label).
     pieces = []
+    centers = []
     for label_index in range(1, num_labels):
         # Create a binary mask for the current piece label from `labels`.
         img_mask = labels == label_index
@@ -108,4 +109,10 @@ def puzzle_to_pieces(
         img_piece_cropped = img_piece[horizontal_indices, vertical_indices]
         pieces.append(img_piece_cropped)
 
-    return pieces
+        # Extract and save centroid data for the current piece from `centroids`.
+        cx, cy = centroids[label_index]
+        cx = cx - x
+        cy = cy - y
+        centers.append((cx, cy))
+
+    return pieces, centers

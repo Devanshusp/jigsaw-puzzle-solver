@@ -60,8 +60,8 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
     for i in range(0, len(reshaped)):
         
         # Center and Border Points: 
-        cX = mean_xy[0] 
-        cY = mean_xy[1]
+        cX = center_x
+        cY = center_y
         bX = reshaped[i,0]
         bY = reshaped[i,1]
         
@@ -79,32 +79,6 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
         
         if theta < 0: 
             theta += 360 
-        
-        # Test Prints 
-        
-        if 25 < theta < 65: 
-            print("----------------------45------------------------")
-            print("Theta:", theta)
-            print("bX,bY:", bX, bY)
-            print("distance:", dR)
-            
-        if 115 < theta < 155: 
-            print("----------------------135------------------------")
-            print("Theta:", theta)
-            print("bX,bY:", bX, bY)
-            print("distance:", dR)
-            
-        if 205 < theta < 245: 
-            print("----------------------225------------------------")
-            print("Theta:", theta)
-            print("bX,bY:", bX, bY)
-            print("distance:", dR)
-            
-        if 295 < theta < 315: 
-            print("----------------------315------------------------")
-            print("Theta:", theta)
-            print("bX,bY:", bX, bY)
-            print("distance:", dR)
         
         # Saving data 
         dT.append({ 
@@ -184,7 +158,7 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
         closest_items = sorted(
             dT, 
             key=lambda item: abs(float(item['angle']) - target) 
-        )[:3] # Top 3
+        )[:4] # Top 4
         
         # Test printing 
         print("Closest Angles")
@@ -204,7 +178,20 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
         })
     
     # Test print 
-    print(len(filtered_items))
+    print("length filtered items:", len(filtered_items))
+    print(filtered_items)
+    
+    # [{'angle': 32.84505830277777, 'dist': 94.03190947758107, 'coords': '(178, 30)'}, 
+    #  {'angle': 146.1130405359483, 'dist': 80.7093550959243, 'coords': '(32, 36)'}, 
+    #  {'angle': 236.58341860468707, 'dist': 116.21101496846157, 'coords': '(35, 178)'}, 
+    #  {'angle': 311.98721249581666, 'dist': 107.62899237658968, 'coords': '(171, 161)'}]
+    
+    with open("output2.csv", "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=["angle", "coords", "dist", image_path])
+        writer.writeheader()
+        for item in filtered_items:
+            item['coords'] = str(item['coords']) 
+            writer.writerow(item)
     
     # Initiazing empty images to draw contours on 
     corners = np.zeros_like(img) 
@@ -239,7 +226,89 @@ def polygonal_approximation(image_path, epsilon_ratio=0.02):
     
     plt.tight_layout()
     plt.show()
-
+    
+    print() 
+    
+    num_flat_edges = 0 
+    
+    # Drawing lines between the closest matches 
+    for i in range(len(filtered_items)):
+        
+        # Testing 
+        # if i == 0: 
+        #     print("Top Edge")
+        # if i == 1: 
+        #     print("Left Edge")
+        # if i == 2: 
+        #     print("Bottom Edge")
+        # if i == 3: 
+        #     print("Right Edge")
+        
+        if i == 3: 
+            item1 = filtered_items[i]
+            item2 = filtered_items[0]
+        else: 
+            item1 = filtered_items[i]
+            item2 = filtered_items[i+1]
+        
+        angle1 = item1['angle']
+        angle2 = item2['angle']
+        
+        # Testing 
+        # print(angle1)
+        # print(angle2)
+        
+        # Get the index in dT of angle1/angle2
+        index1 = next((i for i, item in enumerate(dT) if item['angle'] == angle1), None)
+        index2 = next((i for i, item in enumerate(dT) if item['angle'] == angle2), None)
+        
+        # Testing 
+        # print("Index1:", index1)
+        # print("Index2:", index2)
+        
+        # Count the number of steps to get to angle2 index 
+        distance = index2 - index1 
+        
+        # Testing 
+        # print("Distance:", distance)
+        # print("Length dT:", len(dT)-1)
+        # print("Equal?:", index1 == (len(dT)-1))
+        
+        if index1 == (len(dT) - 1): 
+            if index2 == 0: 
+                num_flat_edges += 1 
+                # Testing 
+                # print("IF1 Flat Edge") 
+                # print() 
+                continue 
+        
+        if distance == 1: 
+            num_flat_edges += 1 
+            # Testing 
+            # print("IF2 Flat Edge") 
+            # print() 
+            continue 
+        # Testing 
+        # else: 
+            #print("ELSE Intrusion/Extrusion")
+            #print() 
+        
+    # Testing 
+    # print("# Flat Edges:", num_flat_edges)
+    # print() 
+    
+    if num_flat_edges == 2: 
+        print("Corner Piece") 
+    elif num_flat_edges == 1: 
+        print("Edge Piece") 
+    elif num_flat_edges == 0: 
+        print("Middle Piece")
+    else: 
+        print("Error")
+        
+    print() 
+    
 # Run the approximation
-image_path = "images/pieces/aurora30/piece_0.png"  # Replace with your image path
+image_path = "images/pieces/aurora30/piece_17.png"  # Replace with your image path
 polygonal_approximation(image_path, epsilon_ratio=0.002) 
+

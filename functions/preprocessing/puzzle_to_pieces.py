@@ -11,7 +11,9 @@ import numpy as np
 
 
 def puzzle_to_pieces(
-    image_path: str, kernel_size: Tuple[int, int] = (25, 25)
+    image_path: str,
+    kernel_size: Tuple[int, int] = (5, 5),
+    display_steps: bool = True,
 ) -> Tuple[List[np.ndarray], List[Tuple[int, int]]]:
     """
     Processes an image of a puzzle to extract individual pieces as separate images.
@@ -28,11 +30,12 @@ def puzzle_to_pieces(
     img = cv2.imread(image_path)
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-    # Display the source image
-    plt.figure(figsize=(10, 10))
-    plt.imshow(img_rgb)
-    plt.title("Source Image")
-    plt.show()
+    # Display the source image.
+    if display_steps:
+        plt.figure(figsize=(10, 10))
+        plt.imshow(img_rgb)
+        plt.title("Source Image")
+        plt.show()
 
     # Convert image to grayscale
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -43,10 +46,11 @@ def puzzle_to_pieces(
     img_blurred = cv2.GaussianBlur(img_gray, kernel_size, kernel_sigma)
 
     # Display the preprocessed blurred grayscale image.
-    plt.figure(figsize=(10, 10))
-    plt.imshow(img_blurred, cmap="gray")
-    plt.title("Blurred Grayscale Image")
-    plt.show()
+    if display_steps:
+        plt.figure(figsize=(10, 10))
+        plt.imshow(img_blurred, cmap="gray")
+        plt.title("Blurred Grayscale Image")
+        plt.show()
 
     # Create binary image (threshold to separate pieces from background).
     # Pixels with intensity > 250 are set to 0 (black), rest to 255 (white).
@@ -59,10 +63,11 @@ def puzzle_to_pieces(
     )
 
     # Display the binary image
-    plt.figure(figsize=(10, 10))
-    plt.imshow(img_binary, cmap="gray")
-    plt.title("Binary Image")
-    plt.show()
+    if display_steps:
+        plt.figure(figsize=(10, 10))
+        plt.imshow(img_binary, cmap="gray")
+        plt.title("Binary Image")
+        plt.show()
 
     # Find connected components (the puzzle pieces).
     # Use connected component analysis to label distinct regions in the binary image.

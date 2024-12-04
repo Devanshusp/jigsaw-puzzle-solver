@@ -9,7 +9,11 @@ import numpy as np
 
 
 def display_pieces(
-    pieces: List[np.ndarray], figsize: tuple = (10, 10), save_name: str | None = None
+    pieces: List[np.ndarray],
+    save_name: str,
+    figsize: tuple = (10, 10),
+    save: bool = True,
+    display_steps: bool = True,
 ) -> None:
     """
     Display a list of puzzle piece images in a grid layout.
@@ -41,11 +45,12 @@ def display_pieces(
     plt.tight_layout()
 
     # Save the figure as an image file if needed.
-    if save_name is not None:
+    if save:
         plt.savefig(f"{save_name}.png", dpi=300)
 
-    # Show the plot.
-    plt.show()
+    if display_steps:
+        # Show the plot.
+        plt.show()
 
-    # Clear the figure after saving and showing to avoid issues.
-    plt.clf()
+        # Clear the figure after saving and showing to avoid issues.
+        plt.clf()

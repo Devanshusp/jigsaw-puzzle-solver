@@ -2,11 +2,12 @@
 main.py - The main script to run the Jigsaw Puzzle Solver.
 """
 
-from functions import preprocess_puzzle
+from functions import preprocess_pieces, preprocess_puzzle
 
 if __name__ == "__main__":
     # set settings before run
-    SAVE_PREPROCESS = False
+    DISPLAY_STEPS = False
+    SAVE_PREPROCESS = True
     SAVE_PREPROCESS_FOLDER = ".images"
     PUZZLES_TO_PROCESS = [
         "aurora12",
@@ -28,5 +29,15 @@ if __name__ == "__main__":
 
     for puzzle in PUZZLES_TO_PROCESS:
         preprocess_puzzle(
-            puzzle, save=SAVE_PREPROCESS, save_folder=SAVE_PREPROCESS_FOLDER
+            puzzle,
+            save=SAVE_PREPROCESS,
+            save_folder=SAVE_PREPROCESS_FOLDER,
+            display_steps=DISPLAY_STEPS,
+        )
+
+        preprocess_pieces(
+            puzzle,
+            save=SAVE_PREPROCESS,
+            save_folder=SAVE_PREPROCESS_FOLDER,
+            display_steps=DISPLAY_STEPS,
         )

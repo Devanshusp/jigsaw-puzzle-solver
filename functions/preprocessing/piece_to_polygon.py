@@ -16,6 +16,8 @@ def piece_to_polygon(
     piece_center: Tuple[int, int],
     kernel_size: Tuple[int, int] = (5, 5),
     epsilon_ratio: float = 0.02,
+    corner_distance_weight: float = 0.6,
+    corner_angle_weight: float = 0.4,
     display_steps: bool = True,
 ) -> Tuple[List[Tuple[int, int]], str]:
     """
@@ -221,8 +223,8 @@ def piece_to_polygon(
 
     # Select the best corner pairs from total distance and angle error data
     # Assign weights to balance importance of distance and angle error
-    distance_weight = 0.6
-    angle_error_weight = 0.4
+    distance_weight = corner_distance_weight
+    angle_error_weight = corner_angle_weight
 
     # Extract distance and angle_error from corner_pairs
     distances = [pair["total_distance"] for pair in corner_pairs]

@@ -173,7 +173,12 @@ def preprocess_pieces(
 
         # Extracting piece data.
         corners, piece_classification = piece_to_polygon(
-            piece_file, center_coords, epsilon_ratio=0.02, display_steps=display_steps
+            piece_file,
+            center_coords,
+            epsilon_ratio=0.02,
+            corner_distance_weight=0.7,
+            corner_angle_weight=0.3,
+            display_steps=display_steps,
         )
 
         # Saving extracted piece data.

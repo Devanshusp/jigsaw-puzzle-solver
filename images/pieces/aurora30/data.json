@@ -1,0 +1,752 @@
+{
+    "piece_0": {
+        "center_coords": [
+            89,
+            117
+        ],
+        "corners": [
+            [
+                167,
+                200
+            ],
+            [
+                182,
+                29
+            ],
+            [
+                11,
+                35
+            ],
+            [
+                0,
+                204
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_1": {
+        "center_coords": [
+            90,
+            104
+        ],
+        "corners": [
+            [
+                178,
+                34
+            ],
+            [
+                20,
+                27
+            ],
+            [
+                0,
+                196
+            ],
+            [
+                171,
+                187
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_2": {
+        "center_coords": [
+            111,
+            103
+        ],
+        "corners": [
+            [
+                203,
+                28
+            ],
+            [
+                32,
+                36
+            ],
+            [
+                32,
+                191
+            ],
+            [
+                204,
+                186
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_3": {
+        "center_coords": [
+            95,
+            107
+        ],
+        "corners": [
+            [
+                0,
+                188
+            ],
+            [
+                173,
+                189
+            ],
+            [
+                173,
+                23
+            ],
+            [
+                24,
+                37
+            ]
+        ],
+        "classification": "C"
+    },
+    "piece_4": {
+        "center_coords": [
+            83,
+            77
+        ],
+        "corners": [
+            [
+                175,
+                0
+            ],
+            [
+                0,
+                0
+            ],
+            [
+                5,
+                151
+            ],
+            [
+                159,
+                144
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_5": {
+        "center_coords": [
+            107,
+            97
+        ],
+        "corners": [
+            [
+                40,
+                0
+            ],
+            [
+                23,
+                171
+            ],
+            [
+                193,
+                187
+            ],
+            [
+                203,
+                7
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_6": {
+        "center_coords": [
+            98,
+            100
+        ],
+        "corners": [
+            [
+                181,
+                29
+            ],
+            [
+                29,
+                35
+            ],
+            [
+                33,
+                180
+            ],
+            [
+                174,
+                181
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_7": {
+        "center_coords": [
+            87,
+            115
+        ],
+        "corners": [
+            [
+                167,
+                208
+            ],
+            [
+                167,
+                34
+            ],
+            [
+                0,
+                28
+            ],
+            [
+                12,
+                197
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_8": {
+        "center_coords": [
+            90,
+            91
+        ],
+        "corners": [
+            [
+                16,
+                168
+            ],
+            [
+                168,
+                158
+            ],
+            [
+                148,
+                0
+            ],
+            [
+                0,
+                11
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_9": {
+        "center_coords": [
+            77,
+            96
+        ],
+        "corners": [
+            [
+                2,
+                7
+            ],
+            [
+                3,
+                179
+            ],
+            [
+                152,
+                168
+            ],
+            [
+                157,
+                2
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_10": {
+        "center_coords": [
+            81,
+            88
+        ],
+        "corners": [
+            [
+                5,
+                0
+            ],
+            [
+                7,
+                178
+            ],
+            [
+                158,
+                163
+            ],
+            [
+                158,
+                11
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_11": {
+        "center_coords": [
+            91,
+            86
+        ],
+        "corners": [
+            [
+                2,
+                160
+            ],
+            [
+                184,
+                159
+            ],
+            [
+                177,
+                13
+            ],
+            [
+                9,
+                0
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_12": {
+        "center_coords": [
+            89,
+            89
+        ],
+        "corners": [
+            [
+                0,
+                160
+            ],
+            [
+                155,
+                169
+            ],
+            [
+                174,
+                0
+            ],
+            [
+                1,
+                9
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_13": {
+        "center_coords": [
+            109,
+            83
+        ],
+        "corners": [
+            [
+                208,
+                4
+            ],
+            [
+                34,
+                2
+            ],
+            [
+                30,
+                168
+            ],
+            [
+                198,
+                162
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_14": {
+        "center_coords": [
+            85,
+            79
+        ],
+        "corners": [
+            [
+                0,
+                145
+            ],
+            [
+                158,
+                173
+            ],
+            [
+                159,
+                0
+            ],
+            [
+                6,
+                0
+            ]
+        ],
+        "classification": "C"
+    },
+    "piece_15": {
+        "center_coords": [
+            98,
+            106
+        ],
+        "corners": [
+            [
+                182,
+                197
+            ],
+            [
+                168,
+                29
+            ],
+            [
+                0,
+                35
+            ],
+            [
+                19,
+                192
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_16": {
+        "center_coords": [
+            77,
+            104
+        ],
+        "corners": [
+            [
+                146,
+                190
+            ],
+            [
+                147,
+                33
+            ],
+            [
+                1,
+                28
+            ],
+            [
+                0,
+                190
+            ]
+        ],
+        "classification": "C"
+    },
+    "piece_17": {
+        "center_coords": [
+            88,
+            86
+        ],
+        "corners": [
+            [
+                0,
+                164
+            ],
+            [
+                174,
+                154
+            ],
+            [
+                166,
+                0
+            ],
+            [
+                0,
+                0
+            ]
+        ],
+        "classification": "C"
+    },
+    "piece_18": {
+        "center_coords": [
+            117,
+            80
+        ],
+        "corners": [
+            [
+                213,
+                5
+            ],
+            [
+                34,
+                3
+            ],
+            [
+                29,
+                155
+            ],
+            [
+                193,
+                153
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_19": {
+        "center_coords": [
+            93,
+            72
+        ],
+        "corners": [
+            [
+                166,
+                150
+            ],
+            [
+                163,
+                0
+            ],
+            [
+                0,
+                0
+            ],
+            [
+                23,
+                160
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_20": {
+        "center_coords": [
+            115,
+            123
+        ],
+        "corners": [
+            [
+                37,
+                28
+            ],
+            [
+                25,
+                210
+            ],
+            [
+                203,
+                215
+            ],
+            [
+                200,
+                35
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_21": {
+        "center_coords": [
+            109,
+            92
+        ],
+        "corners": [
+            [
+                32,
+                0
+            ],
+            [
+                31,
+                159
+            ],
+            [
+                194,
+                167
+            ],
+            [
+                181,
+                11
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_22": {
+        "center_coords": [
+            99,
+            96
+        ],
+        "corners": [
+            [
+                35,
+                10
+            ],
+            [
+                27,
+                189
+            ],
+            [
+                179,
+                181
+            ],
+            [
+                188,
+                0
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_23": {
+        "center_coords": [
+            115,
+            77
+        ],
+        "corners": [
+            [
+                24,
+                145
+            ],
+            [
+                199,
+                145
+            ],
+            [
+                204,
+                0
+            ],
+            [
+                40,
+                0
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_24": {
+        "center_coords": [
+            88,
+            77
+        ],
+        "corners": [
+            [
+                9,
+                154
+            ],
+            [
+                169,
+                160
+            ],
+            [
+                146,
+                0
+            ],
+            [
+                2,
+                0
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_25": {
+        "center_coords": [
+            107,
+            113
+        ],
+        "corners": [
+            [
+                179,
+                198
+            ],
+            [
+                179,
+                27
+            ],
+            [
+                35,
+                38
+            ],
+            [
+                29,
+                188
+            ]
+        ],
+        "classification": "M"
+    },
+    "piece_26": {
+        "center_coords": [
+            106,
+            100
+        ],
+        "corners": [
+            [
+                194,
+                44
+            ],
+            [
+                37,
+                17
+            ],
+            [
+                25,
+                176
+            ],
+            [
+                194,
+                183
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_27": {
+        "center_coords": [
+            82,
+            83
+        ],
+        "corners": [
+            [
+                146,
+                170
+            ],
+            [
+                160,
+                3
+            ],
+            [
+                1,
+                4
+            ],
+            [
+                0,
+                165
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_28": {
+        "center_coords": [
+            76,
+            90
+        ],
+        "corners": [
+            [
+                2,
+                0
+            ],
+            [
+                1,
+                165
+            ],
+            [
+                159,
+                162
+            ],
+            [
+                156,
+                9
+            ]
+        ],
+        "classification": "E"
+    },
+    "piece_29": {
+        "center_coords": [
+            91,
+            83
+        ],
+        "corners": [
+            [
+                3,
+                161
+            ],
+            [
+                163,
+                161
+            ],
+            [
+                169,
+                0
+            ],
+            [
+                3,
+                4
+            ]
+        ],
+        "classification": "E"
+    }
+}

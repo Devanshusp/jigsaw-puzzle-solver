@@ -43,9 +43,18 @@ def display_pieces_with_data(
 
         # Display the piece image with extracted data.
         plt.imshow(piece_img)
+
+        # Plot the center point in red
         plt.plot(center_coords[0], center_coords[1], "ro")
+
+        # Plot each corner in blue and draw red lines to center
         for corner in corners:
-            plt.plot(corner[0], corner[1], "bo")
+            plt.plot(corner[0], corner[1], "bo")  # Blue corner points
+            plt.plot(
+                [center_coords[0], corner[0]], [center_coords[1], corner[1]], "r-"
+            )  # Red line to center
+
+        # Add title and remove axis for clarity
         plt.title(f"Piece {piece_index} ({piece_classification})")
         plt.axis("off")
 

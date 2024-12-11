@@ -56,15 +56,23 @@ def piece_to_polygon(
     # (in other words, no compression is performed).
     contours, _ = cv2.findContours(img_binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-    # Draw contours on the original grayscale image.
+    # Draw contours and lines from center to each contour point on the original image.
     if display_steps:
         img_contours = img_rgb.copy()
-        cv2.drawContours(img_contours, contours, -1, (0, 255, 0), 2)
+        cv2.drawContours(
+            img_contours, contours, -1, (255, 0, 0), 2
+        )  # Draw contours in blue
 
-        # Display the image with contours.
+        # Draw red lines from the center to each contour point
+        for contour in contours:
+            for point in contour:
+                point_coords = tuple(point[0])  # Extract (x, y) coordinates
+                cv2.line(img_contours, piece_center, point_coords, (255, 0, 0), 1)
+
+        # Display the image with contours and lines.
         plt.figure(figsize=(10, 6))
         plt.imshow(img_contours)
-        plt.title("Piece Countour")
+        plt.title("Piece Contour with Lines to Center")
         plt.axis("off")
         plt.show()
 
@@ -97,18 +105,27 @@ def piece_to_polygon(
     # Convert the list of approximated contours to a NumPy array for further processing.
     approx_contours = np.array(approx_contours)
 
-    # Draw approximated contours on the original grayscale image.
+    # Draw approximated contours and lines on the original image
     if display_steps:
-        # Draw the approximated contours on the color image using green color
-        # (0, 255, 0) and a thickness of 2 pixels.
+        # Create a copy of the original RGB image to draw on
         img_contours = img_rgb.copy()
-        for approx in approx_contours:
-            cv2.drawContours(img_contours, [approx], -1, (0, 255, 0), 2)
 
-        # Display the image with approximated contours
+        # Loop through the approximated contours
+        for approx in approx_contours:
+            # Draw the contour with blue color
+            cv2.drawContours(img_contours, [approx], -1, (255, 0, 0), 2)
+
+            # Draw red lines from the center to each contour point
+            for point in approx:
+                point_coords = tuple(
+                    point[0]
+                )  # Extract the (x, y) coordinates from the contour point
+                cv2.line(img_contours, piece_center, point_coords, (255, 0, 0), 4)
+
+        # Display the image with approximated contours and lines
         plt.figure(figsize=(10, 6))
         plt.imshow(img_contours)
-        plt.title("Approximated Contours")
+        plt.title("Approximated Contours with Lines to Center")
         plt.axis("off")
         plt.show()
 
@@ -257,11 +274,16 @@ def piece_to_polygon(
 
         for point in best_corner_estimates:
             point_coords = point["coordinates"]
+
+            # Draw a circle at the corner point
             cv2.circle(img_copy, tuple(point_coords), 5, (0, 0, 255), -1)
+
+            # Draw a red line from the center to the corner point
+            cv2.line(img_copy, piece_center, tuple(point_coords), (255, 0, 0), 4)
 
         plt.figure(figsize=(10, 6))
         plt.imshow(img_copy)
-        plt.title("Image with Best Corners (Composite Score)")
+        plt.title("Image with Best Corners and Lines to Center")
         plt.axis("off")
         plt.show()
 

@@ -19,8 +19,9 @@ def piece_to_polygon(
     corner_distance_weight: float = 0.5,
     corner_angle_weight: float = 0.3,
     center_angle_weight: float = 0.2,
+    intrusion_threshold: float = 0.6,
     display_steps: bool = True,
-) -> Tuple[List[Tuple[int, int]], Tuple[int, int], str]:
+) -> Tuple[List[Tuple[int, int]], Tuple[int, int], str, dict]:
     """
     Extracts piece data from a puzzle image.
 
@@ -174,56 +175,6 @@ def piece_to_polygon(
             }
         )
 
-    def points_are_equal(p1, p2):
-        """Check if two points have the same coordinates."""
-        return np.array_equal(p1["coordinates"], p2["coordinates"])
-
-    def angle_between_points(p1, p2):
-        """Calculate the angle between two points."""
-        angle1 = p1["angle"]
-        angle2 = p2["angle"]
-
-        return (angle2 - angle1) % 360
-
-    def angle_between_surrounding_points(contour_data, index):
-        """Given the countour data and an index, find the angle directly between the
-        two points surrounding it."""
-        total_points = len(contour_data)
-        previous_index = (index - 1 + total_points) % total_points
-        next_index = (index + 1) % total_points
-
-        # Get the center, previous, and next points
-        center_point = contour_data[index]
-        prev_point = contour_data[previous_index]
-        next_point = contour_data[next_index]
-
-        # Calculate vectors from center point to surrounding points
-        prev_vector = (
-            prev_point["coordinates"][0] - center_point["coordinates"][0],
-            prev_point["coordinates"][1] - center_point["coordinates"][1],
-        )
-        next_vector = (
-            next_point["coordinates"][0] - center_point["coordinates"][0],
-            next_point["coordinates"][1] - center_point["coordinates"][1],
-        )
-
-        # Calculate the angle between these vectors:
-        # Dot product
-        dot_product = prev_vector[0] * next_vector[0] + prev_vector[1] * next_vector[1]
-
-        # Magnitudes
-        prev_magnitude = math.sqrt(prev_vector[0] ** 2 + prev_vector[1] ** 2)
-        next_magnitude = math.sqrt(next_vector[0] ** 2 + next_vector[1] ** 2)
-
-        # Cosine of the angle
-        cos_angle = dot_product / (prev_magnitude * next_magnitude)
-
-        # Calculate Angle
-        angle_radians = math.acos(max(min(cos_angle, 1), -1))
-        angle_degrees = math.degrees(angle_radians)
-
-        return angle_degrees
-
     # Save all corner pairs
     corner_pairs = []
 
@@ -361,19 +312,20 @@ def piece_to_polygon(
         plt.axis("off")
         plt.show()
 
-    # Initialize a counter for flat edges in the detected corners
-    num_flat_edges = 0
+    # Initialize a dictionary to label piece side (edge) data
+    piece_side_data = {}
+    count_flat_sides = 0
 
-    # Iterate through the best corner estimates to check for flat edges
-    for i in range(len(best_corner_estimates)):
+    # Loop through 4 arbitrary edges (A, B, C, D)
+    for i, side in enumerate(["A", "B", "C", "D"]):
         # Set the current corner and the next corner (circularly)
-        item1 = best_corner_estimates[i]
-        item2 = best_corner_estimates[
+        corner1 = best_corner_estimates[i]
+        corner2 = best_corner_estimates[
             (i + 1) % len(best_corner_estimates)
         ]  # Wrap around at the end
 
-        # Extract the angles for the current and next corners
-        angle1, angle2 = item1["angle"], item2["angle"]
+        # Extract the angles (since they are unique) for the current and next corners
+        angle1, angle2 = corner1["angle"], corner2["angle"]
 
         # Find the index of the angles in the contour data
         index1 = next(
@@ -384,27 +336,83 @@ def piece_to_polygon(
         )
 
         # Calculate the distance between the two indices in the contour data
-        distance = index2 - index1  # type: ignore
+        max_index = max(index1, index2)  # type: ignore
+        min_index = min(index1, index2)  # type: ignore
 
-        # Special handling if we're at the end of the list (wraps to the start)
-        if index1 == (len(contour_data) - 1) and index2 == 0:
-            num_flat_edges += 1
-            continue
+        # If the indices of the contour points are out of order (not clockwise),
+        # extract contour points in the correct order by wrapping around while
+        # preserving order
+        if max_index - min_index > min_index + len(approx_contours) - max_index:
+            extracted_contour_points = (
+                approx_contours[max_index:].tolist()
+                + approx_contours[: min_index + 1].tolist()
+            )
+        else:
+            extracted_contour_points = approx_contours[
+                min_index : max_index + 1
+            ].tolist()
 
-        # If the distance is 1, this indicates consecutive points (flat edge)
-        if distance == 1:
-            num_flat_edges += 1
+        # Initialize a list to store distances of contour points from the piece center
+        distances = []
 
-    # Classify the piece based on the number of flat edges detected
-    classification = "NONE"
-    if num_flat_edges == 2:
-        classification = "C"  # Two flat edges = Corner
-    elif num_flat_edges == 1:
-        classification = "E"  # One flat edge = Edge
-    elif num_flat_edges == 0:
-        classification = "M"  # No flat edges = Middle
-    else:
-        classification = "ERROR"  # More than two flat edges is an error
+        # Estimate function representing the side
+        for point in extracted_contour_points:
+            distances.append(np.linalg.norm(np.array(point) - np.array(piece_center)))
+
+        # Determine side classification: flat, intrusion, or extrusion
+        side_classification = "ERROR"  # save as error if no classification
+
+        # If the number of contour points is 2, the side is flat since it is
+        # representing a line.
+        if len(distances) == 2:
+            side_classification = "FLT"  # flat
+            count_flat_sides += 1
+        # If the number of contour points is greater than 2, the side is either
+        # intrusion or extrusion; the side is intrusion if the minimum distance
+        # between the contour points is less than SOME% of the minimum distance
+        # between the first and last contour points (corner points).
+        elif min(distances[1 : len(distances) - 1]) < intrusion_threshold * min(
+            distances[0], distances[-1]
+        ):
+            side_classification = "INT"  # intrusion
+        # Otherwise, assume the side is extrusion.
+        else:
+            side_classification = "EXT"  # extrusion
+
+        # Save side data
+        piece_side_data[side] = {}
+        piece_side_data[side]["points"] = [
+            (int(corner1["coordinates"][0]), int(corner1["coordinates"][1])),
+            (int(corner2["coordinates"][0]), int(corner2["coordinates"][1])),
+        ]
+        piece_side_data[side]["classification"] = side_classification
+
+        # Visualization of side contours and function approximation
+        if display_steps:
+            # Image with contour points and lines to center
+            img_copy = img_rgb.copy()
+            for point_coords in extracted_contour_points:
+                # Draw a circle at the corner point
+                cv2.circle(img_copy, tuple(point_coords), 5, (0, 0, 255), -1)
+                # Draw a red line from the center to the corner point
+                cv2.line(img_copy, piece_center, tuple(point_coords), (255, 0, 0), 4)
+
+            # Create subplots
+            _, axes = plt.subplots(1, 2, figsize=(15, 5))
+
+            # Subplot 1: Original image with contour points
+            axes[0].imshow(cv2.cvtColor(img_copy, cv2.COLOR_BGR2RGB))
+            axes[0].set_title(f"Side {side} Contours ({side_classification})")
+            axes[0].axis("off")
+
+            # Subplot 2: Bar chart of distances
+            axes[1].bar(range(len(distances)), distances)
+            axes[1].set_xlabel("Contour Points")
+            axes[1].set_ylabel("Distance")
+            axes[1].set_title("Distance of Contour Points from Center")
+
+            plt.tight_layout()
+            plt.show()
 
     # Convert corner coordinates to integers
     corner_coords = [
@@ -412,4 +420,68 @@ def piece_to_polygon(
         for point in best_corner_estimates
     ]
 
-    return corner_coords, piece_center, classification
+    # Determine the piece classification.
+    piece_classification = "ERROR"  # save as error if no classification
+
+    # Determine piece classification: flat, intrusion, or extrusion
+    if count_flat_sides == 0:
+        piece_classification = "MDL"  # No flat edges = Middle
+    elif count_flat_sides == 1:
+        piece_classification = "EDG"  # One flat edge = Edge
+    elif count_flat_sides == 2:
+        piece_classification = "CNR"  # Two flat edges = Corner
+
+    return corner_coords, piece_center, piece_classification, piece_side_data
+
+
+def points_are_equal(p1, p2):
+    """Check if two points have the same coordinates."""
+    return np.array_equal(p1["coordinates"], p2["coordinates"])
+
+
+def angle_between_points(p1, p2):
+    """Calculate the angle between two points."""
+    angle1 = p1["angle"]
+    angle2 = p2["angle"]
+
+    return (angle2 - angle1) % 360
+
+
+def angle_between_surrounding_points(contour_data, index):
+    """Given the countour data and an index, find the angle directly between the
+    two points surrounding it."""
+    total_points = len(contour_data)
+    previous_index = (index - 1 + total_points) % total_points
+    next_index = (index + 1) % total_points
+
+    # Get the center, previous, and next points
+    center_point = contour_data[index]
+    prev_point = contour_data[previous_index]
+    next_point = contour_data[next_index]
+
+    # Calculate vectors from center point to surrounding points
+    prev_vector = (
+        prev_point["coordinates"][0] - center_point["coordinates"][0],
+        prev_point["coordinates"][1] - center_point["coordinates"][1],
+    )
+    next_vector = (
+        next_point["coordinates"][0] - center_point["coordinates"][0],
+        next_point["coordinates"][1] - center_point["coordinates"][1],
+    )
+
+    # Calculate the angle between these vectors:
+    # Dot product
+    dot_product = prev_vector[0] * next_vector[0] + prev_vector[1] * next_vector[1]
+
+    # Magnitudes
+    prev_magnitude = math.sqrt(prev_vector[0] ** 2 + prev_vector[1] ** 2)
+    next_magnitude = math.sqrt(next_vector[0] ** 2 + next_vector[1] ** 2)
+
+    # Cosine of the angle
+    cos_angle = dot_product / (prev_magnitude * next_magnitude)
+
+    # Calculate Angle
+    angle_radians = math.acos(max(min(cos_angle, 1), -1))
+    angle_degrees = math.degrees(angle_radians)
+
+    return angle_degrees

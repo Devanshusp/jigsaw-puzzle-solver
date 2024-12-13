@@ -148,13 +148,16 @@ def preprocess_pieces(
         print(f"Processing piece {piece_index}")
 
         # Extracting piece data.
-        corners, center_coords, piece_classification = piece_to_polygon(
-            piece_file,
-            epsilon_ratio=0.02,
-            corner_distance_weight=0.5,
-            corner_angle_weight=0.4,
-            center_angle_weight=0.3,
-            display_steps=display_steps,
+        corners, center_coords, piece_classification, piece_side_data = (
+            piece_to_polygon(
+                piece_file,
+                epsilon_ratio=0.02,
+                corner_distance_weight=0.5,
+                corner_angle_weight=0.4,
+                center_angle_weight=0.3,
+                intrusion_threshold=0.6,
+                display_steps=display_steps,
+            )
         )
 
         # Saving extracted piece data.
@@ -168,6 +171,9 @@ def preprocess_pieces(
                 piece_index,
                 "classification",
                 piece_classification,
+            )
+            save_data_for_piece(
+                PIECES_SAVE_PATH, piece_index, "piece_side_data", piece_side_data
             )
 
         # Saving data here for each piece to display in grid format later.

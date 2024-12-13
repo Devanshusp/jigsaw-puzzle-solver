@@ -153,7 +153,7 @@ def preprocess_pieces(
             epsilon_ratio=0.02,
             corner_distance_weight=0.5,
             corner_angle_weight=0.4,
-            center_angle_weight=0.2,
+            center_angle_weight=0.3,
             display_steps=display_steps,
         )
 

@@ -8,7 +8,7 @@ if __name__ == "__main__":
     # set settings before run
     DISPLAY_STEPS = False
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = ".images1"
+    SAVE_PREPROCESS_FOLDER = "images"
     PUZZLES_TO_PROCESS = [
         "aurora12",
         "aurora30",

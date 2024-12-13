@@ -11,11 +11,7 @@ from functions.preprocessing.piece_to_polygon import piece_to_polygon
 from functions.preprocessing.puzzle_to_pieces import puzzle_to_pieces
 from functions.utils.display_pieces import display_pieces
 from functions.utils.display_pieces_with_data import display_pieces_with_data
-from functions.utils.save_data import (
-    get_data_for_piece,
-    init_save_file,
-    save_data_for_piece,
-)
+from functions.utils.save_data import init_save_file, save_data_for_piece
 
 
 def preprocess_puzzle(
@@ -57,8 +53,11 @@ def preprocess_puzzle(
     PIECES_SAVE_PATH = f"{SAVE_FOLDER}/pieces/{PUZZLE_IMAGE_NAME}"
     PIECES_GRID_SAVE_PATH = f"{SAVE_FOLDER}/pieces_grid"
 
-    pieces, centers = puzzle_to_pieces(
-        PUZZLE_IMAGE_PATH, kernel_size=(5, 5), display_steps=display_steps
+    pieces = puzzle_to_pieces(
+        PUZZLE_IMAGE_PATH,
+        kernel_size=(5, 5),
+        display_steps=display_steps,
+        add_random_rotation=True,
     )
 
     # Print the result
@@ -79,22 +78,6 @@ def preprocess_puzzle(
             # Save clean crops of pieces
             piece = cv2.cvtColor(piece, cv2.COLOR_BGR2RGB)
             cv2.imwrite(f"{PIECES_SAVE_PATH}/piece_{i}.png", piece)
-
-            # Save clean crops of pieces with a red dot at the center
-            center_coords = (int(centers[i][0]), int(centers[i][1]))
-            piece_with_center = cv2.circle(
-                piece,
-                center_coords,
-                radius=5,
-                color=(0, 0, 255),
-                thickness=-1,
-            )
-            cv2.imwrite(
-                f"{PIECES_SAVE_PATH}/piece_{i}_with_center.png", piece_with_center
-            )
-
-            # Save center data for each piece
-            save_data_for_piece(PIECES_SAVE_PATH, i, "center_coords", center_coords)
 
         # Update save path for the grid visualization
         PIECES_GRID_SAVE_PATH += f"/{PUZZLE_IMAGE_NAME}_pieces"
@@ -164,26 +147,22 @@ def preprocess_pieces(
 
         print(f"Processing piece {piece_index}")
 
-        # Get saved center coordinates for the piece
-        center_coords = get_data_for_piece(
-            PIECES_SAVE_PATH,
-            piece_index,
-            "center_coords",
-        )
-
         # Extracting piece data.
-        corners, piece_classification = piece_to_polygon(
+        corners, center_coords, piece_classification = piece_to_polygon(
             piece_file,
-            center_coords,
             epsilon_ratio=0.02,
-            corner_distance_weight=0.7,
-            corner_angle_weight=0.3,
+            corner_distance_weight=0.5,
+            corner_angle_weight=0.4,
+            center_angle_weight=0.2,
             display_steps=display_steps,
         )
 
         # Saving extracted piece data.
         if save:
             save_data_for_piece(PIECES_SAVE_PATH, piece_index, "corners", corners)
+            save_data_for_piece(
+                PIECES_SAVE_PATH, piece_index, "center_coords", center_coords
+            )
             save_data_for_piece(
                 PIECES_SAVE_PATH,
                 piece_index,

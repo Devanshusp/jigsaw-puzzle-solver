@@ -9,12 +9,15 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+from functions.utils.rotate_image import rotate_image
+
 
 def puzzle_to_pieces(
     image_path: str,
     kernel_size: Tuple[int, int] = (5, 5),
     display_steps: bool = True,
-) -> Tuple[List[np.ndarray], List[Tuple[int, int]]]:
+    add_random_rotation: bool = False,
+) -> List[np.ndarray]:
     """
     Processes an image of a puzzle to extract individual pieces as separate images.
 
@@ -95,7 +98,6 @@ def puzzle_to_pieces(
     # Initialize a list to store the extracted puzzle pieces and loop through each
     # label, skipping 0 (background label).
     pieces = []
-    centers = []
     for label_index in range(1, num_labels):
         # Create a binary mask for the current piece label from `labels`.
         img_mask = labels == label_index
@@ -108,16 +110,17 @@ def puzzle_to_pieces(
         # Extract the bounding box for the current piece from `stats`.
         x, y, w, h = stats[label_index][:4]  # x (left), y (top), w (width), h (height)
 
-        # Crop the isolated piece to its bounding box and save it.
+        # Crop the isolated piece to its bounding box.
         horizontal_indices = slice(y, y + h)
         vertical_indices = slice(x, x + w)
         img_piece_cropped = img_piece[horizontal_indices, vertical_indices]
+
+        if add_random_rotation:
+            # Add random rotation to the cropped image around its center.
+            angle = np.random.randint(0, 360)
+            img_piece_cropped = rotate_image(img_piece_cropped, angle)
+
+        # Save the current piece to the list of extracted pieces.
         pieces.append(img_piece_cropped)
 
-        # Extract and save centroid data for the current piece from `centroids`.
-        cx, cy = centroids[label_index]
-        cx = cx - x
-        cy = cy - y
-        centers.append((cx, cy))
-
-    return pieces, centers
+    return pieces

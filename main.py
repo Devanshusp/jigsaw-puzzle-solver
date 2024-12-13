@@ -6,7 +6,7 @@ from functions import preprocess_pieces, preprocess_puzzle
 
 if __name__ == "__main__":
     # set settings before run
-    DISPLAY_STEPS = True
+    DISPLAY_STEPS = False
     SAVE_PREPROCESS = True
     SAVE_PREPROCESS_FOLDER = ".images"
     PUZZLES_TO_PROCESS = [

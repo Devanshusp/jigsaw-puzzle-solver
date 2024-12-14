@@ -16,9 +16,10 @@ def piece_to_polygon(
     image_path: str,
     kernel_size: Tuple[int, int] = (5, 5),
     epsilon_ratio: float = 0.02,
-    corner_distance_weight: float = 0.5,
-    corner_angle_weight: float = 0.3,
-    center_angle_weight: float = 0.2,
+    corner_distance_weight: float = 1,
+    center_distance_weight: float = 1,
+    corner_angle_weight: float = 1,
+    center_angle_weight: float = 1,
     intrusion_threshold: float = 0.6,
     display_steps: bool = True,
 ) -> Tuple[List[Tuple[int, int]], Tuple[int, int], str, dict]:
@@ -226,6 +227,12 @@ def piece_to_polygon(
         # Calculate total distance of selected corners from center.
         total_distance = sum(point["distance"] for point in selected_corners)
 
+        # Calculate the distance error of selected corners from center.
+        average_distance = total_distance / 4
+        distance_error = sum(
+            abs(point["distance"] - average_distance) for point in selected_corners
+        )
+
         # Calculate total angle error of selected corners.
         angle1 = angle_between_points(target_point, point_90)
         angle2 = angle_between_points(point_90, point_180)
@@ -251,6 +258,7 @@ def piece_to_polygon(
         corner_pairs.append(
             {
                 "total_distance": total_distance,
+                "distance_error": distance_error,
                 "angle_error": angle_error,
                 "corner_angle_error": corner_angle_error,
                 "points": selected_corners,
@@ -260,11 +268,13 @@ def piece_to_polygon(
     # Select the best corner pairs from total distance and angle error data
     # Assign weights to balance importance of distance and angle error
     distance_weight = corner_distance_weight
+    distance_error_weight = center_distance_weight
     corner_angle_error_weight = corner_angle_weight
     center_angle_error_weight = center_angle_weight
 
     # Extract distance and angle_error from corner_pairs
     distances = [pair["total_distance"] for pair in corner_pairs]
+    distance_errors = [pair["distance_error"] for pair in corner_pairs]
     angle_errors = [pair["angle_error"] for pair in corner_pairs]
     corner_angle_errors = [pair["corner_angle_error"] for pair in corner_pairs]
 
@@ -272,6 +282,9 @@ def piece_to_polygon(
     normalized_distances = normalize_list(
         distances, reverse=True
     )  # Higher distance is better
+    normarlized_distance_errors = normalize_list(
+        distance_errors
+    )  # Lower distance error is better
     normalized_angle_errors = normalize_list(
         angle_errors
     )  # Lower angle error is better
@@ -283,6 +296,7 @@ def piece_to_polygon(
     for i, pair in enumerate(corner_pairs):
         pair["composite_score"] = (
             distance_weight * normalized_distances[i]
+            + distance_error_weight * normarlized_distance_errors[i]
             + center_angle_error_weight * normalized_angle_errors[i]
             + corner_angle_error_weight * normalized_corner_angle_errors[i]
         )

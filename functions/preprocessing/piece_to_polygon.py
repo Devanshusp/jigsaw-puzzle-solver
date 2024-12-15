@@ -434,9 +434,9 @@ def piece_to_polygon(
         # intrusion or extrusion; the side is intrusion if the minimum distance
         # between the contour points is less than SOME% of the minimum distance
         # between the first and last contour points (corner points).
-        elif min(distances[1 : len(distances) - 1]) < intrusion_threshold * min(
-            distances[0], distances[-1]
-        ):
+        elif sum(
+            sorted(distances[1 : len(distances) - 1])[:3]
+        ) / 3 < intrusion_threshold * min(distances[0], distances[-1]):
             side_classification = "INT"  # intrusion
         # Otherwise, assume the side is extrusion.
         else:

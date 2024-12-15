@@ -158,7 +158,7 @@ def preprocess_pieces(
                 # distance error (difference from average distance) between center and
                 # corner points (lower is better)
                 center_distance_weight=1,
-                intrusion_threshold=0.6,
+                intrusion_threshold=0.7,
                 display_steps=display_steps,
             )
         )
@@ -186,6 +186,7 @@ def preprocess_pieces(
                 "center_coords": center_coords,
                 "corners": corners,
                 "piece_classification": piece_classification,
+                "piece_side_data": piece_side_data,
             }
         )
 
@@ -277,7 +278,7 @@ def solve_puzzle(
 
     # 2. Pass the border pieces to solve_border
     solve_border(
-        PUZZLE_IMAGE_NAME,
+        PIECES_SAVE_PATH,
         corner_piece_indices=corner_piece_indices,
         edge_piece_indices=edge_piece_indices,
         display_steps=display_steps,

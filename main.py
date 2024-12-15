@@ -10,6 +10,7 @@ if __name__ == "__main__":
     SKIP_DISPLAY_PREPROCESS_PUZZLE = False
     SKIP_DISPLAY_PREPROCESS_PIECES = False
     SKIP_DISPLAY_SOLVE = False
+    SKIP_PREPROCESS = False
     SAVE_PREPROCESS = True
     SAVE_PREPROCESS_FOLDER = ".images"
     PUZZLES_TO_PROCESS = [
@@ -31,19 +32,20 @@ if __name__ == "__main__":
     ]
 
     for puzzle in PUZZLES_TO_PROCESS:
-        preprocess_puzzle(
-            puzzle,
-            save=SAVE_PREPROCESS,
-            save_folder=SAVE_PREPROCESS_FOLDER,
-            display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_PREPROCESS_PUZZLE,
-        )
+        if not SKIP_PREPROCESS:
+            preprocess_puzzle(
+                puzzle,
+                save=SAVE_PREPROCESS,
+                save_folder=SAVE_PREPROCESS_FOLDER,
+                display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_PREPROCESS_PUZZLE,
+            )
 
-        preprocess_pieces(
-            puzzle,
-            save=SAVE_PREPROCESS,
-            save_folder=SAVE_PREPROCESS_FOLDER,
-            display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_PREPROCESS_PIECES,
-        )
+            preprocess_pieces(
+                puzzle,
+                save=SAVE_PREPROCESS,
+                save_folder=SAVE_PREPROCESS_FOLDER,
+                display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_PREPROCESS_PIECES,
+            )
 
         solve_puzzle(
             puzzle,

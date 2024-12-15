@@ -1,5 +1,6 @@
 """
-orient_piece_side.py - Utility function to rotate a piece's side and get its contours.
+orient_piece_contours.py - Utility function to rotate a piece's side and get its
+contours.
 """
 
 import math
@@ -11,7 +12,7 @@ import numpy as np
 from functions.utils.save_data import get_data_for_piece
 
 
-def orient_piece_side(
+def orient_piece_contours(
     piece_path: str,
     piece_index: int,
     side: Literal["A", "B", "C", "D"],

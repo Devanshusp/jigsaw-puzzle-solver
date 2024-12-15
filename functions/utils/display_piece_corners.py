@@ -34,6 +34,17 @@ def display_piece_corners(
         center_coords = piece["center_coords"]
         corners = piece["corners"]
         piece_classification = piece["piece_classification"]
+        piece_side_data = piece["piece_side_data"]
+
+        side_a = piece_side_data["A"]["points"]
+        side_b = piece_side_data["B"]["points"]
+        side_c = piece_side_data["C"]["points"]
+        side_d = piece_side_data["D"]["points"]
+
+        side_a_classification = piece_side_data["A"]["classification"]
+        side_b_classification = piece_side_data["B"]["classification"]
+        side_c_classification = piece_side_data["C"]["classification"]
+        side_d_classification = piece_side_data["D"]["classification"]
 
         # Load the piece image.
         piece_img = plt.imread(f"{pieces_path}/piece_{piece_index}.png")
@@ -53,6 +64,71 @@ def display_piece_corners(
             plt.plot(
                 [center_coords[0], corner[0]], [center_coords[1], corner[1]], "r-"
             )  # Red line to center
+
+        # Plot sides with different colors and labels
+        # Side A: Green
+        plt.plot(
+            [side_a[0][0], side_a[1][0]],
+            [side_a[0][1], side_a[1][1]],
+            "g-",
+            linewidth=2,
+        )
+        plt.text(
+            np.mean([side_a[0][0], side_a[1][0]]),  # type: ignore
+            np.mean([side_a[0][1], side_a[1][1]]),  # type: ignore
+            f"A ({side_a_classification})",
+            color="green",
+            fontweight="bold",
+            fontsize=10,
+        )
+
+        # Side B: Purple
+        plt.plot(
+            [side_b[0][0], side_b[1][0]],
+            [side_b[0][1], side_b[1][1]],
+            "m-",
+            linewidth=2,
+        )
+        plt.text(
+            np.mean([side_b[0][0], side_b[1][0]]),  # type: ignore
+            np.mean([side_b[0][1], side_b[1][1]]),  # type: ignore
+            f"B ({side_b_classification})",
+            color="magenta",
+            fontweight="bold",
+            fontsize=10,
+        )
+
+        # Side C: Cyan
+        plt.plot(
+            [side_c[0][0], side_c[1][0]],
+            [side_c[0][1], side_c[1][1]],
+            "c-",
+            linewidth=2,
+        )
+        plt.text(
+            np.mean([side_c[0][0], side_c[1][0]]),  # type: ignore
+            np.mean([side_c[0][1], side_c[1][1]]),  # type: ignore
+            f"C ({side_c_classification})",
+            color="cyan",
+            fontweight="bold",
+            fontsize=10,
+        )
+
+        # Side D: Orange
+        plt.plot(
+            [side_d[0][0], side_d[1][0]],
+            [side_d[0][1], side_d[1][1]],
+            color="orange",
+            linewidth=2,
+        )
+        plt.text(
+            np.mean([side_d[0][0], side_d[1][0]]),  # type: ignore
+            np.mean([side_d[0][1], side_d[1][1]]),  # type: ignore
+            f"D ({side_d_classification})",
+            color="orange",
+            fontweight="bold",
+            fontsize=10,
+        )
 
         # Add title and remove axis for clarity
         plt.title(f"Piece {piece_index} ({piece_classification})")

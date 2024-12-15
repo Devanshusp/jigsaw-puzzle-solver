@@ -10,8 +10,8 @@ import cv2
 from functions.preprocessing.piece_to_polygon import piece_to_polygon
 from functions.preprocessing.puzzle_to_pieces import puzzle_to_pieces
 from functions.solving.solve_border import solve_border
+from functions.utils.display_piece_corners import display_piece_corners
 from functions.utils.display_pieces import display_pieces
-from functions.utils.display_pieces_with_data import display_pieces_with_data
 from functions.utils.piece_file_names import get_piece_file_names
 from functions.utils.save_data import (
     get_data_for_piece,
@@ -192,7 +192,7 @@ def preprocess_pieces(
         print(piece_file, corners)
 
     # Display pieces with data in a grid.
-    display_pieces_with_data(
+    display_piece_corners(
         piece_data,
         pieces_path=PIECES_SAVE_PATH,
         save=save,

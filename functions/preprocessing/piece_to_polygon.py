@@ -336,24 +336,6 @@ def piece_to_polygon(
     # Select the best corner pair
     best_corner_estimates = sorted_corner_pairs[0]["points"]
 
-    # Find the indices of the best corner estimates in the reshaped contours
-    indices = []
-    for point in best_corner_estimates:
-        point_coords = point["coordinates"]
-        indices.append(find_contour_index(reshaped_contours, point_coords))
-
-    print("AAAAAAAAAA", indices)
-
-    piece_side_data = {}
-
-    for i, side in enumerate(["A", "B", "C", "D"]):
-        corner1_index = indices[i]
-        corner2_index = indices[(i + 1) % len(indices)]
-        piece_side_data[side] = {}
-        piece_side_data[side]["contour_points"] = extract_contour_points_from_indices(
-            reshaped_contours, corner1_index, corner2_index
-        )
-
     # Visualization of detected corners
     if display_steps:
         img_copy = img_rgb.copy()
@@ -373,11 +355,32 @@ def piece_to_polygon(
         plt.axis("off")
         plt.show()
 
-    # Initialize a dictionary to label piece side (edge) data
+    # Instantiate a dictionary to label piece side (edge) data
+    piece_side_data = {}
+
+    # Initialize count_flat_sides to detect piece classification
     count_flat_sides = 0
+
+    # Find the indices of the best corner estimates in the original contours list
+    original_contour_indices = []
+    for point in best_corner_estimates:
+        point_coords = point["coordinates"]
+        original_contour_indices.append(
+            find_contour_index(reshaped_contours, point_coords)
+        )
 
     # Loop through 4 arbitrary edges (A, B, C, D)
     for i, side in enumerate(["A", "B", "C", "D"]):
+        # Extract contour points for each side and save to dictionary
+        corner1_index = original_contour_indices[i]
+        corner2_index = original_contour_indices[
+            (i + 1) % len(original_contour_indices)
+        ]
+        piece_side_data[side] = {}
+        piece_side_data[side]["contour_points"] = extract_contour_points_from_indices(
+            reshaped_contours, corner1_index, corner2_index
+        )
+
         # Set the current corner and the next corner (circularly)
         corner1 = best_corner_estimates[i]
         corner2 = best_corner_estimates[
@@ -550,10 +553,10 @@ def extract_contour_points_from_indices(contours, start, end):
     """
     extracted_contour_points = []
     if start > end:
-        extracted_contour_points.append(contours[start:].tolist())
-        extracted_contour_points.append(contours[: end + 1].tolist())
+        extracted_contour_points.extend(contours[start:].tolist())
+        extracted_contour_points.extend(contours[: end + 1].tolist())
     else:
-        extracted_contour_points.append(contours[start : end + 1].tolist())
+        extracted_contour_points.extend(contours[start : end + 1].tolist())
 
     return extracted_contour_points
 

@@ -1,5 +1,5 @@
 """
-display_pieces_with_data.py - Display a list of puzzle piece images in a grid layout
+display_piece_corners.py - Display a list of puzzle piece images in a grid layout
 with associated data.
 """
 
@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def display_pieces_with_data(
+def display_piece_corners(
     piece_data: List[dict],
     pieces_path: str,
     save_name: str,

@@ -9,9 +9,15 @@ import cv2
 
 from functions.preprocessing.piece_to_polygon import piece_to_polygon
 from functions.preprocessing.puzzle_to_pieces import puzzle_to_pieces
+from functions.solving.solve_border import solve_border
 from functions.utils.display_pieces import display_pieces
 from functions.utils.display_pieces_with_data import display_pieces_with_data
-from functions.utils.save_data import init_save_file, save_data_for_piece
+from functions.utils.piece_file_names import get_piece_file_names
+from functions.utils.save_data import (
+    get_data_for_piece,
+    init_save_file,
+    save_data_for_piece,
+)
 
 
 def preprocess_puzzle(
@@ -80,7 +86,7 @@ def preprocess_puzzle(
             cv2.imwrite(f"{PIECES_SAVE_PATH}/piece_{i}.png", piece)
 
         # Update save path for the grid visualization
-        PIECES_GRID_SAVE_PATH += f"/{PUZZLE_IMAGE_NAME}_pieces"
+        PIECES_GRID_SAVE_PATH += f"/{PUZZLE_IMAGE_NAME}"
 
     # Display pieces in a grid
     display_pieces(
@@ -122,21 +128,10 @@ def preprocess_pieces(
     # Regex pattern to match files named piece_{i}.png
     piece_pattern = re.compile(r"^piece_(\d+)\.png$")
 
-    # List to store matching file paths
-    piece_files = []
+    # Store matching file paths
+    piece_files = get_piece_file_names(PIECES_SAVE_PATH, piece_pattern)
 
-    # Loop through all files in the directory
-    for filename in os.listdir(PIECES_SAVE_PATH):
-        if piece_pattern.match(filename):
-            piece_files.append(os.path.join(PIECES_SAVE_PATH, filename))
-
-    # Sort files by the piece number
-    piece_files.sort(
-        key=lambda x: int(
-            piece_pattern.search(os.path.basename(x)).group(1)  # type: ignore
-        )
-    )
-
+    # List to store piece data
     piece_data = []
 
     # Process each piece file
@@ -201,6 +196,74 @@ def preprocess_pieces(
         piece_data,
         pieces_path=PIECES_SAVE_PATH,
         save=save,
-        save_name=f"{PIECES_DATA_GRID_SAVE_PATH}/{PUZZLE_IMAGE_NAME}_pieces_with_data",
+        save_name=f"{PIECES_DATA_GRID_SAVE_PATH}/{PUZZLE_IMAGE_NAME}_1_corners",
+        display_steps=display_steps,
+    )
+
+
+def solve_puzzle(
+    PUZZLE_IMAGE_NAME: str,
+    save: bool = False,
+    save_folder: str = "images",
+    display_steps: bool = True,
+):
+    # Define the folder path
+    PIECES_SAVE_PATH = f"{save_folder}/pieces/{PUZZLE_IMAGE_NAME}"
+    PIECES_DATA_GRID_SAVE_PATH = f"{save_folder}/pieces_grid"
+
+    # Regex pattern to match files named piece_{i}.png
+    piece_pattern = re.compile(r"^piece_(\d+)\.png$")
+
+    # Store matching file paths
+    piece_files = get_piece_file_names(PIECES_SAVE_PATH, piece_pattern)
+
+    # List to store piece data
+    border_piece_indices = []
+    border_pieces = []
+    non_border_piece_indices = []
+    non_border_pieces = []
+
+    # Process each piece file
+    for piece_file in piece_files:
+        # Extract piece index value
+        match = piece_pattern.search(os.path.basename(piece_file))
+        piece_index = int(match.group(1))  # type: ignore
+
+        piece_classification = get_data_for_piece(
+            PIECES_SAVE_PATH, piece_index, "classification"
+        )
+
+        img = cv2.imread(PIECES_SAVE_PATH + f"/piece_{piece_index}.png")
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        if piece_classification in ("EDG", "CNR"):
+            border_piece_indices.append(piece_index)
+            border_pieces.append(img_rgb)
+            print(f"Classified piece {piece_index} as border")
+        else:
+            non_border_piece_indices.append(piece_index)
+            non_border_pieces.append(img_rgb)
+            print(f"Classified piece {piece_index} as non-border")
+
+    # Display border pieces in a grid
+    display_pieces(
+        border_pieces,
+        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_2_border",
+        save=save,
+        display_steps=display_steps,
+    )
+
+    # Display non-border pieces in a grid
+    display_pieces(
+        non_border_pieces,
+        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_3_non_border",
+        save=save,
+        display_steps=display_steps,
+    )
+
+    # 2. Pass the border pieces to solve_border
+    solve_border(
+        PUZZLE_IMAGE_NAME,
+        border_piece_indices=border_piece_indices,
         display_steps=display_steps,
     )

@@ -69,5 +69,6 @@ def display_pieces_with_data(
         # Show the plot.
         plt.show()
 
-        # Clear the figure after saving and showing to avoid issues.
-        plt.clf()
+    # Clear the figure after saving and showing to avoid issues.
+    plt.clf()
+    plt.close()

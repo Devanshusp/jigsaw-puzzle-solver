@@ -6,7 +6,7 @@ from functions import preprocess_pieces, preprocess_puzzle, solve_puzzle
 
 if __name__ == "__main__":
     # set settings before run
-    DISPLAY_STEPS = True
+    DISPLAY_STEPS = False
     SKIP_DISPLAY_PREPROCESS_PUZZLE = False
     SKIP_DISPLAY_PREPROCESS_PIECES = False
     SKIP_DISPLAY_SOLVE = False

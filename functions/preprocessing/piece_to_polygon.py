@@ -86,6 +86,8 @@ def piece_to_polygon(
         plt.axis("off")
         plt.show()
 
+    reshaped_contours = np.array(contours).reshape(-1, 2)
+
     # We perform polygonal approximation on the contours to reduce the number of points
     # in each contour. This helps simplify the contour shape while preserving its
     # overall structure.
@@ -334,6 +336,24 @@ def piece_to_polygon(
     # Select the best corner pair
     best_corner_estimates = sorted_corner_pairs[0]["points"]
 
+    # Find the indices of the best corner estimates in the reshaped contours
+    indices = []
+    for point in best_corner_estimates:
+        point_coords = point["coordinates"]
+        indices.append(find_contour_index(reshaped_contours, point_coords))
+
+    print("AAAAAAAAAA", indices)
+
+    piece_side_data = {}
+
+    for i, side in enumerate(["A", "B", "C", "D"]):
+        corner1_index = indices[i]
+        corner2_index = indices[(i + 1) % len(indices)]
+        piece_side_data[side] = {}
+        piece_side_data[side]["contour_points"] = extract_contour_points_from_indices(
+            reshaped_contours, corner1_index, corner2_index
+        )
+
     # Visualization of detected corners
     if display_steps:
         img_copy = img_rgb.copy()
@@ -354,7 +374,6 @@ def piece_to_polygon(
         plt.show()
 
     # Initialize a dictionary to label piece side (edge) data
-    piece_side_data = {}
     count_flat_sides = 0
 
     # Loop through 4 arbitrary edges (A, B, C, D)
@@ -421,7 +440,6 @@ def piece_to_polygon(
             side_classification = "EXT"  # extrusion
 
         # Save side data
-        piece_side_data[side] = {}
         piece_side_data[side]["points"] = [
             (int(corner1["coordinates"][0]), int(corner1["coordinates"][1])),
             (int(corner2["coordinates"][0]), int(corner2["coordinates"][1])),
@@ -513,6 +531,31 @@ def angle_between_vectors(v1: tuple[int, int], v2: tuple[int, int]) -> float:
     # Convert to degrees
     angle_degrees = math.degrees(angle_radians)
     return angle_degrees
+
+
+def find_contour_index(contours, point):
+    """
+    Find the index of a point in a list of contours.
+    """
+    for i, contour in enumerate(contours):
+        if point[0] == contour[0] and point[1] == contour[1]:
+            return i
+
+    return None
+
+
+def extract_contour_points_from_indices(contours, start, end):
+    """
+    Extract contour points from indices.
+    """
+    extracted_contour_points = []
+    if start > end:
+        extracted_contour_points.append(contours[start:].tolist())
+        extracted_contour_points.append(contours[: end + 1].tolist())
+    else:
+        extracted_contour_points.append(contours[start : end + 1].tolist())
+
+    return extracted_contour_points
 
 
 def angle_error_between_surrounding_points(contour_data, index, piece_center):

@@ -218,8 +218,10 @@ def solve_puzzle(
     piece_files = get_piece_file_names(PIECES_SAVE_PATH, piece_pattern)
 
     # List to store piece data
-    border_piece_indices = []
-    border_pieces = []
+    corner_piece_indices = []
+    corner_pieces = []
+    edge_piece_indices = []
+    edge_pieces = []
     non_border_piece_indices = []
     non_border_pieces = []
 
@@ -236,19 +238,31 @@ def solve_puzzle(
         img = cv2.imread(PIECES_SAVE_PATH + f"/piece_{piece_index}.png")
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        if piece_classification in ("EDG", "CNR"):
-            border_piece_indices.append(piece_index)
-            border_pieces.append(img_rgb)
-            print(f"Classified piece {piece_index} as border")
+        if piece_classification == "CNR":
+            corner_piece_indices.append(piece_index)
+            corner_pieces.append(img_rgb)
+            print(f"Classified piece {piece_index} as corner")
+        elif piece_classification == "EDG":
+            edge_piece_indices.append(piece_index)
+            edge_pieces.append(img_rgb)
+            print(f"Classified piece {piece_index} as edge")
         else:
             non_border_piece_indices.append(piece_index)
             non_border_pieces.append(img_rgb)
             print(f"Classified piece {piece_index} as non-border")
 
-    # Display border pieces in a grid
+    # Display corner pieces in a grid
     display_pieces(
-        border_pieces,
-        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_2_border",
+        corner_pieces,
+        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_2_corner",
+        save=save,
+        display_steps=display_steps,
+    )
+
+    # Display edge pieces in a grid
+    display_pieces(
+        edge_pieces,
+        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_3_border",
         save=save,
         display_steps=display_steps,
     )
@@ -256,7 +270,7 @@ def solve_puzzle(
     # Display non-border pieces in a grid
     display_pieces(
         non_border_pieces,
-        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_3_non_border",
+        save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_4_non_border",
         save=save,
         display_steps=display_steps,
     )
@@ -264,6 +278,7 @@ def solve_puzzle(
     # 2. Pass the border pieces to solve_border
     solve_border(
         PUZZLE_IMAGE_NAME,
-        border_piece_indices=border_piece_indices,
+        corner_piece_indices=corner_piece_indices,
+        edge_piece_indices=edge_piece_indices,
         display_steps=display_steps,
     )

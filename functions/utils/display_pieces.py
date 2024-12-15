@@ -52,9 +52,6 @@ def display_pieces(
         # Show the plot.
         plt.show()
 
-        # Clear the figure after saving and showing to avoid issues.
-        plt.clf()
-
     # Clear the figure after saving and showing to avoid issues.
     plt.clf()
     plt.close()

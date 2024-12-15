@@ -152,9 +152,16 @@ def preprocess_pieces(
             piece_to_polygon(
                 piece_file,
                 epsilon_ratio=0.01,
-                corner_distance_weight=1,
-                corner_angle_weight=1.3,
-                center_angle_weight=1.5,
+                # distance from center and corner points (higher is better)
+                corner_distance_weight=0.7,
+                # angle error (difference from 2x45 and 90) between corner and adjacent
+                # points (lower is better)
+                corner_angle_weight=1.5,
+                # angle error (difference from 90) between center and corner points
+                # (lower is better)
+                center_angle_weight=1,
+                # distance error (difference from average distance) between center and
+                # corner points (lower is better)
                 center_distance_weight=1,
                 intrusion_threshold=0.6,
                 display_steps=display_steps,

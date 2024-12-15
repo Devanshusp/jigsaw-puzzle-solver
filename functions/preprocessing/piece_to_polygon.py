@@ -181,89 +181,116 @@ def piece_to_polygon(
 
     # Loop through filtered contour data.
     for target_index, target_point in enumerate(contour_data):
-        # Find the point closest to 90 degrees away, excluding target_point.
-        point_90_index, point_90 = min(
-            enumerate(contour_data),
-            key=lambda enum_point: (
-                abs((enum_point[1]["angle"] - (target_point["angle"] + 90)) % 360)
-                if not points_are_equal(enum_point[1], target_point)
-                else float("inf")
-            ),
-        )
+        for dist_err in [-20, -10, -5, 0, 5, 10, 20]:
+            # Find the point closest to 90 degrees away, excluding target_point.
+            point_90_index, point_90 = min(
+                enumerate(contour_data),
+                key=lambda enum_point: (
+                    abs(
+                        (
+                            enum_point[1]["angle"]
+                            - (target_point["angle"] + 90 + dist_err)
+                        )
+                        % 360
+                    )
+                    if not points_are_equal(enum_point[1], target_point)
+                    else float("inf")
+                ),
+            )
 
-        # Find the point closest to 180 degrees away, excluding target_point and
-        # point_90.
-        point_180_index, point_180 = min(
-            enumerate(contour_data),
-            key=lambda enum_point: (
-                abs((enum_point[1]["angle"] - (target_point["angle"] + 180)) % 360)
-                if (
-                    not points_are_equal(enum_point[1], target_point)
-                    and not points_are_equal(enum_point[1], point_90)
-                )
-                else float("inf")
-            ),
-        )
+            # Find the point closest to 180 degrees away, excluding target_point and
+            # point_90.
+            point_180_index, point_180 = min(
+                enumerate(contour_data),
+                key=lambda enum_point: (
+                    abs(
+                        (
+                            enum_point[1]["angle"]
+                            - (target_point["angle"] + 180 + dist_err)
+                        )
+                        % 360
+                    )
+                    if (
+                        not points_are_equal(enum_point[1], target_point)
+                        and not points_are_equal(enum_point[1], point_90)
+                    )
+                    else float("inf")
+                ),
+            )
 
-        # Find the point closest to 270 degrees away, excluding target_point, point_90,
-        # and point_180.
-        point_270_index, point_270 = min(
-            enumerate(contour_data),
-            key=lambda enum_point: (
-                abs((enum_point[1]["angle"] - (target_point["angle"] + 270)) % 360)
-                if (
-                    not points_are_equal(enum_point[1], target_point)
-                    and not points_are_equal(enum_point[1], point_90)
-                    and not points_are_equal(enum_point[1], point_180)
-                )
-                else float("inf")
-            ),
-        )
+            # Find the point closest to 270 degrees away, excluding target_point,
+            # point_90, and point_180.
+            point_270_index, point_270 = min(
+                enumerate(contour_data),
+                key=lambda enum_point: (
+                    abs(
+                        (
+                            enum_point[1]["angle"]
+                            - (target_point["angle"] + 270 + dist_err)
+                        )
+                        % 360
+                    )
+                    if (
+                        not points_are_equal(enum_point[1], target_point)
+                        and not points_are_equal(enum_point[1], point_90)
+                        and not points_are_equal(enum_point[1], point_180)
+                    )
+                    else float("inf")
+                ),
+            )
 
-        # Using these four points, draw red dots on the original image for
-        # visualization.
-        selected_corners = [target_point, point_90, point_180, point_270]
+            # Using these four points, draw red dots on the original image for
+            # visualization.
+            selected_corners = [target_point, point_90, point_180, point_270]
 
-        # Calculate total distance of selected corners from center.
-        total_distance = sum(point["distance"] for point in selected_corners)
+            # Calculate total distance of selected corners from center.
+            total_distance = sum(point["distance"] for point in selected_corners)
 
-        # Calculate the distance error of selected corners from center.
-        average_distance = total_distance / 4
-        distance_error = sum(
-            abs(point["distance"] - average_distance) for point in selected_corners
-        )
+            # Calculate the distance error of selected corners from center.
+            average_distance = total_distance / 4
+            distance_error = sum(
+                abs(point["distance"] - average_distance) for point in selected_corners
+            )
 
-        # Calculate total angle error of selected corners.
-        angle1 = angle_between_points(target_point, point_90)
-        angle2 = angle_between_points(point_90, point_180)
-        angle3 = angle_between_points(point_180, point_270)
-        angle4 = angle_between_points(point_270, target_point)
-        angle_error = (
-            abs(angle1 - 90) + abs(angle2 - 90) + abs(angle3 - 90) + abs(angle4 - 90)
-        )
+            # Calculate total angle error of selected corners.
+            angle1 = angle_between_points(target_point, point_90)
+            angle2 = angle_between_points(point_90, point_180)
+            angle3 = angle_between_points(point_180, point_270)
+            angle4 = angle_between_points(point_270, target_point)
+            angle_error = (
+                abs(angle1 - 90)
+                + abs(angle2 - 90)
+                + abs(angle3 - 90)
+                + abs(angle4 - 90)
+            )
 
-        # Check surrounding points to each corner.
-        corner_angle1 = angle_between_surrounding_points(contour_data, target_index)
-        corner_angle2 = angle_between_surrounding_points(contour_data, point_90_index)
-        corner_angle3 = angle_between_surrounding_points(contour_data, point_180_index)
-        corner_angle4 = angle_between_surrounding_points(contour_data, point_270_index)
-        corner_angle_error = (
-            abs(corner_angle1 - 90)
-            + abs(corner_angle2 - 90)
-            + abs(corner_angle3 - 90)
-            + abs(corner_angle4 - 90)
-        )
+            # Check surrounding points to each corner.
+            corner_angle1 = angle_error_between_surrounding_points(
+                contour_data, target_index, piece_center
+            )
+            corner_angle2 = angle_error_between_surrounding_points(
+                contour_data, point_90_index, piece_center
+            )
+            corner_angle3 = angle_error_between_surrounding_points(
+                contour_data, point_180_index, piece_center
+            )
+            corner_angle4 = angle_error_between_surrounding_points(
+                contour_data, point_270_index, piece_center
+            )
+            corner_angle_error = (
+                corner_angle1 + corner_angle2 + corner_angle3 + corner_angle4
+            )
 
-        # Save corner pairs
-        corner_pairs.append(
-            {
-                "total_distance": total_distance,
-                "distance_error": distance_error,
-                "angle_error": angle_error,
-                "corner_angle_error": corner_angle_error,
-                "points": selected_corners,
-            }
-        )
+            # Save corner pairs
+            corner_pairs.append(
+                {
+                    "total_distance": total_distance,
+                    "distance_error": distance_error,
+                    "angle_error": angle_error,
+                    "corner_angle_error": corner_angle_error,
+                    "points": selected_corners,
+                }
+            )
 
     # Select the best corner pairs from total distance and angle error data
     # Assign weights to balance importance of distance and angle error
@@ -461,41 +488,75 @@ def angle_between_points(p1, p2):
     return (angle2 - angle1) % 360
 
 
-def angle_between_surrounding_points(contour_data, index):
-    """Given the countour data and an index, find the angle directly between the
-    two points surrounding it."""
+def calculate_vector(point1, point2):
+    """Calculate the vector between two points."""
+    return (point2[0] - point1[0], point2[1] - point1[1])
+
+
+def angle_between_vectors(v1: tuple[int, int], v2: tuple[int, int]) -> float:
+    """Returns the angle in degrees between two 2D vectors."""
+    # Calculate dot product and magnitudes
+    dot_product = v1[0] * v2[0] + v1[1] * v2[1]
+    magnitude_v1 = math.sqrt(v1[0] ** 2 + v1[1] ** 2)
+    magnitude_v2 = math.sqrt(v2[0] ** 2 + v2[1] ** 2)
+
+    # Avoid division by zero
+    if magnitude_v1 == 0 or magnitude_v2 == 0:
+        raise ValueError("Vectors must not be zero vectors.")
+
+    # Calculate the angle in radians
+    cos_theta = dot_product / (magnitude_v1 * magnitude_v2)
+    cos_theta = max(min(cos_theta, 1), -1)  # Clamp to avoid precision errors
+
+    angle_radians = math.acos(cos_theta)
+
+    # Convert to degrees
+    angle_degrees = math.degrees(angle_radians)
+    return angle_degrees
+
+
+def angle_error_between_surrounding_points(contour_data, index, piece_center):
+    """
+    Calculate the angle error for a point in the contour relative to the piece center.
+
+    Args:
+    - contour_data: List of points with coordinate information
+    - index: Index of the current point in the contour
+    - piece_center: Coordinates of the piece center
+
+    Returns:
+    - Angle error (penalizes significant deviations from ideal angles)
+    """
     total_points = len(contour_data)
+
+    # Handle edge cases
+    if total_points < 3:
+        return float("inf")
+
+    # Get surrounding points
     previous_index = (index - 1 + total_points) % total_points
     next_index = (index + 1) % total_points
 
-    # Get the center, previous, and next points
-    center_point = contour_data[index]
-    prev_point = contour_data[previous_index]
-    next_point = contour_data[next_index]
+    # Extract coordinates
+    center_point = contour_data[index]["coordinates"]
+    prev_point = contour_data[previous_index]["coordinates"]
+    next_point = contour_data[next_index]["coordinates"]
 
-    # Calculate vectors from center point to surrounding points
-    prev_vector = (
-        prev_point["coordinates"][0] - center_point["coordinates"][0],
-        prev_point["coordinates"][1] - center_point["coordinates"][1],
-    )
-    next_vector = (
-        next_point["coordinates"][0] - center_point["coordinates"][0],
-        next_point["coordinates"][1] - center_point["coordinates"][1],
-    )
+    # Calculate vectors
+    prev_vector = calculate_vector(center_point, prev_point)
+    next_vector = calculate_vector(center_point, next_point)
+    piece_center_vector = calculate_vector(center_point, piece_center)
 
-    # Calculate the angle between these vectors:
-    # Dot product
-    dot_product = prev_vector[0] * next_vector[0] + prev_vector[1] * next_vector[1]
+    # Calculate angles
+    angle1 = angle_between_vectors(piece_center_vector, prev_vector)
+    angle2 = angle_between_vectors(piece_center_vector, next_vector)
+    angle3 = angle_between_vectors(prev_vector, next_vector)
 
-    # Magnitudes
-    prev_magnitude = math.sqrt(prev_vector[0] ** 2 + prev_vector[1] ** 2)
-    next_magnitude = math.sqrt(next_vector[0] ** 2 + next_vector[1] ** 2)
+    # Handle case that center is not between prev and next
+    # if angle3 - (angle1 + angle2) > 2:
+    #     return float("inf")
 
-    # Cosine of the angle
-    cos_angle = dot_product / (prev_magnitude * next_magnitude)
+    # Calculate total angle error
+    angle_error = abs(45 - angle1) + abs(45 - angle2) + abs(90 - angle3)
 
-    # Calculate Angle
-    angle_radians = math.acos(max(min(cos_angle, 1), -1))
-    angle_degrees = math.degrees(angle_radians)
-
-    return angle_degrees
+    return angle_error

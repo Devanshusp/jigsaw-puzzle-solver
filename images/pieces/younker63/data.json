@@ -2,63 +2,63 @@
     "piece_0": {
         "corners": [
             [
+                81,
+                3
+            ],
+            [
                 23,
-                33
+                73
             ],
             [
-                42,
-                122
+                84,
+                139
             ],
             [
-                128,
-                99
-            ],
-            [
-                108,
-                2
+                146,
+                74
             ]
         ],
         "center_coords": [
-            71,
-            64
+            80,
+            74
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
+                        81,
+                        3
+                    ],
+                    [
                         23,
-                        33
-                    ],
-                    [
-                        42,
-                        122
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        42,
-                        122
-                    ],
-                    [
-                        128,
-                        99
+                        73
                     ]
                 ],
                 "classification": "INT"
             },
+            "B": {
+                "points": [
+                    [
+                        23,
+                        73
+                    ],
+                    [
+                        84,
+                        139
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "C": {
                 "points": [
                     [
-                        128,
-                        99
+                        84,
+                        139
                     ],
                     [
-                        108,
-                        2
+                        146,
+                        74
                     ]
                 ],
                 "classification": "INT"
@@ -66,12 +66,12 @@
             "D": {
                 "points": [
                     [
-                        108,
-                        2
+                        146,
+                        74
                     ],
                     [
-                        23,
-                        33
+                        81,
+                        3
                     ]
                 ],
                 "classification": "INT"
@@ -81,37 +81,37 @@
     "piece_1": {
         "corners": [
             [
-                91,
-                28
+                10,
+                117
             ],
             [
-                14,
-                92
+                101,
+                143
             ],
             [
-                85,
-                173
+                143,
+                64
             ],
             [
-                146,
-                98
+                54,
+                20
             ]
         ],
         "center_coords": [
-            84,
-            96
+            77,
+            85
         ],
-        "classification": "EDG",
+        "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        91,
-                        28
+                        10,
+                        117
                     ],
                     [
-                        14,
-                        92
+                        101,
+                        143
                     ]
                 ],
                 "classification": "EXT"
@@ -119,25 +119,25 @@
             "B": {
                 "points": [
                     [
-                        14,
-                        92
+                        101,
+                        143
                     ],
                     [
-                        85,
-                        173
+                        143,
+                        64
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        85,
-                        173
+                        143,
+                        64
                     ],
                     [
-                        146,
-                        98
+                        54,
+                        20
                     ]
                 ],
                 "classification": "EXT"
@@ -145,12 +145,12 @@
             "D": {
                 "points": [
                     [
-                        146,
-                        98
+                        54,
+                        20
                     ],
                     [
-                        91,
-                        28
+                        10,
+                        117
                     ]
                 ],
                 "classification": "EXT"
@@ -160,37 +160,37 @@
     "piece_2": {
         "corners": [
             [
-                23,
-                43
+                26,
+                54
             ],
             [
-                44,
-                135
+                55,
+                142
             ],
             [
-                145,
-                118
+                156,
+                116
             ],
             [
-                116,
-                18
+                115,
+                19
             ]
         ],
         "center_coords": [
-            79,
-            80
+            86,
+            85
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        23,
-                        43
+                        26,
+                        54
                     ],
                     [
-                        44,
-                        135
+                        55,
+                        142
                     ]
                 ],
                 "classification": "EXT"
@@ -198,12 +198,12 @@
             "B": {
                 "points": [
                     [
-                        44,
-                        135
+                        55,
+                        142
                     ],
                     [
-                        145,
-                        118
+                        156,
+                        116
                     ]
                 ],
                 "classification": "EXT"
@@ -211,12 +211,12 @@
             "C": {
                 "points": [
                     [
-                        145,
-                        118
+                        156,
+                        116
                     ],
                     [
-                        116,
-                        18
+                        115,
+                        19
                     ]
                 ],
                 "classification": "INT"
@@ -224,12 +224,12 @@
             "D": {
                 "points": [
                     [
-                        116,
-                        18
+                        115,
+                        19
                     ],
                     [
-                        23,
-                        43
+                        26,
+                        54
                     ]
                 ],
                 "classification": "EXT"
@@ -239,37 +239,37 @@
     "piece_3": {
         "corners": [
             [
-                20,
-                82
+                80,
+                32
             ],
             [
-                88,
+                15,
+                105
+            ],
+            [
+                86,
                 160
             ],
             [
-                148,
-                84
-            ],
-            [
-                79,
-                15
+                159,
+                85
             ]
         ],
         "center_coords": [
-            87,
-            88
+            88,
+            92
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        20,
-                        82
+                        80,
+                        32
                     ],
                     [
-                        88,
-                        160
+                        15,
+                        105
                     ]
                 ],
                 "classification": "EXT"
@@ -277,12 +277,12 @@
             "B": {
                 "points": [
                     [
-                        88,
-                        160
+                        15,
+                        105
                     ],
                     [
-                        148,
-                        84
+                        86,
+                        160
                     ]
                 ],
                 "classification": "EXT"
@@ -290,12 +290,12 @@
             "C": {
                 "points": [
                     [
-                        148,
-                        84
+                        86,
+                        160
                     ],
                     [
-                        79,
-                        15
+                        159,
+                        85
                     ]
                 ],
                 "classification": "EXT"
@@ -303,52 +303,52 @@
             "D": {
                 "points": [
                     [
-                        79,
-                        15
+                        159,
+                        85
                     ],
                     [
-                        20,
-                        82
+                        80,
+                        32
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_4": {
         "corners": [
             [
-                142,
-                32
+                39,
+                23
             ],
             [
-                37,
-                9
+                8,
+                107
             ],
             [
-                22,
-                90
+                94,
+                144
             ],
             [
-                108,
-                119
+                121,
+                41
             ]
         ],
         "center_coords": [
-            78,
-            61
+            66,
+            79
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        142,
-                        32
+                        39,
+                        23
                     ],
                     [
-                        37,
-                        9
+                        8,
+                        107
                     ]
                 ],
                 "classification": "INT"
@@ -356,12 +356,12 @@
             "B": {
                 "points": [
                     [
-                        37,
-                        9
+                        8,
+                        107
                     ],
                     [
-                        22,
-                        90
+                        94,
+                        144
                     ]
                 ],
                 "classification": "EXT"
@@ -369,12 +369,12 @@
             "C": {
                 "points": [
                     [
-                        22,
-                        90
+                        94,
+                        144
                     ],
                     [
-                        108,
-                        119
+                        121,
+                        41
                     ]
                 ],
                 "classification": "INT"
@@ -382,12 +382,12 @@
             "D": {
                 "points": [
                     [
-                        108,
-                        119
+                        121,
+                        41
                     ],
                     [
-                        142,
-                        32
+                        39,
+                        23
                     ]
                 ],
                 "classification": "EXT"
@@ -397,50 +397,50 @@
     "piece_5": {
         "corners": [
             [
-                140,
-                48
+                40,
+                11
             ],
             [
-                31,
-                22
+                3,
+                104
             ],
             [
-                12,
-                119
+                99,
+                145
             ],
             [
-                107,
-                148
+                135,
+                38
             ]
         ],
         "center_coords": [
             73,
-            79
+            76
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        140,
-                        48
+                        40,
+                        11
                     ],
                     [
-                        31,
-                        22
+                        3,
+                        104
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "FLT"
             },
             "B": {
                 "points": [
                     [
-                        31,
-                        22
+                        3,
+                        104
                     ],
                     [
-                        12,
-                        119
+                        99,
+                        145
                     ]
                 ],
                 "classification": "INT"
@@ -448,25 +448,25 @@
             "C": {
                 "points": [
                     [
-                        12,
-                        119
+                        99,
+                        145
                     ],
                     [
-                        107,
-                        148
+                        135,
+                        38
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        107,
-                        148
+                        135,
+                        38
                     ],
                     [
-                        140,
-                        48
+                        40,
+                        11
                     ]
                 ],
                 "classification": "INT"
@@ -476,37 +476,116 @@
     "piece_6": {
         "corners": [
             [
-                108,
-                25
+                9,
+                60
             ],
             [
-                6,
-                44
+                41,
+                138
             ],
             [
-                42,
-                136
+                140,
+                106
             ],
             [
-                131,
-                104
+                95,
+                20
             ]
         ],
         "center_coords": [
-            70,
-            76
+            72,
+            81
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        108,
-                        25
+                        9,
+                        60
                     ],
                     [
-                        6,
-                        44
+                        41,
+                        138
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "B": {
+                "points": [
+                    [
+                        41,
+                        138
+                    ],
+                    [
+                        140,
+                        106
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        140,
+                        106
+                    ],
+                    [
+                        95,
+                        20
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        95,
+                        20
+                    ],
+                    [
+                        9,
+                        60
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_7": {
+        "corners": [
+            [
+                106,
+                10
+            ],
+            [
+                32,
+                86
+            ],
+            [
+                87,
+                158
+            ],
+            [
+                167,
+                108
+            ]
+        ],
+        "center_coords": [
+            96,
+            89
+        ],
+        "classification": "MDL",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        106,
+                        10
+                    ],
+                    [
+                        32,
+                        86
                     ]
                 ],
                 "classification": "EXT"
@@ -514,25 +593,25 @@
             "B": {
                 "points": [
                     [
-                        6,
-                        44
+                        32,
+                        86
                     ],
                     [
-                        42,
-                        136
+                        87,
+                        158
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        42,
-                        136
+                        87,
+                        158
                     ],
                     [
-                        131,
-                        104
+                        167,
+                        108
                     ]
                 ],
                 "classification": "EXT"
@@ -540,39 +619,39 @@
             "D": {
                 "points": [
                     [
-                        131,
-                        104
+                        167,
+                        108
                     ],
                     [
-                        108,
-                        25
+                        106,
+                        10
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "INT"
             }
         }
     },
-    "piece_7": {
+    "piece_8": {
         "corners": [
             [
-                144,
-                124
-            ],
-            [
-                125,
+                94,
                 12
             ],
             [
-                27,
-                52
+                14,
+                77
             ],
             [
-                50,
-                141
+                81,
+                145
+            ],
+            [
+                155,
+                69
             ]
         ],
         "center_coords": [
-            84,
+            85,
             81
         ],
         "classification": "MDL",
@@ -580,12 +659,12 @@
             "A": {
                 "points": [
                     [
-                        144,
-                        124
+                        94,
+                        12
                     ],
                     [
-                        125,
-                        12
+                        14,
+                        77
                     ]
                 ],
                 "classification": "INT"
@@ -593,117 +672,38 @@
             "B": {
                 "points": [
                     [
-                        125,
+                        14,
+                        77
+                    ],
+                    [
+                        81,
+                        145
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        81,
+                        145
+                    ],
+                    [
+                        155,
+                        69
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "D": {
+                "points": [
+                    [
+                        155,
+                        69
+                    ],
+                    [
+                        94,
                         12
-                    ],
-                    [
-                        27,
-                        52
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        27,
-                        52
-                    ],
-                    [
-                        50,
-                        141
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        50,
-                        141
-                    ],
-                    [
-                        144,
-                        124
-                    ]
-                ],
-                "classification": "EXT"
-            }
-        }
-    },
-    "piece_8": {
-        "corners": [
-            [
-                108,
-                13
-            ],
-            [
-                17,
-                60
-            ],
-            [
-                68,
-                141
-            ],
-            [
-                157,
-                81
-            ]
-        ],
-        "center_coords": [
-            86,
-            79
-        ],
-        "classification": "MDL",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        108,
-                        13
-                    ],
-                    [
-                        17,
-                        60
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        17,
-                        60
-                    ],
-                    [
-                        68,
-                        141
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        68,
-                        141
-                    ],
-                    [
-                        157,
-                        81
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        157,
-                        81
-                    ],
-                    [
-                        108,
-                        13
                     ]
                 ],
                 "classification": "INT"
@@ -713,24 +713,24 @@
     "piece_9": {
         "corners": [
             [
-                156,
-                119
+                110,
+                16
             ],
             [
-                116,
-                22
+                25,
+                74
             ],
             [
-                28,
-                64
+                82,
+                152
             ],
             [
-                59,
-                156
+                167,
+                105
             ]
         ],
         "center_coords": [
-            89,
+            94,
             87
         ],
         "classification": "EDG",
@@ -738,12 +738,12 @@
             "A": {
                 "points": [
                     [
-                        156,
-                        119
+                        110,
+                        16
                     ],
                     [
-                        116,
-                        22
+                        25,
+                        74
                     ]
                 ],
                 "classification": "EXT"
@@ -751,12 +751,12 @@
             "B": {
                 "points": [
                     [
-                        116,
-                        22
+                        25,
+                        74
                     ],
                     [
-                        28,
-                        64
+                        82,
+                        152
                     ]
                 ],
                 "classification": "EXT"
@@ -764,12 +764,12 @@
             "C": {
                 "points": [
                     [
-                        28,
-                        64
+                        82,
+                        152
                     ],
                     [
-                        59,
-                        156
+                        167,
+                        105
                     ]
                 ],
                 "classification": "EXT"
@@ -777,12 +777,12 @@
             "D": {
                 "points": [
                     [
-                        59,
-                        156
+                        167,
+                        105
                     ],
                     [
-                        156,
-                        119
+                        110,
+                        16
                     ]
                 ],
                 "classification": "FLT"
@@ -792,129 +792,287 @@
     "piece_10": {
         "corners": [
             [
-                128,
-                25
+                3,
+                30
             ],
             [
-                26,
-                27
+                17,
+                131
             ],
             [
-                30,
-                136
+                114,
+                128
             ],
             [
-                131,
-                122
+                112,
+                26
             ]
         ],
         "center_coords": [
-            74,
-            75
+            63,
+            74
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        128,
-                        25
+                        3,
+                        30
                     ],
                     [
-                        26,
-                        27
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        26,
-                        27
-                    ],
-                    [
-                        30,
-                        136
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        30,
-                        136
-                    ],
-                    [
-                        131,
-                        122
+                        17,
+                        131
                     ]
                 ],
                 "classification": "FLT"
             },
-            "D": {
+            "B": {
                 "points": [
                     [
-                        131,
-                        122
+                        17,
+                        131
                     ],
                     [
-                        128,
-                        25
+                        114,
+                        128
                     ]
                 ],
                 "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        114,
+                        128
+                    ],
+                    [
+                        112,
+                        26
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "D": {
+                "points": [
+                    [
+                        112,
+                        26
+                    ],
+                    [
+                        3,
+                        30
+                    ]
+                ],
+                "classification": "EXT"
             }
         }
     },
     "piece_11": {
         "corners": [
             [
-                117,
-                22
+                99,
+                2
             ],
             [
-                12,
-                0
+                8,
+                41
             ],
             [
-                1,
-                107
+                40,
+                133
             ],
             [
-                101,
-                117
+                142,
+                100
             ]
         ],
         "center_coords": [
-            55,
-            61
+            73,
+            68
         ],
         "classification": "CNR",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        117,
-                        22
+                        99,
+                        2
                     ],
                     [
-                        12,
-                        0
+                        8,
+                        41
                     ]
                 ],
-                "classification": "INT"
+                "classification": "FLT"
             },
             "B": {
                 "points": [
                     [
-                        12,
-                        0
+                        8,
+                        41
+                    ],
+                    [
+                        40,
+                        133
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        40,
+                        133
+                    ],
+                    [
+                        142,
+                        100
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        142,
+                        100
+                    ],
+                    [
+                        99,
+                        2
+                    ]
+                ],
+                "classification": "FLT"
+            }
+        }
+    },
+    "piece_12": {
+        "corners": [
+            [
+                54,
+                8
+            ],
+            [
+                26,
+                93
+            ],
+            [
+                130,
+                123
+            ],
+            [
+                161,
+                47
+            ]
+        ],
+        "center_coords": [
+            90,
+            70
+        ],
+        "classification": "MDL",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        54,
+                        8
+                    ],
+                    [
+                        26,
+                        93
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "B": {
+                "points": [
+                    [
+                        26,
+                        93
+                    ],
+                    [
+                        130,
+                        123
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        130,
+                        123
+                    ],
+                    [
+                        161,
+                        47
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "D": {
+                "points": [
+                    [
+                        161,
+                        47
+                    ],
+                    [
+                        54,
+                        8
+                    ]
+                ],
+                "classification": "INT"
+            }
+        }
+    },
+    "piece_13": {
+        "corners": [
+            [
+                69,
+                14
+            ],
+            [
+                1,
+                78
+            ],
+            [
+                76,
+                156
+            ],
+            [
+                141,
+                86
+            ]
+        ],
+        "center_coords": [
+            73,
+            81
+        ],
+        "classification": "CNR",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        69,
+                        14
                     ],
                     [
                         1,
-                        107
+                        78
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "B": {
+                "points": [
+                    [
+                        1,
+                        78
+                    ],
+                    [
+                        76,
+                        156
                     ]
                 ],
                 "classification": "FLT"
@@ -922,52 +1080,289 @@
             "C": {
                 "points": [
                     [
-                        1,
-                        107
+                        76,
+                        156
                     ],
                     [
-                        101,
-                        117
+                        141,
+                        86
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "INT"
             },
             "D": {
                 "points": [
                     [
-                        101,
-                        117
+                        141,
+                        86
                     ],
                     [
-                        117,
-                        22
+                        69,
+                        14
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_14": {
+        "corners": [
+            [
+                111,
+                2
+            ],
+            [
+                18,
+                21
+            ],
+            [
+                42,
+                123
+            ],
+            [
+                138,
+                98
+            ]
+        ],
+        "center_coords": [
+            72,
+            61
+        ],
+        "classification": "EDG",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        111,
+                        2
+                    ],
+                    [
+                        18,
+                        21
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "B": {
+                "points": [
+                    [
+                        18,
+                        21
+                    ],
+                    [
+                        42,
+                        123
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        42,
+                        123
+                    ],
+                    [
+                        138,
+                        98
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        138,
+                        98
+                    ],
+                    [
+                        111,
+                        2
                     ]
                 ],
                 "classification": "INT"
             }
         }
     },
-    "piece_12": {
+    "piece_15": {
         "corners": [
             [
-                169,
-                89
+                132,
+                16
             ],
             [
-                85,
-                14
+                24,
+                37
             ],
             [
                 28,
-                84
+                136
             ],
             [
-                113,
-                149
+                140,
+                124
             ]
         ],
         "center_coords": [
-            95,
+            81,
+            74
+        ],
+        "classification": "MDL",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        132,
+                        16
+                    ],
+                    [
+                        24,
+                        37
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "B": {
+                "points": [
+                    [
+                        24,
+                        37
+                    ],
+                    [
+                        28,
+                        136
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        28,
+                        136
+                    ],
+                    [
+                        140,
+                        124
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        140,
+                        124
+                    ],
+                    [
+                        132,
+                        16
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_16": {
+        "corners": [
+            [
+                6,
+                22
+            ],
+            [
+                0,
+                121
+            ],
+            [
+                100,
+                130
+            ],
+            [
+                98,
+                19
+            ]
+        ],
+        "center_coords": [
+            50,
+            69
+        ],
+        "classification": "EDG",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        6,
+                        22
+                    ],
+                    [
+                        0,
+                        121
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "B": {
+                "points": [
+                    [
+                        0,
+                        121
+                    ],
+                    [
+                        100,
+                        130
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        100,
+                        130
+                    ],
+                    [
+                        98,
+                        19
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        98,
+                        19
+                    ],
+                    [
+                        6,
+                        22
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_17": {
+        "corners": [
+            [
+                110,
+                8
+            ],
+            [
+                14,
+                70
+            ],
+            [
+                83,
+                153
+            ],
+            [
+                167,
+                90
+            ]
+        ],
+        "center_coords": [
+            91,
             85
         ],
         "classification": "MDL",
@@ -975,12 +1370,12 @@
             "A": {
                 "points": [
                     [
-                        169,
-                        89
+                        110,
+                        8
                     ],
                     [
-                        85,
-                        14
+                        14,
+                        70
                     ]
                 ],
                 "classification": "INT"
@@ -988,12 +1383,12 @@
             "B": {
                 "points": [
                     [
-                        85,
-                        14
+                        14,
+                        70
                     ],
                     [
-                        28,
-                        84
+                        83,
+                        153
                     ]
                 ],
                 "classification": "EXT"
@@ -1001,12 +1396,12 @@
             "C": {
                 "points": [
                     [
-                        28,
-                        84
+                        83,
+                        153
                     ],
                     [
-                        113,
-                        149
+                        167,
+                        90
                     ]
                 ],
                 "classification": "EXT"
@@ -1014,407 +1409,12 @@
             "D": {
                 "points": [
                     [
-                        113,
-                        149
+                        167,
+                        90
                     ],
                     [
-                        169,
-                        89
-                    ]
-                ],
-                "classification": "EXT"
-            }
-        }
-    },
-    "piece_13": {
-        "corners": [
-            [
-                11,
-                97
-            ],
-            [
-                111,
-                119
-            ],
-            [
-                134,
-                26
-            ],
-            [
-                30,
-                1
-            ]
-        ],
-        "center_coords": [
-            71,
-            63
-        ],
-        "classification": "CNR",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        11,
-                        97
-                    ],
-                    [
-                        111,
-                        119
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        111,
-                        119
-                    ],
-                    [
-                        134,
-                        26
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "C": {
-                "points": [
-                    [
-                        134,
-                        26
-                    ],
-                    [
-                        30,
-                        1
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "D": {
-                "points": [
-                    [
-                        30,
-                        1
-                    ],
-                    [
-                        11,
-                        97
-                    ]
-                ],
-                "classification": "INT"
-            }
-        }
-    },
-    "piece_14": {
-        "corners": [
-            [
-                4,
-                100
-            ],
-            [
-                108,
-                115
-            ],
-            [
-                120,
-                18
-            ],
-            [
-                21,
-                6
-            ]
-        ],
-        "center_coords": [
-            61,
-            63
-        ],
-        "classification": "EDG",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        4,
-                        100
-                    ],
-                    [
-                        108,
-                        115
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        108,
-                        115
-                    ],
-                    [
-                        120,
-                        18
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "C": {
-                "points": [
-                    [
-                        120,
-                        18
-                    ],
-                    [
-                        21,
-                        6
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "D": {
-                "points": [
-                    [
-                        21,
-                        6
-                    ],
-                    [
-                        4,
-                        100
-                    ]
-                ],
-                "classification": "FLT"
-            }
-        }
-    },
-    "piece_15": {
-        "corners": [
-            [
-                12,
-                136
-            ],
-            [
-                122,
-                132
-            ],
-            [
-                102,
-                23
-            ],
-            [
-                3,
-                28
-            ]
-        ],
-        "center_coords": [
-            64,
-            80
-        ],
-        "classification": "MDL",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        12,
-                        136
-                    ],
-                    [
-                        122,
-                        132
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        122,
-                        132
-                    ],
-                    [
-                        102,
-                        23
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        102,
-                        23
-                    ],
-                    [
-                        3,
-                        28
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        3,
-                        28
-                    ],
-                    [
-                        12,
-                        136
-                    ]
-                ],
-                "classification": "INT"
-            }
-        }
-    },
-    "piece_16": {
-        "corners": [
-            [
-                130,
-                122
-            ],
-            [
-                96,
-                18
-            ],
-            [
-                7,
-                48
-            ],
-            [
-                31,
-                143
-            ]
-        ],
-        "center_coords": [
-            64,
-            79
-        ],
-        "classification": "EDG",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        130,
-                        122
-                    ],
-                    [
-                        96,
-                        18
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        96,
-                        18
-                    ],
-                    [
-                        7,
-                        48
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        7,
-                        48
-                    ],
-                    [
-                        31,
-                        143
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "D": {
-                "points": [
-                    [
-                        31,
-                        143
-                    ],
-                    [
-                        130,
-                        122
-                    ]
-                ],
-                "classification": "INT"
-            }
-        }
-    },
-    "piece_17": {
-        "corners": [
-            [
-                8,
-                50
-            ],
-            [
-                48,
-                158
-            ],
-            [
-                144,
-                108
-            ],
-            [
-                100,
-                12
-            ]
-        ],
-        "center_coords": [
-            79,
-            84
-        ],
-        "classification": "MDL",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        8,
-                        50
-                    ],
-                    [
-                        48,
-                        158
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        48,
-                        158
-                    ],
-                    [
-                        144,
-                        108
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        144,
-                        108
-                    ],
-                    [
-                        100,
-                        12
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        100,
-                        12
-                    ],
-                    [
-                        8,
-                        50
+                        110,
+                        8
                     ]
                 ],
                 "classification": "INT"
@@ -1424,50 +1424,50 @@
     "piece_18": {
         "corners": [
             [
-                20,
-                14
+                10,
+                60
             ],
             [
-                35,
-                119
+                50,
+                147
             ],
             [
-                128,
-                107
+                140,
+                91
             ],
             [
-                114,
+                95,
                 11
             ]
         ],
         "center_coords": [
-            69,
-            66
+            78,
+            79
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        20,
-                        14
+                        10,
+                        60
                     ],
                     [
-                        35,
-                        119
+                        50,
+                        147
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        35,
-                        119
+                        50,
+                        147
                     ],
                     [
-                        128,
-                        107
+                        140,
+                        91
                     ]
                 ],
                 "classification": "EXT"
@@ -1475,25 +1475,25 @@
             "C": {
                 "points": [
                     [
-                        128,
-                        107
+                        140,
+                        91
                     ],
                     [
-                        114,
+                        95,
                         11
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        114,
+                        95,
                         11
                     ],
                     [
-                        20,
-                        14
+                        10,
+                        60
                     ]
                 ],
                 "classification": "INT"
@@ -1503,50 +1503,50 @@
     "piece_19": {
         "corners": [
             [
-                68,
-                145
-            ],
-            [
-                132,
-                74
-            ],
-            [
-                78,
+                99,
                 2
             ],
             [
-                11,
-                70
+                13,
+                47
+            ],
+            [
+                46,
+                136
+            ],
+            [
+                129,
+                84
             ]
         ],
         "center_coords": [
-            75,
-            76
+            73,
+            71
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        68,
-                        145
+                        99,
+                        2
                     ],
                     [
-                        132,
-                        74
+                        13,
+                        47
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        132,
-                        74
+                        13,
+                        47
                     ],
                     [
-                        78,
-                        2
+                        46,
+                        136
                     ]
                 ],
                 "classification": "INT"
@@ -1554,25 +1554,25 @@
             "C": {
                 "points": [
                     [
-                        78,
-                        2
+                        46,
+                        136
                     ],
                     [
-                        11,
-                        70
+                        129,
+                        84
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        11,
-                        70
+                        129,
+                        84
                     ],
                     [
-                        68,
-                        145
+                        99,
+                        2
                     ]
                 ],
                 "classification": "INT"
@@ -1582,76 +1582,76 @@
     "piece_20": {
         "corners": [
             [
-                141,
-                74
+                90,
+                10
             ],
             [
-                52,
-                17
+                4,
+                53
             ],
             [
-                3,
-                99
+                49,
+                143
             ],
             [
-                88,
-                151
+                135,
+                104
             ]
         ],
         "center_coords": [
-            75,
-            83
+            74,
+            78
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        141,
-                        74
+                        90,
+                        10
                     ],
                     [
-                        52,
-                        17
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        52,
-                        17
-                    ],
-                    [
-                        3,
-                        99
+                        4,
+                        53
                     ]
                 ],
                 "classification": "FLT"
             },
-            "C": {
+            "B": {
                 "points": [
                     [
-                        3,
-                        99
+                        4,
+                        53
                     ],
                     [
-                        88,
-                        151
+                        49,
+                        143
                     ]
                 ],
                 "classification": "INT"
             },
+            "C": {
+                "points": [
+                    [
+                        49,
+                        143
+                    ],
+                    [
+                        135,
+                        104
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "D": {
                 "points": [
                     [
-                        88,
-                        151
+                        135,
+                        104
                     ],
                     [
-                        141,
-                        74
+                        90,
+                        10
                     ]
                 ],
                 "classification": "EXT"
@@ -1661,37 +1661,37 @@
     "piece_21": {
         "corners": [
             [
-                98,
-                142
+                103,
+                1
             ],
             [
-                134,
-                46
+                5,
+                22
             ],
             [
-                33,
-                27
+                18,
+                124
             ],
             [
-                2,
-                115
+                115,
+                95
             ]
         ],
         "center_coords": [
-            69,
-            78
+            59,
+            65
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        98,
-                        142
+                        103,
+                        1
                     ],
                     [
-                        134,
-                        46
+                        5,
+                        22
                     ]
                 ],
                 "classification": "INT"
@@ -1699,38 +1699,38 @@
             "B": {
                 "points": [
                     [
-                        134,
-                        46
+                        5,
+                        22
                     ],
                     [
-                        33,
-                        27
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        33,
-                        27
-                    ],
-                    [
-                        2,
-                        115
+                        18,
+                        124
                     ]
                 ],
                 "classification": "INT"
             },
+            "C": {
+                "points": [
+                    [
+                        18,
+                        124
+                    ],
+                    [
+                        115,
+                        95
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "D": {
                 "points": [
                     [
-                        2,
-                        115
+                        115,
+                        95
                     ],
                     [
-                        98,
-                        142
+                        103,
+                        1
                     ]
                 ],
                 "classification": "INT"
@@ -1740,37 +1740,37 @@
     "piece_22": {
         "corners": [
             [
-                22,
-                81
-            ],
-            [
                 92,
-                158
+                1
             ],
             [
-                153,
-                77
+                5,
+                51
             ],
             [
-                82,
-                18
+                46,
+                134
+            ],
+            [
+                128,
+                101
             ]
         ],
         "center_coords": [
-            84,
-            82
+            70,
+            73
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        22,
-                        81
+                        92,
+                        1
                     ],
                     [
-                        92,
-                        158
+                        5,
+                        51
                     ]
                 ],
                 "classification": "INT"
@@ -1778,12 +1778,12 @@
             "B": {
                 "points": [
                     [
-                        92,
-                        158
+                        5,
+                        51
                     ],
                     [
-                        153,
-                        77
+                        46,
+                        134
                     ]
                 ],
                 "classification": "INT"
@@ -1791,144 +1791,144 @@
             "C": {
                 "points": [
                     [
-                        153,
-                        77
+                        46,
+                        134
                     ],
                     [
-                        82,
-                        18
+                        128,
+                        101
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        82,
-                        18
+                        128,
+                        101
                     ],
                     [
-                        22,
-                        81
+                        92,
+                        1
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_23": {
         "corners": [
             [
-                12,
-                88
+                21,
+                16
+            ],
+            [
+                1,
+                120
             ],
             [
                 98,
-                135
+                139
             ],
             [
-                153,
-                57
-            ],
-            [
-                61,
-                2
+                115,
+                41
             ]
         ],
         "center_coords": [
-            82,
-            73
+            62,
+            76
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        12,
-                        88
+                        21,
+                        16
                     ],
                     [
-                        98,
-                        135
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        98,
-                        135
-                    ],
-                    [
-                        153,
-                        57
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        153,
-                        57
-                    ],
-                    [
-                        61,
-                        2
+                        1,
+                        120
                     ]
                 ],
                 "classification": "FLT"
             },
-            "D": {
+            "B": {
                 "points": [
                     [
-                        61,
-                        2
+                        1,
+                        120
                     ],
                     [
-                        12,
-                        88
+                        98,
+                        139
                     ]
                 ],
                 "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        98,
+                        139
+                    ],
+                    [
+                        115,
+                        41
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "D": {
+                "points": [
+                    [
+                        115,
+                        41
+                    ],
+                    [
+                        21,
+                        16
+                    ]
+                ],
+                "classification": "EXT"
             }
         }
     },
     "piece_24": {
         "corners": [
             [
-                24,
-                119
+                79,
+                23
             ],
             [
-                137,
-                133
+                28,
+                111
             ],
             [
-                145,
-                21
+                127,
+                167
             ],
             [
-                37,
-                18
+                179,
+                72
             ]
         ],
         "center_coords": [
-            87,
-            76
+            102,
+            96
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        24,
-                        119
+                        79,
+                        23
                     ],
                     [
-                        137,
-                        133
+                        28,
+                        111
                     ]
                 ],
                 "classification": "EXT"
@@ -1936,12 +1936,12 @@
             "B": {
                 "points": [
                     [
-                        137,
-                        133
+                        28,
+                        111
                     ],
                     [
-                        145,
-                        21
+                        127,
+                        167
                     ]
                 ],
                 "classification": "EXT"
@@ -1949,157 +1949,157 @@
             "C": {
                 "points": [
                     [
-                        145,
-                        21
+                        127,
+                        167
                     ],
                     [
-                        37,
-                        18
+                        179,
+                        72
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        37,
-                        18
+                        179,
+                        72
                     ],
                     [
-                        24,
-                        119
+                        79,
+                        23
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_25": {
         "corners": [
             [
-                7,
+                101,
+                12
+            ],
+            [
+                3,
+                51
+            ],
+            [
+                42,
+                148
+            ],
+            [
+                148,
                 107
-            ],
-            [
-                118,
-                132
-            ],
-            [
-                132,
-                27
-            ],
-            [
-                29,
-                4
             ]
         ],
         "center_coords": [
-            74,
-            72
+            78,
+            81
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        7,
-                        107
+                        101,
+                        12
                     ],
                     [
-                        118,
-                        132
+                        3,
+                        51
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        118,
-                        132
+                        3,
+                        51
                     ],
                     [
-                        132,
-                        27
+                        42,
+                        148
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "C": {
                 "points": [
                     [
-                        132,
-                        27
+                        42,
+                        148
                     ],
                     [
-                        29,
-                        4
+                        148,
+                        107
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        29,
-                        4
+                        148,
+                        107
                     ],
                     [
-                        7,
-                        107
+                        101,
+                        12
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_26": {
         "corners": [
             [
-                104,
-                4
+                44,
+                15
             ],
             [
-                0,
-                22
+                15,
+                107
             ],
             [
-                18,
-                125
+                117,
+                128
             ],
             [
-                110,
-                99
+                138,
+                24
             ]
         ],
         "center_coords": [
-            59,
-            60
+            76,
+            70
         ],
         "classification": "CNR",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        104,
-                        4
+                        44,
+                        15
                     ],
                     [
-                        0,
-                        22
+                        15,
+                        107
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "B": {
                 "points": [
                     [
-                        0,
-                        22
+                        15,
+                        107
                     ],
                     [
-                        18,
-                        125
+                        117,
+                        128
                     ]
                 ],
                 "classification": "FLT"
@@ -2107,65 +2107,65 @@
             "C": {
                 "points": [
                     [
-                        18,
-                        125
+                        117,
+                        128
                     ],
                     [
-                        110,
-                        99
+                        138,
+                        24
                     ]
                 ],
-                "classification": "INT"
+                "classification": "FLT"
             },
             "D": {
                 "points": [
                     [
-                        110,
-                        99
+                        138,
+                        24
                     ],
                     [
-                        104,
-                        4
+                        44,
+                        15
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_27": {
         "corners": [
             [
-                14,
-                6
+                92,
+                3
             ],
             [
-                6,
-                108
+                17,
+                59
             ],
             [
-                99,
-                103
+                74,
+                135
             ],
             [
-                96,
-                7
+                143,
+                89
             ]
         ],
         "center_coords": [
-            57,
-            56
+            78,
+            73
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        14,
-                        6
+                        92,
+                        3
                     ],
                     [
-                        6,
-                        108
+                        17,
+                        59
                     ]
                 ],
                 "classification": "INT"
@@ -2173,38 +2173,38 @@
             "B": {
                 "points": [
                     [
-                        6,
-                        108
+                        17,
+                        59
                     ],
                     [
-                        99,
-                        103
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "C": {
-                "points": [
-                    [
-                        99,
-                        103
-                    ],
-                    [
-                        96,
-                        7
+                        74,
+                        135
                     ]
                 ],
                 "classification": "EXT"
             },
+            "C": {
+                "points": [
+                    [
+                        74,
+                        135
+                    ],
+                    [
+                        143,
+                        89
+                    ]
+                ],
+                "classification": "INT"
+            },
             "D": {
                 "points": [
                     [
-                        96,
-                        7
+                        143,
+                        89
                     ],
                     [
-                        14,
-                        6
+                        92,
+                        3
                     ]
                 ],
                 "classification": "INT"
@@ -2214,46 +2214,72 @@
     "piece_28": {
         "corners": [
             [
-                160,
-                47
-            ],
-            [
-                55,
-                7
-            ],
-            [
                 20,
                 106
             ],
             [
-                131,
-                132
+                135,
+                112
+            ],
+            [
+                147,
+                23
+            ],
+            [
+                37,
+                3
             ]
         ],
         "center_coords": [
-            86,
-            70
+            78,
+            59
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        160,
-                        47
+                        20,
+                        106
                     ],
                     [
-                        55,
-                        7
+                        135,
+                        112
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        55,
-                        7
+                        135,
+                        112
+                    ],
+                    [
+                        147,
+                        23
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        147,
+                        23
+                    ],
+                    [
+                        37,
+                        3
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "D": {
+                "points": [
+                    [
+                        37,
+                        3
                     ],
                     [
                         20,
@@ -2261,69 +2287,43 @@
                     ]
                 ],
                 "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        20,
-                        106
-                    ],
-                    [
-                        131,
-                        132
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "D": {
-                "points": [
-                    [
-                        131,
-                        132
-                    ],
-                    [
-                        160,
-                        47
-                    ]
-                ],
-                "classification": "INT"
             }
         }
     },
     "piece_29": {
         "corners": [
             [
-                109,
-                8
+                49,
+                4
             ],
             [
                 2,
-                21
+                101
             ],
             [
-                37,
-                114
+                99,
+                122
             ],
             [
-                126,
-                98
+                134,
+                40
             ]
         ],
         "center_coords": [
-            69,
-            59
+            70,
+            65
         ],
         "classification": "CNR",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        109,
-                        8
+                        49,
+                        4
                     ],
                     [
                         2,
-                        21
+                        101
                     ]
                 ],
                 "classification": "INT"
@@ -2332,11 +2332,11 @@
                 "points": [
                     [
                         2,
-                        21
+                        101
                     ],
                     [
-                        37,
-                        114
+                        99,
+                        122
                     ]
                 ],
                 "classification": "INT"
@@ -2344,12 +2344,12 @@
             "C": {
                 "points": [
                     [
-                        37,
-                        114
+                        99,
+                        122
                     ],
                     [
-                        126,
-                        98
+                        134,
+                        40
                     ]
                 ],
                 "classification": "FLT"
@@ -2357,12 +2357,12 @@
             "D": {
                 "points": [
                     [
-                        126,
-                        98
+                        134,
+                        40
                     ],
                     [
-                        109,
-                        8
+                        49,
+                        4
                     ]
                 ],
                 "classification": "FLT"
@@ -2372,37 +2372,37 @@
     "piece_30": {
         "corners": [
             [
-                109,
-                14
+                6,
+                95
             ],
             [
-                18,
-                70
+                111,
+                116
             ],
             [
-                80,
-                158
+                125,
+                9
             ],
             [
-                171,
-                85
+                9,
+                0
             ]
         ],
         "center_coords": [
-            90,
-            86
+            67,
+            54
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        109,
-                        14
+                        6,
+                        95
                     ],
                     [
-                        18,
-                        70
+                        111,
+                        116
                     ]
                 ],
                 "classification": "INT"
@@ -2410,12 +2410,12 @@
             "B": {
                 "points": [
                     [
-                        18,
-                        70
+                        111,
+                        116
                     ],
                     [
-                        80,
-                        158
+                        125,
+                        9
                     ]
                 ],
                 "classification": "EXT"
@@ -2423,12 +2423,12 @@
             "C": {
                 "points": [
                     [
-                        80,
-                        158
+                        125,
+                        9
                     ],
                     [
-                        171,
-                        85
+                        9,
+                        0
                     ]
                 ],
                 "classification": "FLT"
@@ -2436,65 +2436,65 @@
             "D": {
                 "points": [
                     [
-                        171,
-                        85
+                        9,
+                        0
                     ],
                     [
-                        109,
-                        14
+                        6,
+                        95
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_31": {
         "corners": [
             [
-                112,
-                103
-            ],
-            [
-                109,
-                8
-            ],
-            [
-                8,
+                75,
                 3
             ],
             [
-                15,
-                105
+                11,
+                83
+            ],
+            [
+                81,
+                147
+            ],
+            [
+                145,
+                75
             ]
         ],
         "center_coords": [
-            64,
-            54
+            81,
+            78
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        112,
-                        103
+                        75,
+                        3
                     ],
                     [
-                        109,
-                        8
+                        11,
+                        83
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        109,
-                        8
+                        11,
+                        83
                     ],
                     [
-                        8,
-                        3
+                        81,
+                        147
                     ]
                 ],
                 "classification": "INT"
@@ -2502,25 +2502,25 @@
             "C": {
                 "points": [
                     [
-                        8,
-                        3
+                        81,
+                        147
                     ],
                     [
-                        15,
-                        105
+                        145,
+                        75
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        15,
-                        105
+                        145,
+                        75
                     ],
                     [
-                        112,
-                        103
+                        75,
+                        3
                     ]
                 ],
                 "classification": "INT"
@@ -2530,116 +2530,116 @@
     "piece_32": {
         "corners": [
             [
-                38,
-                107
+                94,
+                4
             ],
             [
-                140,
-                108
+                16,
+                84
             ],
             [
-                126,
-                2
+                86,
+                140
             ],
             [
-                14,
-                22
+                167,
+                82
             ]
         ],
         "center_coords": [
-            78,
-            62
+            90,
+            80
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        38,
-                        107
+                        94,
+                        4
                     ],
                     [
-                        140,
-                        108
+                        16,
+                        84
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        140,
-                        108
+                        16,
+                        84
                     ],
                     [
-                        126,
-                        2
+                        86,
+                        140
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        126,
-                        2
+                        86,
+                        140
                     ],
                     [
-                        14,
-                        22
+                        167,
+                        82
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        14,
-                        22
+                        167,
+                        82
                     ],
                     [
-                        38,
-                        107
+                        94,
+                        4
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_33": {
         "corners": [
             [
-                140,
-                36
+                22,
+                37
             ],
             [
-                35,
-                24
+                45,
+                140
             ],
             [
-                18,
-                119
+                141,
+                124
             ],
             [
-                123,
-                133
+                120,
+                22
             ]
         ],
         "center_coords": [
-            79,
-            73
+            77,
+            81
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        140,
-                        36
+                        22,
+                        37
                     ],
                     [
-                        35,
-                        24
+                        45,
+                        140
                     ]
                 ],
                 "classification": "EXT"
@@ -2647,12 +2647,12 @@
             "B": {
                 "points": [
                     [
-                        35,
-                        24
+                        45,
+                        140
                     ],
                     [
-                        18,
-                        119
+                        141,
+                        124
                     ]
                 ],
                 "classification": "EXT"
@@ -2660,12 +2660,12 @@
             "C": {
                 "points": [
                     [
-                        18,
-                        119
+                        141,
+                        124
                     ],
                     [
-                        123,
-                        133
+                        120,
+                        22
                     ]
                 ],
                 "classification": "INT"
@@ -2673,12 +2673,12 @@
             "D": {
                 "points": [
                     [
-                        123,
-                        133
+                        120,
+                        22
                     ],
                     [
-                        140,
-                        36
+                        22,
+                        37
                     ]
                 ],
                 "classification": "EXT"
@@ -2688,37 +2688,37 @@
     "piece_34": {
         "corners": [
             [
-                99,
-                114
+                100,
+                9
             ],
             [
-                93,
-                3
-            ],
-            [
-                8,
+                15,
                 14
             ],
             [
-                2,
+                3,
                 108
+            ],
+            [
+                99,
+                121
             ]
         ],
         "center_coords": [
-            51,
-            59
+            55,
+            63
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        99,
-                        114
+                        100,
+                        9
                     ],
                     [
-                        93,
-                        3
+                        15,
+                        14
                     ]
                 ],
                 "classification": "INT"
@@ -2726,12 +2726,12 @@
             "B": {
                 "points": [
                     [
-                        93,
-                        3
+                        15,
+                        14
                     ],
                     [
-                        8,
-                        14
+                        3,
+                        108
                     ]
                 ],
                 "classification": "INT"
@@ -2739,12 +2739,12 @@
             "C": {
                 "points": [
                     [
-                        8,
-                        14
+                        3,
+                        108
                     ],
                     [
-                        2,
-                        108
+                        99,
+                        121
                     ]
                 ],
                 "classification": "INT"
@@ -2752,12 +2752,12 @@
             "D": {
                 "points": [
                     [
-                        2,
-                        108
+                        99,
+                        121
                     ],
                     [
-                        99,
-                        114
+                        100,
+                        9
                     ]
                 ],
                 "classification": "INT"
@@ -2767,37 +2767,37 @@
     "piece_35": {
         "corners": [
             [
-                10,
-                88
+                121,
+                20
             ],
             [
-                100,
-                136
+                28,
+                62
             ],
             [
-                149,
-                49
+                67,
+                154
             ],
             [
-                55,
-                3
+                160,
+                109
             ]
         ],
         "center_coords": [
-            80,
-            72
+            89,
+            85
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        10,
-                        88
+                        121,
+                        20
                     ],
                     [
-                        100,
-                        136
+                        28,
+                        62
                     ]
                 ],
                 "classification": "EXT"
@@ -2805,12 +2805,12 @@
             "B": {
                 "points": [
                     [
-                        100,
-                        136
+                        28,
+                        62
                     ],
                     [
-                        149,
-                        49
+                        67,
+                        154
                     ]
                 ],
                 "classification": "EXT"
@@ -2818,12 +2818,12 @@
             "C": {
                 "points": [
                     [
-                        149,
-                        49
+                        67,
+                        154
                     ],
                     [
-                        55,
-                        3
+                        160,
+                        109
                     ]
                 ],
                 "classification": "FLT"
@@ -2831,12 +2831,12 @@
             "D": {
                 "points": [
                     [
-                        55,
-                        3
+                        160,
+                        109
                     ],
                     [
-                        10,
-                        88
+                        121,
+                        20
                     ]
                 ],
                 "classification": "INT"
@@ -2846,103 +2846,24 @@
     "piece_36": {
         "corners": [
             [
-                140,
-                107
+                3,
+                30
+            ],
+            [
+                12,
+                124
             ],
             [
                 120,
-                1
+                124
             ],
             [
-                19,
-                37
-            ],
-            [
-                49,
-                133
+                103,
+                18
             ]
         ],
         "center_coords": [
-            79,
-            70
-        ],
-        "classification": "EDG",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        140,
-                        107
-                    ],
-                    [
-                        120,
-                        1
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        120,
-                        1
-                    ],
-                    [
-                        19,
-                        37
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "C": {
-                "points": [
-                    [
-                        19,
-                        37
-                    ],
-                    [
-                        49,
-                        133
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        49,
-                        133
-                    ],
-                    [
-                        140,
-                        107
-                    ]
-                ],
-                "classification": "FLT"
-            }
-        }
-    },
-    "piece_37": {
-        "corners": [
-            [
-                23,
-                44
-            ],
-            [
-                60,
-                132
-            ],
-            [
-                142,
-                87
-            ],
-            [
-                107,
-                2
-            ]
-        ],
-        "center_coords": [
-            81,
+            59,
             71
         ],
         "classification": "EDG",
@@ -2950,91 +2871,91 @@
             "A": {
                 "points": [
                     [
-                        23,
-                        44
+                        3,
+                        30
                     ],
                     [
-                        60,
-                        132
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        60,
-                        132
-                    ],
-                    [
-                        142,
-                        87
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        142,
-                        87
-                    ],
-                    [
-                        107,
-                        2
+                        12,
+                        124
                     ]
                 ],
                 "classification": "FLT"
             },
-            "D": {
+            "B": {
                 "points": [
                     [
-                        107,
-                        2
+                        12,
+                        124
                     ],
                     [
-                        23,
-                        44
+                        120,
+                        124
                     ]
                 ],
                 "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        120,
+                        124
+                    ],
+                    [
+                        103,
+                        18
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        103,
+                        18
+                    ],
+                    [
+                        3,
+                        30
+                    ]
+                ],
+                "classification": "EXT"
             }
         }
     },
-    "piece_38": {
+    "piece_37": {
         "corners": [
             [
-                92,
-                134
+                21,
+                60
             ],
             [
-                113,
-                28
+                66,
+                142
             ],
             [
-                14,
-                20
+                151,
+                107
             ],
             [
-                5,
-                125
+                109,
+                23
             ]
         ],
         "center_coords": [
-            59,
-            72
+            81,
+            81
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        92,
-                        134
+                        21,
+                        60
                     ],
                     [
-                        113,
-                        28
+                        66,
+                        142
                     ]
                 ],
                 "classification": "EXT"
@@ -3042,25 +2963,25 @@
             "B": {
                 "points": [
                     [
-                        113,
-                        28
+                        66,
+                        142
                     ],
                     [
-                        14,
-                        20
+                        151,
+                        107
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "FLT"
             },
             "C": {
                 "points": [
                     [
-                        14,
-                        20
+                        151,
+                        107
                     ],
                     [
-                        5,
-                        125
+                        109,
+                        23
                     ]
                 ],
                 "classification": "INT"
@@ -3068,52 +2989,52 @@
             "D": {
                 "points": [
                     [
-                        5,
-                        125
+                        109,
+                        23
                     ],
                     [
-                        92,
-                        134
+                        21,
+                        60
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             }
         }
     },
-    "piece_39": {
+    "piece_38": {
         "corners": [
             [
-                20,
-                73
+                81,
+                23
             ],
             [
-                79,
-                157
+                17,
+                100
             ],
             [
-                147,
-                95
+                97,
+                166
             ],
             [
-                98,
-                11
+                154,
+                102
             ]
         ],
         "center_coords": [
-            87,
-            86
+            86,
+            91
         ],
-        "classification": "MDL",
+        "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        20,
-                        73
+                        81,
+                        23
                     ],
                     [
-                        79,
-                        157
+                        17,
+                        100
                     ]
                 ],
                 "classification": "EXT"
@@ -3121,12 +3042,91 @@
             "B": {
                 "points": [
                     [
-                        79,
-                        157
+                        17,
+                        100
                     ],
                     [
-                        147,
-                        95
+                        97,
+                        166
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        97,
+                        166
+                    ],
+                    [
+                        154,
+                        102
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "D": {
+                "points": [
+                    [
+                        154,
+                        102
+                    ],
+                    [
+                        81,
+                        23
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_39": {
+        "corners": [
+            [
+                52,
+                13
+            ],
+            [
+                22,
+                112
+            ],
+            [
+                113,
+                127
+            ],
+            [
+                149,
+                36
+            ]
+        ],
+        "center_coords": [
+            82,
+            74
+        ],
+        "classification": "MDL",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        52,
+                        13
+                    ],
+                    [
+                        22,
+                        112
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "B": {
+                "points": [
+                    [
+                        22,
+                        112
+                    ],
+                    [
+                        113,
+                        127
                     ]
                 ],
                 "classification": "EXT"
@@ -3134,12 +3134,12 @@
             "C": {
                 "points": [
                     [
-                        147,
-                        95
+                        113,
+                        127
                     ],
                     [
-                        98,
-                        11
+                        149,
+                        36
                     ]
                 ],
                 "classification": "EXT"
@@ -3147,12 +3147,12 @@
             "D": {
                 "points": [
                     [
-                        98,
-                        11
+                        149,
+                        36
                     ],
                     [
-                        20,
-                        73
+                        52,
+                        13
                     ]
                 ],
                 "classification": "INT"
@@ -3162,37 +3162,37 @@
     "piece_40": {
         "corners": [
             [
-                140,
+                16,
                 51
             ],
             [
-                39,
-                18
+                63,
+                156
             ],
             [
-                29,
-                132
+                148,
+                119
             ],
             [
-                121,
-                142
+                118,
+                30
             ]
         ],
         "center_coords": [
-            80,
-            84
+            83,
+            89
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        140,
+                        16,
                         51
                     ],
                     [
-                        39,
-                        18
+                        63,
+                        156
                     ]
                 ],
                 "classification": "EXT"
@@ -3200,12 +3200,12 @@
             "B": {
                 "points": [
                     [
-                        39,
-                        18
+                        63,
+                        156
                     ],
                     [
-                        29,
-                        132
+                        148,
+                        119
                     ]
                 ],
                 "classification": "EXT"
@@ -3213,12 +3213,12 @@
             "C": {
                 "points": [
                     [
-                        29,
-                        132
+                        148,
+                        119
                     ],
                     [
-                        121,
-                        142
+                        118,
+                        30
                     ]
                 ],
                 "classification": "EXT"
@@ -3226,11 +3226,11 @@
             "D": {
                 "points": [
                     [
-                        121,
-                        142
+                        118,
+                        30
                     ],
                     [
-                        140,
+                        16,
                         51
                     ]
                 ],
@@ -3241,37 +3241,37 @@
     "piece_41": {
         "corners": [
             [
-                116,
-                28
+                109,
+                29
             ],
             [
-                26,
-                74
+                27,
+                86
             ],
             [
-                71,
-                159
+                84,
+                165
             ],
             [
-                165,
-                114
+                170,
+                108
             ]
         ],
         "center_coords": [
-            93,
-            90
+            95,
+            94
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        116,
-                        28
+                        109,
+                        29
                     ],
                     [
-                        26,
-                        74
+                        27,
+                        86
                     ]
                 ],
                 "classification": "EXT"
@@ -3279,12 +3279,12 @@
             "B": {
                 "points": [
                     [
-                        26,
-                        74
+                        27,
+                        86
                     ],
                     [
-                        71,
-                        159
+                        84,
+                        165
                     ]
                 ],
                 "classification": "EXT"
@@ -3292,12 +3292,12 @@
             "C": {
                 "points": [
                     [
-                        71,
-                        159
+                        84,
+                        165
                     ],
                     [
-                        165,
-                        114
+                        170,
+                        108
                     ]
                 ],
                 "classification": "INT"
@@ -3305,12 +3305,12 @@
             "D": {
                 "points": [
                     [
-                        165,
-                        114
+                        170,
+                        108
                     ],
                     [
-                        116,
-                        28
+                        109,
+                        29
                     ]
                 ],
                 "classification": "EXT"
@@ -3320,50 +3320,50 @@
     "piece_42": {
         "corners": [
             [
-                132,
-                20
-            ],
-            [
                 24,
-                41
+                22
             ],
             [
-                42,
-                138
-            ],
-            [
-                143,
+                3,
                 116
+            ],
+            [
+                111,
+                132
+            ],
+            [
+                127,
+                34
             ]
         ],
         "center_coords": [
-            81,
-            79
+            70,
+            76
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        132,
-                        20
+                        24,
+                        22
                     ],
                     [
-                        24,
-                        41
+                        3,
+                        116
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        24,
-                        41
+                        3,
+                        116
                     ],
                     [
-                        42,
-                        138
+                        111,
+                        132
                     ]
                 ],
                 "classification": "EXT"
@@ -3371,12 +3371,12 @@
             "C": {
                 "points": [
                     [
-                        42,
-                        138
+                        111,
+                        132
                     ],
                     [
-                        143,
-                        116
+                        127,
+                        34
                     ]
                 ],
                 "classification": "EXT"
@@ -3384,52 +3384,52 @@
             "D": {
                 "points": [
                     [
-                        143,
-                        116
+                        127,
+                        34
                     ],
                     [
-                        132,
-                        20
+                        24,
+                        22
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_43": {
         "corners": [
             [
-                2,
-                36
+                94,
+                2
             ],
             [
-                42,
+                7,
+                54
+            ],
+            [
+                49,
                 134
             ],
             [
-                126,
-                100
-            ],
-            [
-                87,
-                7
+                138,
+                82
             ]
         ],
         "center_coords": [
-            64,
-            70
+            73,
+            66
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        2,
-                        36
+                        94,
+                        2
                     ],
                     [
-                        42,
-                        134
+                        7,
+                        54
                     ]
                 ],
                 "classification": "INT"
@@ -3437,25 +3437,25 @@
             "B": {
                 "points": [
                     [
-                        42,
-                        134
+                        7,
+                        54
                     ],
                     [
-                        126,
-                        100
+                        49,
+                        134
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        126,
-                        100
+                        49,
+                        134
                     ],
                     [
-                        87,
-                        7
+                        138,
+                        82
                     ]
                 ],
                 "classification": "INT"
@@ -3463,78 +3463,78 @@
             "D": {
                 "points": [
                     [
-                        87,
-                        7
+                        138,
+                        82
                     ],
                     [
-                        2,
-                        36
+                        94,
+                        2
                     ]
                 ],
-                "classification": "INT"
+                "classification": "FLT"
             }
         }
     },
     "piece_44": {
         "corners": [
             [
-                4,
-                93
+                110,
+                2
             ],
             [
-                109,
-                101
+                20,
+                21
             ],
             [
-                116,
-                12
+                39,
+                123
             ],
             [
-                10,
-                1
+                128,
+                107
             ]
         ],
         "center_coords": [
-            58,
-            56
+            69,
+            63
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        4,
-                        93
+                        110,
+                        2
                     ],
                     [
-                        109,
-                        101
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        109,
-                        101
-                    ],
-                    [
-                        116,
-                        12
+                        20,
+                        21
                     ]
                 ],
                 "classification": "INT"
             },
+            "B": {
+                "points": [
+                    [
+                        20,
+                        21
+                    ],
+                    [
+                        39,
+                        123
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "C": {
                 "points": [
                     [
-                        116,
-                        12
+                        39,
+                        123
                     ],
                     [
-                        10,
-                        1
+                        128,
+                        107
                     ]
                 ],
                 "classification": "INT"
@@ -3542,12 +3542,12 @@
             "D": {
                 "points": [
                     [
-                        10,
-                        1
+                        128,
+                        107
                     ],
                     [
-                        4,
-                        93
+                        110,
+                        2
                     ]
                 ],
                 "classification": "INT"
@@ -3557,37 +3557,37 @@
     "piece_45": {
         "corners": [
             [
-                64,
-                142
+                101,
+                6
             ],
             [
-                146,
-                78
+                9,
+                20
             ],
             [
-                84,
-                7
+                21,
+                115
             ],
             [
-                12,
-                67
+                113,
+                109
             ]
         ],
         "center_coords": [
-            77,
-            74
+            61,
+            62
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        64,
-                        142
+                        101,
+                        6
                     ],
                     [
-                        146,
-                        78
+                        9,
+                        20
                     ]
                 ],
                 "classification": "INT"
@@ -3595,12 +3595,12 @@
             "B": {
                 "points": [
                     [
-                        146,
-                        78
+                        9,
+                        20
                     ],
                     [
-                        84,
-                        7
+                        21,
+                        115
                     ]
                 ],
                 "classification": "INT"
@@ -3608,12 +3608,12 @@
             "C": {
                 "points": [
                     [
-                        84,
-                        7
+                        21,
+                        115
                     ],
                     [
-                        12,
-                        67
+                        113,
+                        109
                     ]
                 ],
                 "classification": "INT"
@@ -3621,12 +3621,12 @@
             "D": {
                 "points": [
                     [
-                        12,
-                        67
+                        113,
+                        109
                     ],
                     [
-                        64,
-                        142
+                        101,
+                        6
                     ]
                 ],
                 "classification": "INT"
@@ -3636,37 +3636,37 @@
     "piece_46": {
         "corners": [
             [
-                134,
-                40
-            ],
-            [
-                35,
+                99,
                 2
             ],
             [
-                10,
-                104
+                5,
+                48
             ],
             [
-                97,
-                130
+                40,
+                131
+            ],
+            [
+                134,
+                102
             ]
         ],
         "center_coords": [
-            68,
-            67
+            70,
+            69
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        134,
-                        40
+                        99,
+                        2
                     ],
                     [
-                        35,
-                        2
+                        5,
+                        48
                     ]
                 ],
                 "classification": "INT"
@@ -3674,12 +3674,12 @@
             "B": {
                 "points": [
                     [
-                        35,
-                        2
+                        5,
+                        48
                     ],
                     [
-                        10,
-                        104
+                        40,
+                        131
                     ]
                 ],
                 "classification": "INT"
@@ -3687,12 +3687,12 @@
             "C": {
                 "points": [
                     [
-                        10,
-                        104
+                        40,
+                        131
                     ],
                     [
-                        97,
-                        130
+                        134,
+                        102
                     ]
                 ],
                 "classification": "INT"
@@ -3700,12 +3700,12 @@
             "D": {
                 "points": [
                     [
-                        97,
-                        130
+                        134,
+                        102
                     ],
                     [
-                        134,
-                        40
+                        99,
+                        2
                     ]
                 ],
                 "classification": "INT"
@@ -3715,37 +3715,37 @@
     "piece_47": {
         "corners": [
             [
-                169,
-                73
+                166,
+                53
             ],
             [
-                74,
-                26
+                59,
+                34
             ],
             [
-                20,
-                127
+                23,
+                122
             ],
             [
-                124,
-                157
+                121,
+                160
             ]
         ],
         "center_coords": [
             94,
-            94
+            93
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        169,
-                        73
+                        166,
+                        53
                     ],
                     [
-                        74,
-                        26
+                        59,
+                        34
                     ]
                 ],
                 "classification": "EXT"
@@ -3753,12 +3753,12 @@
             "B": {
                 "points": [
                     [
-                        74,
-                        26
+                        59,
+                        34
                     ],
                     [
-                        20,
-                        127
+                        23,
+                        122
                     ]
                 ],
                 "classification": "EXT"
@@ -3766,12 +3766,12 @@
             "C": {
                 "points": [
                     [
-                        20,
-                        127
+                        23,
+                        122
                     ],
                     [
-                        124,
-                        157
+                        121,
+                        160
                     ]
                 ],
                 "classification": "EXT"
@@ -3779,12 +3779,12 @@
             "D": {
                 "points": [
                     [
-                        124,
-                        157
+                        121,
+                        160
                     ],
                     [
-                        169,
-                        73
+                        166,
+                        53
                     ]
                 ],
                 "classification": "EXT"
@@ -3794,103 +3794,24 @@
     "piece_48": {
         "corners": [
             [
-                102,
-                2
+                51,
+                20
             ],
             [
                 2,
-                17
+                98
             ],
             [
-                24,
-                111
+                91,
+                147
             ],
             [
-                112,
-                93
+                131,
+                61
             ]
         ],
         "center_coords": [
-            59,
-            57
-        ],
-        "classification": "EDG",
-        "piece_side_data": {
-            "A": {
-                "points": [
-                    [
-                        102,
-                        2
-                    ],
-                    [
-                        2,
-                        17
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "B": {
-                "points": [
-                    [
-                        2,
-                        17
-                    ],
-                    [
-                        24,
-                        111
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "C": {
-                "points": [
-                    [
-                        24,
-                        111
-                    ],
-                    [
-                        112,
-                        93
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "D": {
-                "points": [
-                    [
-                        112,
-                        93
-                    ],
-                    [
-                        102,
-                        2
-                    ]
-                ],
-                "classification": "INT"
-            }
-        }
-    },
-    "piece_49": {
-        "corners": [
-            [
-                118,
-                25
-            ],
-            [
-                5,
-                43
-            ],
-            [
-                29,
-                145
-            ],
-            [
-                140,
-                122
-            ]
-        ],
-        "center_coords": [
-            75,
+            69,
             80
         ],
         "classification": "EDG",
@@ -3898,12 +3819,91 @@
             "A": {
                 "points": [
                     [
-                        118,
-                        25
+                        51,
+                        20
                     ],
                     [
-                        5,
-                        43
+                        2,
+                        98
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "B": {
+                "points": [
+                    [
+                        2,
+                        98
+                    ],
+                    [
+                        91,
+                        147
+                    ]
+                ],
+                "classification": "FLT"
+            },
+            "C": {
+                "points": [
+                    [
+                        91,
+                        147
+                    ],
+                    [
+                        131,
+                        61
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "D": {
+                "points": [
+                    [
+                        131,
+                        61
+                    ],
+                    [
+                        51,
+                        20
+                    ]
+                ],
+                "classification": "EXT"
+            }
+        }
+    },
+    "piece_49": {
+        "corners": [
+            [
+                60,
+                140
+            ],
+            [
+                167,
+                98
+            ],
+            [
+                120,
+                3
+            ],
+            [
+                18,
+                52
+            ]
+        ],
+        "center_coords": [
+            90,
+            76
+        ],
+        "classification": "EDG",
+        "piece_side_data": {
+            "A": {
+                "points": [
+                    [
+                        60,
+                        140
+                    ],
+                    [
+                        167,
+                        98
                     ]
                 ],
                 "classification": "EXT"
@@ -3911,12 +3911,12 @@
             "B": {
                 "points": [
                     [
-                        5,
-                        43
+                        167,
+                        98
                     ],
                     [
-                        29,
-                        145
+                        120,
+                        3
                     ]
                 ],
                 "classification": "INT"
@@ -3924,12 +3924,12 @@
             "C": {
                 "points": [
                     [
-                        29,
-                        145
+                        120,
+                        3
                     ],
                     [
-                        140,
-                        122
+                        18,
+                        52
                     ]
                 ],
                 "classification": "FLT"
@@ -3937,12 +3937,12 @@
             "D": {
                 "points": [
                     [
-                        140,
-                        122
+                        18,
+                        52
                     ],
                     [
-                        118,
-                        25
+                        60,
+                        140
                     ]
                 ],
                 "classification": "EXT"
@@ -3952,37 +3952,37 @@
     "piece_50": {
         "corners": [
             [
-                120,
-                17
+                80,
+                29
             ],
             [
-                20,
-                40
+                28,
+                110
             ],
             [
-                43,
-                135
+                108,
+                162
             ],
             [
-                136,
-                109
+                166,
+                81
             ]
         ],
         "center_coords": [
-            77,
-            75
+            94,
+            94
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        120,
-                        17
+                        80,
+                        29
                     ],
                     [
-                        20,
-                        40
+                        28,
+                        110
                     ]
                 ],
                 "classification": "EXT"
@@ -3990,12 +3990,12 @@
             "B": {
                 "points": [
                     [
-                        20,
-                        40
+                        28,
+                        110
                     ],
                     [
-                        43,
-                        135
+                        108,
+                        162
                     ]
                 ],
                 "classification": "EXT"
@@ -4003,65 +4003,65 @@
             "C": {
                 "points": [
                     [
-                        43,
-                        135
+                        108,
+                        162
                     ],
                     [
-                        136,
-                        109
+                        166,
+                        81
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "FLT"
             },
             "D": {
                 "points": [
                     [
-                        136,
-                        109
+                        166,
+                        81
                     ],
                     [
-                        120,
-                        17
+                        80,
+                        29
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             }
         }
     },
     "piece_51": {
         "corners": [
             [
-                78,
-                148
+                111,
+                8
             ],
             [
-                171,
-                87
+                22,
+                53
             ],
             [
-                97,
-                10
+                59,
+                137
             ],
             [
-                21,
-                75
+                165,
+                100
             ]
         ],
         "center_coords": [
-            88,
-            82
+            86,
+            76
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        78,
-                        148
+                        111,
+                        8
                     ],
                     [
-                        171,
-                        87
+                        22,
+                        53
                     ]
                 ],
                 "classification": "INT"
@@ -4069,25 +4069,25 @@
             "B": {
                 "points": [
                     [
-                        171,
-                        87
+                        22,
+                        53
                     ],
                     [
-                        97,
-                        10
+                        59,
+                        137
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        97,
-                        10
+                        59,
+                        137
                     ],
                     [
-                        21,
-                        75
+                        165,
+                        100
                     ]
                 ],
                 "classification": "INT"
@@ -4095,65 +4095,65 @@
             "D": {
                 "points": [
                     [
-                        21,
-                        75
+                        165,
+                        100
                     ],
                     [
-                        78,
-                        148
+                        111,
+                        8
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_52": {
         "corners": [
             [
-                149,
-                89
+                101,
+                5
             ],
             [
-                69,
-                17
+                6,
+                9
             ],
             [
-                7,
-                89
+                5,
+                110
             ],
             [
-                79,
-                158
+                104,
+                112
             ]
         ],
         "center_coords": [
-            79,
-            84
+            58,
+            59
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        149,
-                        89
+                        101,
+                        5
                     ],
                     [
-                        69,
-                        17
+                        6,
+                        9
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        69,
-                        17
+                        6,
+                        9
                     ],
                     [
-                        7,
-                        89
+                        5,
+                        110
                     ]
                 ],
                 "classification": "INT"
@@ -4161,12 +4161,12 @@
             "C": {
                 "points": [
                     [
-                        7,
-                        89
+                        5,
+                        110
                     ],
                     [
-                        79,
-                        158
+                        104,
+                        112
                     ]
                 ],
                 "classification": "INT"
@@ -4174,52 +4174,52 @@
             "D": {
                 "points": [
                     [
-                        79,
-                        158
+                        104,
+                        112
                     ],
                     [
-                        149,
-                        89
+                        101,
+                        5
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_53": {
         "corners": [
             [
-                47,
-                141
+                105,
+                6
             ],
             [
-                134,
-                99
+                20,
+                56
             ],
             [
-                98,
-                12
+                62,
+                138
             ],
             [
-                9,
-                54
+                148,
+                90
             ]
         ],
         "center_coords": [
-            75,
-            75
+            80,
+            73
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        47,
-                        141
+                        105,
+                        6
                     ],
                     [
-                        134,
-                        99
+                        20,
+                        56
                     ]
                 ],
                 "classification": "INT"
@@ -4227,12 +4227,12 @@
             "B": {
                 "points": [
                     [
-                        134,
-                        99
+                        20,
+                        56
                     ],
                     [
-                        98,
-                        12
+                        62,
+                        138
                     ]
                 ],
                 "classification": "EXT"
@@ -4240,12 +4240,12 @@
             "C": {
                 "points": [
                     [
-                        98,
-                        12
+                        62,
+                        138
                     ],
                     [
-                        9,
-                        54
+                        148,
+                        90
                     ]
                 ],
                 "classification": "INT"
@@ -4253,12 +4253,12 @@
             "D": {
                 "points": [
                     [
-                        9,
-                        54
+                        148,
+                        90
                     ],
                     [
-                        47,
-                        141
+                        105,
+                        6
                     ]
                 ],
                 "classification": "INT"
@@ -4268,63 +4268,63 @@
     "piece_54": {
         "corners": [
             [
-                81,
-                15
+                83,
+                10
             ],
             [
-                17,
-                83
+                8,
+                44
             ],
             [
-                73,
-                143
+                42,
+                135
             ],
             [
-                147,
-                80
+                126,
+                96
             ]
         ],
         "center_coords": [
-            76,
-            78
+            67,
+            69
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        81,
-                        15
+                        83,
+                        10
                     ],
                     [
-                        17,
-                        83
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        17,
-                        83
-                    ],
-                    [
-                        73,
-                        143
+                        8,
+                        44
                     ]
                 ],
                 "classification": "FLT"
             },
+            "B": {
+                "points": [
+                    [
+                        8,
+                        44
+                    ],
+                    [
+                        42,
+                        135
+                    ]
+                ],
+                "classification": "INT"
+            },
             "C": {
                 "points": [
                     [
-                        73,
-                        143
+                        42,
+                        135
                     ],
                     [
-                        147,
-                        80
+                        126,
+                        96
                     ]
                 ],
                 "classification": "INT"
@@ -4332,52 +4332,52 @@
             "D": {
                 "points": [
                     [
-                        147,
-                        80
+                        126,
+                        96
                     ],
                     [
-                        81,
-                        15
+                        83,
+                        10
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_55": {
         "corners": [
             [
-                79,
-                164
+                34,
+                98
             ],
             [
-                154,
-                90
+                86,
+                176
             ],
             [
-                99,
-                10
+                168,
+                103
             ],
             [
-                21,
-                85
+                112,
+                23
             ]
         ],
         "center_coords": [
-            90,
-            89
+            98,
+            96
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        79,
-                        164
+                        34,
+                        98
                     ],
                     [
-                        154,
-                        90
+                        86,
+                        176
                     ]
                 ],
                 "classification": "EXT"
@@ -4385,38 +4385,38 @@
             "B": {
                 "points": [
                     [
-                        154,
-                        90
+                        86,
+                        176
                     ],
                     [
-                        99,
-                        10
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "C": {
-                "points": [
-                    [
-                        99,
-                        10
-                    ],
-                    [
-                        21,
-                        85
+                        168,
+                        103
                     ]
                 ],
                 "classification": "INT"
             },
+            "C": {
+                "points": [
+                    [
+                        168,
+                        103
+                    ],
+                    [
+                        112,
+                        23
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "D": {
                 "points": [
                     [
-                        21,
-                        85
+                        112,
+                        23
                     ],
                     [
-                        79,
-                        164
+                        34,
+                        98
                     ]
                 ],
                 "classification": "EXT"
@@ -4426,76 +4426,76 @@
     "piece_56": {
         "corners": [
             [
-                124,
-                120
+                87,
+                8
             ],
             [
-                63,
-                10
+                16,
+                72
             ],
             [
-                3,
-                34
+                79,
+                141
             ],
             [
-                30,
-                142
+                163,
+                89
             ]
         ],
         "center_coords": [
-            66,
-            75
+            87,
+            82
         ],
-        "classification": "EDG",
+        "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        124,
-                        120
+                        87,
+                        8
                     ],
                     [
-                        63,
-                        10
-                    ]
-                ],
-                "classification": "EXT"
-            },
-            "B": {
-                "points": [
-                    [
-                        63,
-                        10
-                    ],
-                    [
-                        3,
-                        34
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "C": {
-                "points": [
-                    [
-                        3,
-                        34
-                    ],
-                    [
-                        30,
-                        142
+                        16,
+                        72
                     ]
                 ],
                 "classification": "INT"
             },
+            "B": {
+                "points": [
+                    [
+                        16,
+                        72
+                    ],
+                    [
+                        79,
+                        141
+                    ]
+                ],
+                "classification": "EXT"
+            },
+            "C": {
+                "points": [
+                    [
+                        79,
+                        141
+                    ],
+                    [
+                        163,
+                        89
+                    ]
+                ],
+                "classification": "EXT"
+            },
             "D": {
                 "points": [
                     [
-                        30,
-                        142
+                        163,
+                        89
                     ],
                     [
-                        124,
-                        120
+                        87,
+                        8
                     ]
                 ],
                 "classification": "INT"
@@ -4505,50 +4505,50 @@
     "piece_57": {
         "corners": [
             [
-                101,
+                20,
                 3
             ],
             [
-                3,
-                41
+                1,
+                97
             ],
             [
-                41,
-                127
+                104,
+                115
             ],
             [
-                133,
-                92
+                116,
+                21
             ]
         ],
         "center_coords": [
-            70,
-            64
+            58,
+            59
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        101,
+                        20,
                         3
                     ],
                     [
-                        3,
-                        41
+                        1,
+                        97
                     ]
                 ],
-                "classification": "INT"
+                "classification": "FLT"
             },
             "B": {
                 "points": [
                     [
-                        3,
-                        41
+                        1,
+                        97
                     ],
                     [
-                        41,
-                        127
+                        104,
+                        115
                     ]
                 ],
                 "classification": "INT"
@@ -4556,12 +4556,12 @@
             "C": {
                 "points": [
                     [
-                        41,
-                        127
+                        104,
+                        115
                     ],
                     [
-                        133,
-                        92
+                        116,
+                        21
                     ]
                 ],
                 "classification": "INT"
@@ -4569,197 +4569,197 @@
             "D": {
                 "points": [
                     [
-                        133,
-                        92
+                        116,
+                        21
                     ],
                     [
-                        101,
+                        20,
                         3
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "INT"
             }
         }
     },
     "piece_58": {
         "corners": [
             [
+                123,
+                7
+            ],
+            [
+                31,
+                12
+            ],
+            [
                 14,
-                100
+                99
             ],
             [
-                127,
-                111
-            ],
-            [
-                117,
-                1
-            ],
-            [
-                25,
-                13
+                126,
+                117
             ]
         ],
         "center_coords": [
-            69,
-            62
+            71,
+            64
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        14,
-                        100
+                        123,
+                        7
                     ],
                     [
-                        127,
-                        111
+                        31,
+                        12
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        127,
-                        111
+                        31,
+                        12
                     ],
                     [
-                        117,
-                        1
+                        14,
+                        99
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "C": {
                 "points": [
                     [
-                        117,
-                        1
+                        14,
+                        99
                     ],
                     [
-                        25,
-                        13
+                        126,
+                        117
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        25,
-                        13
+                        126,
+                        117
                     ],
                     [
-                        14,
-                        100
+                        123,
+                        7
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             }
         }
     },
     "piece_59": {
         "corners": [
             [
-                38,
-                16
+                67,
+                9
             ],
             [
-                5,
-                123
+                21,
+                95
             ],
             [
                 102,
-                143
+                151
             ],
             [
-                129,
-                49
+                162,
+                76
             ]
         ],
         "center_coords": [
-            67,
-            84
+            88,
+            81
         ],
         "classification": "EDG",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        38,
-                        16
+                        67,
+                        9
                     ],
                     [
-                        5,
-                        123
+                        21,
+                        95
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "B": {
                 "points": [
                     [
-                        5,
-                        123
+                        21,
+                        95
                     ],
                     [
                         102,
-                        143
+                        151
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "C": {
                 "points": [
                     [
                         102,
-                        143
+                        151
                     ],
                     [
-                        129,
-                        49
+                        162,
+                        76
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        129,
-                        49
+                        162,
+                        76
                     ],
                     [
-                        38,
-                        16
+                        67,
+                        9
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "FLT"
             }
         }
     },
     "piece_60": {
         "corners": [
             [
-                55,
-                15
+                60,
+                29
             ],
             [
-                2,
-                106
+                15,
+                111
             ],
             [
-                94,
-                151
+                110,
+                154
             ],
             [
-                131,
-                68
+                146,
+                58
             ]
         ],
         "center_coords": [
-            73,
+            82,
             85
         ],
         "classification": "EDG",
@@ -4767,51 +4767,51 @@
             "A": {
                 "points": [
                     [
-                        55,
-                        15
+                        60,
+                        29
                     ],
                     [
-                        2,
-                        106
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        2,
-                        106
-                    ],
-                    [
-                        94,
-                        151
-                    ]
-                ],
-                "classification": "FLT"
-            },
-            "C": {
-                "points": [
-                    [
-                        94,
-                        151
-                    ],
-                    [
-                        131,
-                        68
+                        15,
+                        111
                     ]
                 ],
                 "classification": "EXT"
             },
+            "B": {
+                "points": [
+                    [
+                        15,
+                        111
+                    ],
+                    [
+                        110,
+                        154
+                    ]
+                ],
+                "classification": "INT"
+            },
+            "C": {
+                "points": [
+                    [
+                        110,
+                        154
+                    ],
+                    [
+                        146,
+                        58
+                    ]
+                ],
+                "classification": "FLT"
+            },
             "D": {
                 "points": [
                     [
-                        131,
-                        68
+                        146,
+                        58
                     ],
                     [
-                        55,
-                        15
+                        60,
+                        29
                     ]
                 ],
                 "classification": "EXT"
@@ -4821,155 +4821,155 @@
     "piece_61": {
         "corners": [
             [
-                110,
-                128
+                97,
+                11
             ],
             [
-                100,
-                17
+                7,
+                69
             ],
             [
-                1,
-                24
+                52,
+                155
             ],
             [
-                13,
-                131
+                147,
+                98
             ]
         ],
         "center_coords": [
-            59,
-            70
+            81,
+            84
         ],
         "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        110,
-                        128
+                        97,
+                        11
                     ],
                     [
-                        100,
-                        17
+                        7,
+                        69
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "B": {
                 "points": [
                     [
-                        100,
-                        17
+                        7,
+                        69
                     ],
                     [
-                        1,
-                        24
+                        52,
+                        155
                     ]
                 ],
-                "classification": "EXT"
+                "classification": "INT"
             },
             "C": {
                 "points": [
                     [
-                        1,
-                        24
+                        52,
+                        155
                     ],
                     [
-                        13,
-                        131
+                        147,
+                        98
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        13,
-                        131
+                        147,
+                        98
                     ],
                     [
-                        110,
-                        128
+                        97,
+                        11
                     ]
                 ],
-                "classification": "INT"
+                "classification": "EXT"
             }
         }
     },
     "piece_62": {
         "corners": [
             [
-                18,
-                94
+                130,
+                50
             ],
             [
-                114,
-                118
+                46,
+                20
             ],
             [
-                132,
-                21
+                8,
+                105
             ],
             [
-                37,
-                5
+                101,
+                141
             ]
         ],
         "center_coords": [
-            75,
-            58
+            72,
+            81
         ],
-        "classification": "EDG",
+        "classification": "MDL",
         "piece_side_data": {
             "A": {
                 "points": [
                     [
-                        18,
-                        94
+                        130,
+                        50
                     ],
                     [
-                        114,
-                        118
-                    ]
-                ],
-                "classification": "INT"
-            },
-            "B": {
-                "points": [
-                    [
-                        114,
-                        118
-                    ],
-                    [
-                        132,
-                        21
+                        46,
+                        20
                     ]
                 ],
                 "classification": "EXT"
             },
+            "B": {
+                "points": [
+                    [
+                        46,
+                        20
+                    ],
+                    [
+                        8,
+                        105
+                    ]
+                ],
+                "classification": "INT"
+            },
             "C": {
                 "points": [
                     [
-                        132,
-                        21
+                        8,
+                        105
                     ],
                     [
-                        37,
-                        5
+                        101,
+                        141
                     ]
                 ],
-                "classification": "FLT"
+                "classification": "EXT"
             },
             "D": {
                 "points": [
                     [
-                        37,
-                        5
+                        101,
+                        141
                     ],
                     [
-                        18,
-                        94
+                        130,
+                        50
                     ]
                 ],
                 "classification": "EXT"

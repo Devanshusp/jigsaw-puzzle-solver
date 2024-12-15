@@ -176,7 +176,11 @@ def preprocess_pieces(
                 piece_classification,
             )
             save_data_for_piece(
-                PIECES_SAVE_PATH, piece_index, "piece_side_data", piece_side_data
+                PIECES_SAVE_PATH,
+                piece_index,
+                "piece_side_data",
+                piece_side_data,
+                avoid_print=True,
             )
 
         # Saving data here for each piece to display in grid format later.

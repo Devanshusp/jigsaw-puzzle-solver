@@ -28,7 +28,11 @@ def init_save_file(save_path: str, count_pieces: int):
 
 
 def save_data_for_piece(
-    save_path: str, piece_number: int, variable_name: str, data: Any
+    save_path: str,
+    piece_number: int,
+    variable_name: str,
+    data: Any,
+    avoid_print: bool = False,
 ):
     """
     Save a specific variable for a given piece in the JSON file.
@@ -56,7 +60,8 @@ def save_data_for_piece(
     with open(json_save_path, mode="w") as json_file:
         json.dump(contents, json_file, indent=4)
 
-    print(f"Saved data for {piece}: {variable_name} = {data}")
+    if not avoid_print:
+        print(f"Saved data for {piece}: {variable_name} = {data}")
 
 
 def get_data_for_piece(save_path: str, piece_number: int, variable_name: str) -> Any:

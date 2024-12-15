@@ -12,7 +12,7 @@ if __name__ == "__main__":
     SKIP_DISPLAY_SOLVE = False
     SKIP_PREPROCESS = False
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = ".images"
+    SAVE_PREPROCESS_FOLDER = ".images2"
     PUZZLES_TO_PROCESS = [
         "aurora12",
         # "aurora30",

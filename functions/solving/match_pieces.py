@@ -6,7 +6,38 @@ from scipy.spatial import procrustes
 from scipy.spatial.distance import directed_hausdorff
 
 from functions.utils.orient_piece_contours import orient_piece_contours
+from functions.utils.save_data import get_data_for_piece
 
+def corners_similarity(contour1, contour2): 
+    """
+    Compare length of contours from corner to corner using Euclidean Distance. 
+    """
+    
+    contours = [contour1, contour2]
+    edge_lengths = []
+    
+    # Calculate the length of the contour 
+    for contour in contours: 
+        start = 0
+        end = len(contour) - 1  
+        
+        # Start and end points of the contour 
+        x1, y1 = contour[start]
+        x2, y2 = contour[end]
+        
+        # Euclidean distance of the contour  
+        distance = np.sqrt(np.square(x2 - x1) + np.square(y2 - y1))
+        print("Distance:", distance )
+        
+        edge_lengths.append(distance)
+     
+    # Difference between the two contour lengths    
+    difference = abs(edge_lengths[0] - edge_lengths[1])
+    
+    return difference
+
+def color_similarity(color1, color2): 
+    print("Color Similarity Fn")
 
 def fourier_descriptor_similarity(contour1, contour2):
     """
@@ -130,8 +161,13 @@ def match_pieces(
     )
     contour1_resampled = adjusted_contours["contour1_resampled"]
     contour2_resampled = adjusted_contours["contour2_resampled"]
-
+    
+    color_data1 = get_data_for_piece(pieces_path, piece1, "piece_side_data")[side1]["colors"]
+    color_data2 = get_data_for_piece(pieces_path, piece2, "piece_side_data")[side2]["colors"]
+    
     # Compute various distance measures and similarities
+    color_similarity(color_data1, color_data2)
+    # corners_similarity(piece1_oriented_contours, piece2_oriented_contours)
     hausdorff_dist = directed_hausdorff_distance(
         piece1_oriented_contours, piece2_oriented_contours
     )
@@ -143,6 +179,7 @@ def match_pieces(
 
     # Return results in a dictionary
     return {
+        # "Corners Similarity": corners_sim, 
         "Hausdorff Distance": hausdorff_dist,
         "Fourier Descriptor Similarity": fourier_similarity,
         "Procrustes Shape Similarity": procrustes_sim,

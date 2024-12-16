@@ -7,6 +7,7 @@ import re
 
 import cv2
 
+from functions.color import get_colors
 from functions.preprocessing.piece_to_polygon import piece_to_polygon
 from functions.preprocessing.puzzle_to_pieces import puzzle_to_pieces
 from functions.solving.solve_border import solve_border
@@ -255,6 +256,8 @@ def solve_puzzle(
             non_border_piece_indices.append(piece_index)
             non_border_pieces.append(img_rgb)
             print(f"Classified piece {piece_index} as non-border")
+    
+    get_colors(PUZZLE_IMAGE_NAME)
 
     # Display corner pieces in a grid
     display_pieces(

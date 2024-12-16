@@ -6,12 +6,10 @@ from typing import List
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
-from functions.solving.solve_border import solve_border
-from functions.utils.display_pieces import display_pieces
 from functions.utils.piece_file_names import get_piece_file_names
-from functions.utils.save_data import get_data_for_piece
 
 DISPLAY_STEPS = True
+DISPLAY_STEPS_COLOR = False
 SKIP_DISPLAY_PREPROCESS_PUZZLE = False
 SKIP_DISPLAY_PREPROCESS_PIECES = False
 SKIP_DISPLAY_SOLVE = False
@@ -92,8 +90,6 @@ def display_pieces_color(
 
     Args:
         pieces: A list of image pieces (numpy arrays) to be displayed.
-        contours_list: A list of contour points for each piece.
-        centroids_list: A list of centroids for each piece.
         n_pixels: Number of pixels to move towards the centroid.
         figsize: Size of the figure for display.
         save_name: Name of the file to save the grid of pieces.
@@ -228,7 +224,11 @@ def view_pieces(
         display_steps=display_steps,
     )
     
-def color(puzzle, piece, side, pixels): 
+def color(puzzle, 
+          piece, 
+          side, 
+          pixels, 
+          display_steps_color: bool = False): 
     
     img = ".images2/pieces/" + puzzle + "/piece_" + str(piece) + ".png"
 
@@ -270,20 +270,67 @@ def color(puzzle, piece, side, pixels):
             color = image[y, x]  # OpenCV uses (row, col) indexing
             colors.append(color)  # Append the RGB color values
 
-    # Print the RGB values for each pixel location
-    # for idx, color in enumerate(colors):
-    #     print(f"Pixel {idx} -> RGB: {color}")
-
     # Visualize the extracted colors as a color strip
     color_strip = np.array(colors)  # Convert colors list to NumPy array
-    color_strip = color_strip.reshape((1, -1, 3))  # Reshape into a horizontal strip
-    color_strip = np.repeat(color_strip, 20, axis=0)  # Repeat rows for better visibility
     
-    # Display the color strip
-    plt.imshow(color_strip)
-    plt.title(f"Piece {piece}, Side {side}")
-    plt.axis('off')  # Turn off axis labels for a clean view
-    plt.show()
+    # Separate channels
+    R, G, B = color_strip[:, 0], color_strip[:, 1], color_strip[:, 2]
+
+    # Summary Statistics for Each Channel
+    def summary_statistics(channel):
+        return {
+            "mean": int(np.mean(channel)),
+            "median": int(np.median(channel)),
+            "range": (int(np.min(channel)), int(np.max(channel)))
+        }
+
+    R_stats = summary_statistics(R)
+    G_stats = summary_statistics(G)
+    B_stats = summary_statistics(B)
+    
+    # Check if the 'colors' key exists, and initialize it if not
+    if "colors" not in data[pieceNum]["piece_side_data"][side]:
+        data[pieceNum]["piece_side_data"][side]["colors"] = {}
+    
+    color_strip_int = color_strip.astype(int)
+    
+    color_strip_list = color_strip_int.tolist()
+    
+    # Add or update the colors key
+    data[pieceNum]["piece_side_data"][side]["colors"]["Red"] = R_stats
+    data[pieceNum]["piece_side_data"][side]["colors"]["Green"] = G_stats
+    data[pieceNum]["piece_side_data"][side]["colors"]["Blue"] = B_stats
+    data[pieceNum]["piece_side_data"][side]["colors"]["Pixels"] = color_strip_list
+    
+    # print("Saved color data for piece ", pieceNum, ", side ", side)
+    # print(data[pieceNum]["piece_side_data"][side]["colors"])  # Verify the updated data
+   
+    # Write to JSON file
+    with open(json1, 'w') as file:
+      json.dump(data, file, indent=4)
+
+    # Combine Results
+    results = {
+        "Summary Statistics (R)": R_stats,
+        "Summary Statistics (G)": G_stats,
+        "Summary Statistics (B)": B_stats,
+    }
+
+    # Print Results
+    if display_steps_color:
+        for key, value in results.items():
+            print(f"{key}:\n{value}\n")
+    
+    
+    if display_steps_color:
+        color_strip = color_strip.reshape((1, -1, 3))  # Reshape into a horizontal strip
+        color_strip = np.repeat(color_strip, 20, axis=0)  # Repeat rows for better visibility
+        
+        # Display the color strip
+        plt.imshow(color_strip)
+        plt.title(f"Piece {piece}, Side {side}")
+        plt.axis('off')  # Turn off axis labels for a clean view
+        plt.show()
     
     pieces = []
     
@@ -297,22 +344,41 @@ def color(puzzle, piece, side, pixels):
         pieces,
         save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{pieceNum}_color",
         save=False,
-        display_steps=True,
+        display_steps=DISPLAY_STEPS_COLOR,
         coordinates=contours
     )
     
 pixels = 25 
+    
+def get_colors(
+    puzzle, 
+    pixels: int = 25, 
+    display_steps_color: bool = False): 
+    
+    # Reading JSON file 
+    json1 = ".images2/pieces/" + puzzle + "/data.json" 
+    with open(json1, 'r') as file: 
+        data = json.load(file) 
+    
+    numPieces = len(data)
 
-for puzzle in PUZZLES_TO_PROCESS:
-    view_pieces(
-        puzzle,
-        n_pixels=pixels,
-        save=SAVE_PREPROCESS,
-        save_folder=SAVE_PREPROCESS_FOLDER,
-        display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_SOLVE,
-    )
+    for i in range(0, numPieces): 
+        
+        color(puzzle, i, "A", pixels, display_steps_color) 
+        color(puzzle, i, "B", pixels, display_steps_color) 
+        color(puzzle, i, "C", pixels, display_steps_color) 
+        color(puzzle, i, "D", pixels, display_steps_color) 
+        print("Saved color data for piece ", i)
 
-color("aurora12", 0, "A", pixels)
-color("aurora12", 0, "B", pixels)
-color("aurora12", 0, "C", pixels)
-color("aurora12", 0, "D", pixels)
+# Visualization for piece pixel borders 
+# for puzzle in PUZZLES_TO_PROCESS:
+#     view_pieces(
+#         puzzle,
+#         n_pixels=pixels,
+#         save=SAVE_PREPROCESS,
+#         save_folder=SAVE_PREPROCESS_FOLDER,
+#         display_steps=DISPLAY_STEPS and not SKIP_DISPLAY_SOLVE,
+#     )
+
+# Call to test color data and storing 
+# get_colors("aurora12") 

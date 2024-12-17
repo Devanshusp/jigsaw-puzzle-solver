@@ -28,6 +28,7 @@ def preprocess_puzzle(
     save_folder: str = "images",
     puzzle_folder: str = "puzzles",
     display_steps: bool = True,
+    add_random_rotation: bool = False,
 ) -> None:
     """
     Processes a puzzle image to extract its pieces and optionally saves them and a grid
@@ -65,7 +66,7 @@ def preprocess_puzzle(
         PUZZLE_IMAGE_PATH,
         kernel_size=(5, 5),
         display_steps=display_steps,
-        add_random_rotation=False,
+        add_random_rotation=add_random_rotation,
     )
 
     # Print the result

@@ -117,7 +117,7 @@ def puzzle_to_pieces(
 
         if add_random_rotation:
             # Add random rotation to the cropped image around its center.
-            np.random.seed(100)
+            # np.random.seed(100)
             angle = np.random.randint(0, 360)
             img_piece_cropped = rotate_image(img_piece_cropped, angle)
 

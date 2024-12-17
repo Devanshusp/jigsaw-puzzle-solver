@@ -10,9 +10,9 @@ import numpy as np
 
 def display_pieces(
     pieces: List[np.ndarray],
-    save_name: str,
     figsize: tuple = (10, 10),
     save: bool = True,
+    save_name: str | None = None,
     display_steps: bool = True,
 ) -> None:
     """
@@ -28,8 +28,12 @@ def display_pieces(
     num_pieces = len(pieces)
 
     # Calculate grid dimensions (rows and columns).
-    rows = int(np.ceil(np.sqrt(num_pieces)))
-    cols = int(np.ceil(num_pieces / rows))
+    try:
+        rows = int(np.ceil(np.sqrt(num_pieces)))
+        cols = int(np.ceil(num_pieces / rows))
+    except ZeroDivisionError:
+        print("Not enough pieces to display in a grid.")
+        return
 
     # Create a new figure for displaying all pieces.
     plt.figure(figsize=figsize)

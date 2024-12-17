@@ -10,6 +10,8 @@ import cv2
 from functions.preprocessing.piece_to_polygon import piece_to_polygon
 from functions.preprocessing.puzzle_to_pieces import puzzle_to_pieces
 from functions.solving.solve_border import solve_border
+from functions.solving.solve_center import solve_center
+from functions.utils.color_data import piece_color_data
 from functions.utils.display_piece_corners import display_piece_corners
 from functions.utils.display_pieces import display_pieces
 from functions.utils.piece_file_names import get_piece_file_names
@@ -63,7 +65,7 @@ def preprocess_puzzle(
         PUZZLE_IMAGE_PATH,
         kernel_size=(5, 5),
         display_steps=display_steps,
-        add_random_rotation=True,
+        add_random_rotation=False,
     )
 
     # Print the result
@@ -183,6 +185,25 @@ def preprocess_pieces(
                 avoid_print=True,
             )
 
+        # Adding color data to piece_side_data
+        piece_side_data_with_color_data = piece_side_data
+
+        # Extracting additional color data from each piece.
+        for side in ["A", "B", "C", "D"]:
+            piece_side_data_with_color_data[side]["color_data"] = piece_color_data(
+                PIECES_SAVE_PATH, piece_index, side, display_steps=display_steps
+            )
+
+        # Saving extracted color data.
+        if save:
+            save_data_for_piece(
+                PIECES_SAVE_PATH,
+                piece_index,
+                "piece_side_data",
+                piece_side_data_with_color_data,
+                avoid_print=True,
+            )
+
         # Saving data here for each piece to display in grid format later.
         piece_data.append(
             {
@@ -280,10 +301,28 @@ def solve_puzzle(
         display_steps=display_steps,
     )
 
-    # 2. Pass the border pieces to solve_border
-    solve_border(
-        PIECES_SAVE_PATH,
-        corner_piece_indices=corner_piece_indices,
-        edge_piece_indices=edge_piece_indices,
-        display_steps=display_steps,
-    )
+    try:
+        # 2. Pass the border pieces to solve_border
+        solved_border_matrix = solve_border(
+            PIECES_SAVE_PATH,
+            corner_piece_indices=corner_piece_indices,
+            edge_piece_indices=edge_piece_indices,
+            display_steps=display_steps,
+            save=save,
+            save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_5_border",
+        )
+    except Exception as e:
+        print(f"Error solving border pieces: {e}")
+
+    try:
+        # 3. Pass the center pieces to solve_center
+        solve_center(
+            PIECES_SAVE_PATH,
+            solved_border_matrix=solved_border_matrix,  # type: ignore
+            middle_piece_indices=non_border_piece_indices,
+            display_steps=display_steps,
+            save=save,
+            save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_6_solution",
+        )
+    except Exception as e:
+        print(f"Error solving center pieces: {e}")

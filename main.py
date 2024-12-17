@@ -12,23 +12,23 @@ if __name__ == "__main__":
     SKIP_DISPLAY_SOLVE = False
     SKIP_PREPROCESS = False
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = ".images2"
+    SAVE_PREPROCESS_FOLDER = ".images"
     PUZZLES_TO_PROCESS = [
         "aurora12",
-        # "aurora30",
-        # "aurora63",
-        # "corn12",
-        # "corn30",
-        # "corn63",
-        # "path12",
-        # "path30",
-        # "path63",
-        # "red9",
-        # "red25",
-        # "red49",
-        # "younker12",
-        # "younker30",
-        # "younker63",
+        "aurora30",
+        "aurora63",
+        "corn12",
+        "corn30",
+        "corn63",
+        "path12",
+        "path30",
+        "path63",
+        "red9",
+        "red25",
+        "red49",
+        "younker12",
+        "younker30",
+        "younker63",
     ]
 
     for puzzle in PUZZLES_TO_PROCESS:

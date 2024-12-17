@@ -14,7 +14,6 @@ from functions.utils.normalize_list import normalize_list
 
 def piece_to_polygon(
     image_path: str,
-    kernel_size: Tuple[int, int] = (5, 5),
     epsilon_ratio: float = 0.02,
     corner_distance_weight: float = 1,
     center_distance_weight: float = 1,
@@ -37,20 +36,13 @@ def piece_to_polygon(
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Apply a heavy Gaussian blur on grayscale image to reduce noise.
-    kernel_size = kernel_size
-    kernel_sigma = 5
-    img_blurred = cv2.GaussianBlur(img_gray, kernel_size, kernel_sigma)
-
     # Create binary image (threshold to separate pieces from background).
     # Pixels with intensity > 250 are set to 0 (black), rest to 255 (white).
     # We use cv2.THRESH_BINARY_INV to invert the image for piece detection in the next
     # steps.
     threshold = 250
     max_value = 255
-    _, img_binary = cv2.threshold(
-        img_blurred, threshold, max_value, cv2.THRESH_BINARY_INV
-    )
+    _, img_binary = cv2.threshold(img_gray, threshold, max_value, cv2.THRESH_BINARY_INV)
 
     # Finding contours of the puzzle piece using the binary image.
     # The setting cv2.RETR_EXTERNAL ensures that only the outermost contours
@@ -86,6 +78,7 @@ def piece_to_polygon(
         plt.axis("off")
         plt.show()
 
+    # Reshape the contours to a 2D array of points for processing later.
     reshaped_contours = np.array(contours).reshape(-1, 2)
 
     # We perform polygonal approximation on the contours to reduce the number of points

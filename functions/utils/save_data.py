@@ -62,6 +62,8 @@ def save_data_for_piece(
 
     if not avoid_print:
         print(f"Saved data for {piece}: {variable_name} = {data}")
+    else:
+        print(f"Saved data for {piece}: {variable_name} of type {type(data)}")
 
 
 def get_data_for_piece(save_path: str, piece_number: int, variable_name: str) -> Any:

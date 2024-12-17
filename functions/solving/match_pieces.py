@@ -1,61 +1,65 @@
 from typing import Literal
 
+import cv2
+import matplotlib.pyplot as plt
 import numpy as np
-from numpy.linalg import norm
-from scipy.spatial import procrustes
 from scipy.spatial.distance import directed_hausdorff
 
 from functions.utils.orient_piece_contours import orient_piece_contours
+from functions.utils.save_data import get_data_for_piece
 
 
-def fourier_descriptor_similarity(contour1, contour2):
+def color_and_shape_distance(color1, color2, shape1, shape2):
     """
-    Compare contours using Fourier Descriptors.
+    Using the color and shape similarity metrics, calculate the distance between two
+    pieces.
+
+    Args:
+        color1 (dict): Color data for the first piece
+        color2 (dict): Color data for the second piece
+        shape1 (np.ndarray): Contour shape for the first piece
+        shape2 (np.ndarray): Contour shape for the second piece
+
+    Returns:
+        float: Combined distance metric where lower values indicate higher similarity
     """
+    # Calculate color distance using Hausdorff color distance
+    color_distance = hausdorff_color(color1, color2)
 
-    def compute_fourier_descriptors(contour):
-        contour = contour.astype(np.float32)
-        contour_complex = contour[:, 0] + 1j * contour[:, 1]
+    # Calculate shape distances using multiple metrics
+    hausdorff_dist = directed_hausdorff_distance(shape1, shape2)
+    hu_moments_dist = hu_moments_distance(shape1, shape2)
+    corners_dist = corners_similarity(shape1, shape2)
 
-        descriptors = np.fft.fft(contour_complex)
+    # Normalize and combine shape distances
+    # We'll use a weighted approach that penalizes dissimilarity
+    shape_distances = [hausdorff_dist, hu_moments_dist, corners_dist]
 
-        return np.abs(descriptors[:10])
+    # Compute the geometric mean of shape distances
+    # This ensures that all shape metrics contribute to the final score
+    shape_distance = np.prod(shape_distances) ** (1 / len(shape_distances))
 
-    desc1 = compute_fourier_descriptors(contour1)
-    desc2 = compute_fourier_descriptors(contour2)
+    # Combine color and shape distances
+    # We use multiplication to ensure both color and shape need to be similar
+    # Adding a small constant to prevent division by zero
+    combined_distance = color_distance * shape_distance
 
-    return np.linalg.norm(desc1 - desc2)
-
-
-def cosine_similarity(contour1, contour2, num_points=1000):
-    """
-    Compute Cosine Similarity between two resampled contours.
-    """
-    contour1_resampled = resample_contour(np.array(contour1), num_points)
-    contour2_resampled = resample_contour(np.array(contour2), num_points)
-
-    # Flatten the contours into 1D arrays
-    contour1_flat = contour1_resampled.flatten()
-    contour2_flat = contour2_resampled.flatten()
-
-    # Compute the cosine similarity
-    cosine_sim = np.dot(contour1_flat, contour2_flat) / (
-        norm(contour1_flat) * norm(contour2_flat)
-    )
-
-    return cosine_sim
+    return combined_distance
 
 
-def procrustes_shape_similarity(contour1, contour2):
-    """
-    Use Procrustes analysis to compare shapes after alignment.
-    """
-    contour1 = resample_contour(np.array(contour1))
-    contour2 = resample_contour(np.array(contour2))
+def hausdorff_color(color1, color2):
+    pixels1 = color1["color_strip"]
+    pixels2 = color2["color_strip"]
 
-    _, new_contour1, new_contour2 = procrustes(contour1, contour2)
+    pixels1 = np.array(pixels1)
+    pixels2 = np.array(pixels2)
 
-    return np.mean(np.sqrt(np.sum((new_contour1 - new_contour2) ** 2, axis=1)))
+    # Compute Hausdorff distances
+    fHC = directed_hausdorff(pixels1, pixels2)[0]
+    bHC = directed_hausdorff(pixels2, pixels1)[0]
+
+    # Return the max
+    return max(fHC, bHC)
 
 
 def directed_hausdorff_distance(contour1, contour2):
@@ -66,6 +70,40 @@ def directed_hausdorff_distance(contour1, contour2):
     reverse_dist = directed_hausdorff(contour2, contour1)[0]
 
     return max(forward_dist, reverse_dist)
+
+
+def hu_moments_distance(contour1, contour2):
+    """
+    Compute the directed Hausdorff distance between two contours.
+    """
+    similarity = cv2.matchShapes(contour1, contour2, cv2.CONTOURS_MATCH_I1, 0)
+
+    return similarity
+
+
+def corners_similarity(contour1, contour2):
+    """
+    Compare length of contours from corner to corner using Euclidean Distance.
+    """
+    edge_lengths = []
+
+    # Calculate the length of the contour
+    for contour in [contour1, contour2]:
+        start = 0
+        end = len(contour) - 1
+
+        # Start and end points of the contour
+        x1, y1 = contour[start]
+        x2, y2 = contour[end]
+
+        # Euclidean distance of the contour
+        distance = np.sqrt(np.square(x2 - x1) + np.square(y2 - y1))
+        edge_lengths.append(distance)
+
+    # Difference between the two contour lengths
+    difference = abs(edge_lengths[0] - edge_lengths[1])
+
+    return difference
 
 
 def adjust_contour_accuracy(contour1, contour2, complexity="high"):
@@ -88,7 +126,7 @@ def adjust_contour_accuracy(contour1, contour2, complexity="high"):
     }
 
 
-def resample_contour(contour, num_points=1000):
+def resample_contour(contour, num_points=1000) -> np.ndarray:
     """
     Resample contour to a fixed number of points using linear interpolation.
     """
@@ -116,13 +154,16 @@ def match_pieces(
     side1: Literal["A", "B", "C", "D"],
     side2: Literal["A", "B", "C", "D"],
     complexity: Literal["high", "medium", "low"] = "high",
+    display_steps: bool = True,
 ) -> dict:
     """
     Calculate the match score between two pieces using various shape comparison metrics.
     Returns a dictionary of labeled similarity values.
     """
     piece1_oriented_contours = orient_piece_contours(pieces_path, piece1, side1, "Top")
-    piece2_oriented_contours = orient_piece_contours(pieces_path, piece2, side2, "Top")
+    piece2_oriented_contours = orient_piece_contours(
+        pieces_path, piece2, side2, "Bottom"
+    )
 
     # Adjust resampling accuracy based on complexity
     adjusted_contours = adjust_contour_accuracy(
@@ -132,19 +173,143 @@ def match_pieces(
     contour2_resampled = adjusted_contours["contour2_resampled"]
 
     # Compute various distance measures and similarities
-    hausdorff_dist = directed_hausdorff_distance(
-        piece1_oriented_contours, piece2_oriented_contours
+    hausdorff_dist = directed_hausdorff_distance(contour1_resampled, contour2_resampled)
+    hu_moments_dist = hu_moments_distance(contour1_resampled, contour2_resampled)
+    corners_dist = corners_similarity(contour1_resampled, contour2_resampled)
+
+    # Extract color data for color matching score
+    color_data1 = get_data_for_piece(pieces_path, piece1, "piece_side_data")[side1][
+        "color_data"
+    ]
+    color_data2 = get_data_for_piece(pieces_path, piece2, "piece_side_data")[side2][
+        "color_data"
+    ]
+
+    # Calculate color Difference
+    color_difference = hausdorff_color(color_data1, color_data2)
+
+    # Calculate Color and Shape Distance
+    color_shape_distance = color_and_shape_distance(
+        color_data1, color_data2, contour1_resampled, contour2_resampled
     )
-    fourier_similarity = fourier_descriptor_similarity(
-        contour1_resampled, contour2_resampled
-    )
-    procrustes_sim = procrustes_shape_similarity(contour1_resampled, contour2_resampled)
-    cosine_sim = cosine_similarity(contour1_resampled, contour2_resampled)
 
     # Return results in a dictionary
-    return {
+    results = {
         "Hausdorff Distance": hausdorff_dist,
-        "Fourier Descriptor Similarity": fourier_similarity,
-        "Procrustes Shape Similarity": procrustes_sim,
-        "Cosine Similarity": cosine_sim,
+        "Hu Moments Distance": hu_moments_dist,
+        "Corners Distance": corners_dist,
+        "Color Difference": color_difference,
+        "Color Shape Distance": color_shape_distance,
     }
+
+    # Visualize comparison results using resampled contours
+    if display_steps:
+        visualize_comparison_results(
+            contour1_resampled,
+            contour2_resampled,
+            results,
+            str(piece1) + side1,
+            str(piece2) + side2,
+        )
+
+    return results
+
+
+def visualize_comparison_results(
+    piece1_contour,
+    piece2_contour,
+    results,
+    piece1_name="Piece 1",
+    piece2_name="Piece 2",
+):
+    """
+    Visualize contours and comparison results in a single figure.
+    """
+    # Create a figure with 4 subplots: 3 for contours and 1 for the table
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    fig.suptitle(
+        f"Contour Comparison between {piece1_name} & {piece2_name}",
+        fontsize=16,
+    )
+
+    # Flatten the axes for easier indexing
+    axes = axes.flatten()
+
+    # Plot original piece 1 contour
+    plot_piece(
+        axes[0],
+        f"{piece1_name} Contour: ({len(piece1_contour)} points)",
+        [0, 0],
+        piece1_contour,
+        "b",
+    )
+
+    # Plot original piece 2 contour
+    plot_piece(
+        axes[1],
+        f"{piece2_name} Contour: ({len(piece2_contour)} points)",
+        [0, 0],
+        piece2_contour,
+        "g",
+    )
+
+    # Plot contours together
+    axes[2].plot(*zip(*piece1_contour), "b-o", label=piece1_name)
+    axes[2].plot(*zip(*piece2_contour), "g-o", label=piece2_name)
+    axes[2].set_title("Overlayed Contours")
+    axes[2].set_xlabel("X-axis")
+    axes[2].set_ylabel("Y-axis")
+    axes[2].legend()
+    axes[2].grid(True)
+    axes[2].axis("equal")
+    axes[2].invert_yaxis()
+
+    # Display error metrics as a table in the last subplot
+    table_data = [
+        ["Metric", "Value", "Interpretation"],
+        [
+            "Hausdorff Distance",
+            f"{results['Hausdorff Distance']:.4f}",
+            "Lower is better",
+        ],
+        [
+            "Hu Moments Distance",
+            f"{results['Hu Moments Distance']:.4f}",
+            "Lower is better",
+        ],
+        ["Corners Distance", f"{results['Corners Distance']:.4f}", "Lower is better"],
+        ["Color Difference", f"{results['Color Difference']:.4f}", "Lower is better"],
+        [
+            "Color and Shape Distance",
+            f"{results['Color and Shape Distance']:.4f}",
+            "Lower is better",
+        ],
+    ]
+
+    # Turn off axis for the table subplot
+    axes[3].axis("off")
+
+    # Create the table
+    table = axes[3].table(cellText=table_data, loc="center", cellLoc="center")
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1.2, 1.5)
+    axes[3].set_title("Comparison Metrics", fontsize=12)
+
+    # Adjust layout and display
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_piece(ax, title, center_coords, contours, label_color):
+    """Utility to plot a piece on a given axis."""
+    ax.plot(center_coords[0], center_coords[1], "ro", label="Center")
+    contour_x, contour_y = zip(*contours)
+    ax.plot(contour_x, contour_y, f"{label_color}o-", label="Contours")
+    ax.set_title(title)
+    ax.set_xlabel("X-axis")
+    ax.set_ylabel("Y-axis")
+    ax.legend()
+    ax.grid(True)
+    ax.axis("equal")
+    ax.invert_yaxis()  # Flip y-axis for top-left origin

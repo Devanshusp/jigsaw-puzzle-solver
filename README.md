@@ -6,27 +6,36 @@ This program is a computer vision-based system designed to solve jigsaw puzzles.
 
 Follow these steps to run the Jigsaw Puzzle Solver:
 
-1. Set up the environment
-   > Follow instructions in `Environment` to create a virtual environment and download packages in `requirements.txt`.
-2. Configure settings in `main.py`
+### 1. Set up the environment
+
+Follow instructions in `Environment` to create a virtual environment and download packages in `requirements.txt`.
+
+### 2. Configure settings in `main.py`
 
 ```py
-DISPLAY_STEPS = False # To visualize every solving stel
+# Visualize every solving step
+DISPLAY_STEPS = False
 
-SKIP_DISPLAY_PREPROCESS_PUZZLE = False # Skip visualizing preprocessing solving steps for extracting pieces from initial image
-SKIP_DISPLAY_PREPROCESS_PIECES = False # Skip visualizing preprocessing solving steps for each piece
-SKIP_DISPLAY_SOLVE = False # Skip visualizing piece matching steps
+# Skip visualizing preprocessing solving steps for extracting pieces from initial image, preprocessing solving steps for each piece, and  piece matching steps respectively
+SKIP_DISPLAY_PREPROCESS_PUZZLE = False
+SKIP_DISPLAY_PREPROCESS_PIECES = False
+SKIP_DISPLAY_SOLVE = False
 
+# Display non-essential visualizing steps for deeper understanding of the process
 DISPLAY_NON_ESSENTIAL_PREPROCESS_STEPS = False
 DISPLAY_NON_ESSENTIAL_SOLVE_STEPS = False
 
+# Skip preprocessing if already done before
 SKIP_PREPROCESS = False
 
+# Save preprocessing data in set folder
 SAVE_PREPROCESS = True
 SAVE_PREPROCESS_FOLDER = "images"
 
+# Include random rotation for pieces after preprocessing and extracting puzzle pieces
 ADD_RANDOM_ROTATION_TO_PIECES = True
 
+# Select puzzles to solve by commenting or uncommenting entries in this list:
 PUZZLES_TO_PROCESS = [
     "aurora12",
     "aurora30",
@@ -44,21 +53,11 @@ PUZZLES_TO_PROCESS = [
     "younker30",
     "younker63",
 ]
-
-Select settings
-    -- DISPLAY_STEPS (True or False):
-    -- SKIP_DISPLAY_PREPROCESS_PUZZLE (True or False):
-    -- SKIP_DISPLAY_PREPROCESS_PIECES (True or False):
-    -- SKIP_DISPLAY_SOLVE (True or False):
-    -- SKIP_PREPROCESS (True or False):
-    -- SAVE_PREPROCESS (True or False):
-    -- SAVE_PREPROCESS_FOLDER (String): Folder name where all generated data/images will be stored
-    -- ADD_RANDOM_ROTATION_TO_PIECES (True or False): Choose whether to randomly add rotation to the pieces after individual pieces are extracted
-
-> comment
 ```
 
-1. Run `main.py`
+### 3. Run `main.py`
+
+Check your terminal for detailed logs and progress updates as the program processes and solves the puzzle!
 
 ## BYOP: Bring Your Own Puzzle
 
@@ -94,6 +93,8 @@ pip freeze > requirements.txt # alternatively without uv
 ```
 
 ## Project Architecture
+
+The project is structured into several directories and files. Check out the architecture below.
 
 ```txt
 jigsaw-puzzle-solver/

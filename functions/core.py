@@ -302,28 +302,37 @@ def solve_puzzle(
         display_steps=display_steps,
     )
 
-    try:
-        # 2. Pass the border pieces to solve_border
-        solved_border_matrix = solve_border(
-            PIECES_SAVE_PATH,
-            corner_piece_indices=corner_piece_indices,
-            edge_piece_indices=edge_piece_indices,
-            display_steps=display_steps,
-            save=save,
-            save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_5_border",
-        )
-    except Exception as e:
-        print(f"Error solving border pieces: {e}")
+    # Set a starting corner index
+    for start_corner_index in range(len(corner_piece_indices)):
+        try:
+            # 2. Pass the border pieces to solve_border
+            solved_border_matrix = solve_border(
+                PIECES_SAVE_PATH,
+                corner_piece_indices=corner_piece_indices,
+                edge_piece_indices=edge_piece_indices,
+                start_corner_index=start_corner_index,
+                display_steps=display_steps,
+                save=save,
+                save_name=PIECES_DATA_GRID_SAVE_PATH
+                + f"/{PUZZLE_IMAGE_NAME}_5_border_{start_corner_index}",
+            )
+        except Exception as e:
+            print(
+                f"Error solving border pieces: {e} "
+                f"with corner index {start_corner_index}"
+            )
+            continue
 
-    try:
-        # 3. Pass the center pieces to solve_center
-        solve_center(
-            PIECES_SAVE_PATH,
-            solved_border_matrix=solved_border_matrix,  # type: ignore
-            middle_piece_indices=non_border_piece_indices,
-            display_steps=display_steps,
-            save=save,
-            save_name=PIECES_DATA_GRID_SAVE_PATH + f"/{PUZZLE_IMAGE_NAME}_6_solution",
-        )
-    except Exception as e:
-        print(f"Error solving center pieces: {e}")
+        try:
+            # 3. Pass the center pieces to solve_center
+            solve_center(
+                PIECES_SAVE_PATH,
+                solved_border_matrix=solved_border_matrix,  # type: ignore
+                middle_piece_indices=non_border_piece_indices,
+                display_steps=display_steps,
+                save=save,
+                save_name=PIECES_DATA_GRID_SAVE_PATH
+                + f"/{PUZZLE_IMAGE_NAME}_6_solution_{start_corner_index}",
+            )
+        except Exception as e:
+            print(f"Error solving center pieces: {e}")

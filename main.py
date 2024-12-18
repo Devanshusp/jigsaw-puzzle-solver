@@ -12,23 +12,23 @@ if __name__ == "__main__":
     SKIP_DISPLAY_SOLVE = False
     SKIP_PREPROCESS = False
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = ".images"
+    SAVE_PREPROCESS_FOLDER = "images_solved2"
     ADD_RANDOM_ROTATION_TO_PIECES = True
     PUZZLES_TO_PROCESS = [
-        # "aurora12",
-        # "aurora30",
+        "aurora12",
+        "aurora30",
         # "aurora63",
         "corn12",
-        # "corn30",
+        "corn30",
         # "corn63",
-        # "path12",
-        # "path30",
+        "path12",
+        "path30",
         # "path63",
-        # "red9",
-        # "red25",
+        "red9",
+        "red25",
         # "red49",
-        # "younker12",
-        # "younker30",
+        "younker12",
+        "younker30",
         # "younker63",
     ]
 

@@ -18,7 +18,7 @@ def solve_border(
     corner_piece_indices: List[int],
     edge_piece_indices: List[int],
     display_steps: bool = True,
-    start_corner_index: int = 3,
+    start_corner_index: int = 0,
     backtracking_threshold: float = 0.1,
     backtracking_enabled: bool = False,
     visualize_each_step: bool = False,

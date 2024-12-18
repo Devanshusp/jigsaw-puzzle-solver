@@ -14,7 +14,7 @@ Follow instructions in `Environment` to create a virtual environment and downloa
 
 ```py
 # Visualize every solving step
-DISPLAY_STEPS = False
+DISPLAY_STEPS = True
 
 # Skip visualizing preprocessing solving steps for extracting pieces from initial image, preprocessing solving steps for each piece, and  piece matching steps respectively
 SKIP_DISPLAY_PREPROCESS_PUZZLE = False

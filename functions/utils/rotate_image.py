@@ -19,6 +19,7 @@ def rotate_image(image, angle):
         np.ndarray: The rotated image with an expanded canvas.
     """
     h, w = image.shape[:2]
+
     # Compute the center of the image
     cx, cy = w // 2, h // 2
 

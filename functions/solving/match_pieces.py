@@ -1,3 +1,8 @@
+"""
+match_pieces.py - This file contains the logic to match two pieces using various shape
+and color comparison metrics.
+"""
+
 from typing import Literal
 
 import cv2
@@ -10,23 +15,38 @@ from functions.utils.save_data import get_data_for_piece
 
 
 def hausdorff_color(color1, color2):
+    """
+    Compute the directed Hausdorff distance between two color strips.
+
+    Args:
+        color1: A dictionary containing the color strip data.
+        color2: A dictionary containing the color strip data.
+
+    Returns:
+        The maximum of the forward and backward Hausdorff distances.
+    """
     pixels1 = color1["color_strip"]
     pixels2 = color2["color_strip"]
 
     pixels1 = np.array(pixels1)
     pixels2 = np.array(pixels2)
 
-    # Compute Hausdorff distances
-    fHC = directed_hausdorff(pixels1, pixels2)[0]
-    bHC = directed_hausdorff(pixels2, pixels1)[0]
+    forward_dist = directed_hausdorff(pixels1, pixels2)[0]
+    reverse_dist = directed_hausdorff(pixels2, pixels1)[0]
 
-    # Return the max
-    return max(fHC, bHC)
+    return max(forward_dist, reverse_dist)
 
 
 def directed_hausdorff_distance(contour1, contour2):
     """
     Compute the directed Hausdorff distance between two contours.
+
+    Args:
+        contour1: A list of points representing the first contour.
+        contour2: A list of points representing the second contour.
+
+    Returns:
+        The maximum of the forward and reverse Hausdorff distances.
     """
     forward_dist = directed_hausdorff(contour1, contour2)[0]
     reverse_dist = directed_hausdorff(contour2, contour1)[0]
@@ -36,7 +56,14 @@ def directed_hausdorff_distance(contour1, contour2):
 
 def hu_moments_distance(contour1, contour2):
     """
-    Compute the directed Hausdorff distance between two contours.
+    Compute the directed Hausdorff distance between two contours (using cv2).
+
+    Args:
+        contour1: A list of points representing the first contour.
+        contour2: A list of points representing the second contour.
+
+    Returns:
+        The maximum of the forward and reverse Hausdorff distances.
     """
     similarity = cv2.matchShapes(contour1, contour2, cv2.CONTOURS_MATCH_I1, 0)
 
@@ -46,23 +73,26 @@ def hu_moments_distance(contour1, contour2):
 def corners_similarity(contour1, contour2):
     """
     Compare length of contours from corner to corner using Euclidean Distance.
+
+    Args:
+        contour1: A list of points representing the first contour.
+        contour2: A list of points representing the second contour.
+
+    Returns:
+        The difference in length between the two contours.
     """
     edge_lengths = []
 
-    # Calculate the length of the contour
     for contour in [contour1, contour2]:
         start = 0
         end = len(contour) - 1
 
-        # Start and end points of the contour
         x1, y1 = contour[start]
         x2, y2 = contour[end]
 
-        # Euclidean distance of the contour
         distance = np.sqrt(np.square(x2 - x1) + np.square(y2 - y1))
         edge_lengths.append(distance)
 
-    # Difference between the two contour lengths
     difference = abs(edge_lengths[0] - edge_lengths[1])
 
     return difference
@@ -71,14 +101,23 @@ def corners_similarity(contour1, contour2):
 def adjust_contour_accuracy(contour1, contour2, complexity="high"):
     """
     Adjust the accuracy of contour resampling based on the complexity of the contour.
+
+    Args:
+        contour1: A list of points representing the first contour.
+        contour2: A list of points representing the second contour.
+        complexity: A string indicating the complexity of the contour.
+            - "high": Use more points for more complex contours
+            - "medium": Use more points for medium complex contours
+            - "low": Use more points for simple contours
+
+    Returns:
+        A dictionary containing the resampled contours and the number of points used.
     """
     if complexity == "high":
-        # Use more points for more complex contours
         num_points = 2000
     elif complexity == "medium":
         num_points = 1500
     else:
-        # Default for simple contours
         num_points = 1000
 
     return {
@@ -91,6 +130,13 @@ def adjust_contour_accuracy(contour1, contour2, complexity="high"):
 def resample_contour(contour, num_points=1000) -> np.ndarray:
     """
     Resample contour to a fixed number of points using linear interpolation.
+
+    Args:
+        contour: A numpy array representing the contour to resample.
+        num_points: The number of points to resample the contour to.
+
+    Returns:
+        A numpy array representing the resampled contour.
     """
     distances = np.cumsum(np.sqrt(np.sum(np.diff(contour, axis=0) ** 2, axis=1)))
     distances = np.concatenate(([0], distances))
@@ -121,6 +167,20 @@ def match_pieces(
     """
     Calculate the match score between two pieces using various shape comparison metrics.
     Returns a dictionary of labeled similarity values.
+
+    Args:
+        pieces_path (str): Path to the pieces data JSON file.
+        piece1 (int): Index of the first piece.
+        piece2 (int): Index of the second piece.
+        side1 (Literal["A", "B", "C", "D"]): Side of the first piece.
+        side2 (Literal["A", "B", "C", "D"]): Side of the second piece.
+        complexity (Literal["high", "medium", "low"], optional): Complexity of the
+            contour. Defaults to "high".
+        display_steps (bool, optional): Whether to display intermediate steps. Defaults
+            to True.
+
+    Returns:
+        dict: A dictionary of labeled similarity values.
     """
     piece1_oriented_contours = orient_piece_contours(pieces_path, piece1, side1, "Top")
     piece2_oriented_contours = orient_piece_contours(
@@ -180,15 +240,22 @@ def visualize_comparison_results(
 ):
     """
     Visualize contours and comparison results in a single figure.
+
+    Args:
+        piece1_contour: The contour of the first piece.
+        piece2_contour: The contour of the second piece.
+        results: A dictionary of comparison results.
+        piece1_name: The name of the first piece (default is "Piece 1").
+        piece2_name: The name of the second piece (default is "Piece 2").
+
+    Returns:
+        None
     """
-    # Create a figure with 4 subplots: 3 for contours and 1 for the table
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
     fig.suptitle(
         f"Contour Comparison between {piece1_name} & {piece2_name}",
         fontsize=16,
     )
-
-    # Flatten the axes for easier indexing
     axes = axes.flatten()
 
     # Plot original piece 1 contour
@@ -209,7 +276,6 @@ def visualize_comparison_results(
         "g",
     )
 
-    # Plot contours together
     axes[2].plot(*zip(*piece1_contour), "b-o", label=piece1_name)
     axes[2].plot(*zip(*piece2_contour), "g-o", label=piece2_name)
     axes[2].set_title("Overlayed Contours")
@@ -220,7 +286,6 @@ def visualize_comparison_results(
     axes[2].axis("equal")
     axes[2].invert_yaxis()
 
-    # Display error metrics as a table in the last subplot
     table_data = [
         ["Metric", "Value", "Interpretation"],
         [
@@ -232,28 +297,34 @@ def visualize_comparison_results(
         ["Color Difference", f"{results['Color Difference']:.4f}", "Lower is better"],
     ]
 
-    # Turn off axis for the table subplot
     axes[3].axis("off")
-
-    # Create the table
     table = axes[3].table(cellText=table_data, loc="center", cellLoc="center")
     table.auto_set_font_size(False)
     table.set_fontsize(10)
     table.scale(1.2, 1.5)
     axes[3].set_title("Comparison Metrics", fontsize=12)
 
-    # Adjust layout and display
     plt.tight_layout()
     plt.show(block=True)
-
-    # Close the figure
     plt.close()
 
     return results
 
 
 def plot_piece(ax, title, center_coords, contours, label_color):
-    """Utility to plot a piece on a given axis."""
+    """
+    Utility to plot a piece on a given axis.
+
+    Args:
+        ax: The axis to plot on.
+        title: The title of the plot.
+        center_coords: The coordinates of the center of the piece.
+        contours: The contours of the piece.
+        label_color: The color to use for the labels.
+
+    Returns:
+        None
+    """
     ax.plot(center_coords[0], center_coords[1], "ro", label="Center")
     contour_x, contour_y = zip(*contours)
     ax.plot(contour_x, contour_y, f"{label_color}o-", label="Contours")
@@ -263,4 +334,5 @@ def plot_piece(ax, title, center_coords, contours, label_color):
     ax.legend()
     ax.grid(True)
     ax.axis("equal")
-    ax.invert_yaxis()  # Flip y-axis for top-left origin
+    # Flip y-axis for top-left origin
+    ax.invert_yaxis()

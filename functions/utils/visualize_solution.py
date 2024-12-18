@@ -20,22 +20,35 @@ def visualize_solution(
     save: bool = False,
     display_steps: bool = True,
 ) -> None:
+    """
+    Visualize the solution matrix as a grid of puzzle pieces with minimal boundary
+        overlap.
+
+    Args:
+        pieces_path (str): Path to the directory containing puzzle pieces.
+        solution_matrix (List[List[dict | None]]): The solution matrix.
+        save_name (str | None, optional): Name of the saved image. Defaults to None.
+        save (bool, optional): Flag to save the solution. Defaults to False.
+        display_steps (bool, optional): Flag to display intermediate steps.
+            Defaults to True.
+
+    Returns:
+        None
+    """
     num_rows = len(solution_matrix)
     num_cols = len(solution_matrix[0]) if num_rows > 0 else 0
 
-    # Restrict figure size to a maximum of 15x15 inches
+    # Restrict figure size to a maximum of 8x8 inches
     max_width, max_height = 8, 8
     fig_width = min(num_cols * 2.5, max_width)
     fig_height = min(num_rows * 2.5, max_height)
 
-    # Create a figure with tighter layout and smaller size
     _ = plt.figure(
         figsize=(fig_width, fig_height),
         facecolor="white",
         constrained_layout=True,
     )
 
-    # Use GridSpec with minimal spacing
     gs = gridspec.GridSpec(num_rows, num_cols, wspace=-0.1, hspace=-0.1)
 
     for i, row in enumerate(solution_matrix):
@@ -115,9 +128,7 @@ def visualize_solution(
         plt.savefig(f"{save_name}.png", dpi=300)
 
     if display_steps:
-        # Show the plot.
         plt.show()
 
-    # Clear the figure after saving and showing to avoid issues.
     plt.clf()
     plt.close()

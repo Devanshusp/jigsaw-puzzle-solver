@@ -15,6 +15,22 @@ def get_potential_piece_matches(
     target_flat_side: Literal["A", "B", "C", "D"] | None,
     potential_piece_indices: List[int],
 ) -> List[Tuple[int, Literal["A", "B", "C", "D"]]]:
+    """
+    Gets the names of puzzle pieces that might match a given piece.
+    It checks if the target piece and the potential pieces are flat on the same side.
+    Also checks if matching sides have intrusion/extrusion pairs.
+
+    Args:
+        pieces_path (str): Path to the pieces data
+        target_piece_index (int): Index of the target piece
+        target_piece_side (Literal["A", "B", "C", "D"]): Side of the target piece
+        target_flat_side (Literal["A", "B", "C", "D"] | None): Side of the target piece
+            that is flat
+        potential_piece_indices (List[int]): List of indices of potential pieces
+
+    Returns:
+        List[Tuple[int, Literal["A", "B", "C", "D"]]]: List of potential matches
+    """
     # Load target piece data
     target_piece_data = get_data_for_piece(
         pieces_path, target_piece_index, "piece_side_data"
@@ -83,6 +99,21 @@ def get_potential_flat_side(
     target_match_side: Literal["A", "B", "C", "D"],
     potential_side: Literal["A", "B", "C", "D"],
 ) -> str | None:
+    """
+    Get the side of a potential piece that is flat on the same side as the target
+    piece.
+
+    Args:
+        target_flat_side (Literal["A", "B", "C", "D"]): Side of the target piece
+            that is flat
+        target_match_side (Literal["A", "B", "C", "D"]): Side of the target piece
+            that is flat and matches the potential piece
+        potential_side (Literal["A", "B", "C", "D"]): Side of the potential piece
+
+    Returns:
+        str | None: Side of the potential piece that is flat on the same side as the
+            target piece
+    """
     sides = ["D", "C", "B", "A"]
 
     target_flat_side_index = sides.index(target_flat_side)

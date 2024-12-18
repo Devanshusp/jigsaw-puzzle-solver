@@ -17,6 +17,21 @@ def display_piece_corners(
     save: bool = True,
     display_steps: bool = True,
 ):
+    """
+    Display a list of puzzle piece images in a grid layout with extracted data.
+
+    Args:
+        piece_data (List[dict]): A list of dictionaries containing piece data.
+        pieces_path (str): Path to the pieces data.
+        save_name (str): Name of the saved image.
+        figsize (tuple, optional): Figure size. Defaults to (10, 10).
+        save (bool, optional): Flag to save the visualization. Defaults to True.
+        display_steps (bool, optional): Flag to display intermediate steps.
+            Defaults to True.
+
+    Returns:
+        None
+    """
     # Calculate number of pieces.
     num_pieces = len(piece_data)
 
@@ -49,10 +64,7 @@ def display_piece_corners(
         # Load the piece image.
         piece_img = plt.imread(f"{pieces_path}/piece_{piece_index}.png")
 
-        # Create subplot for each piece.
         plt.subplot(rows, cols, i + 1)
-
-        # Display the piece image with extracted data.
         plt.imshow(piece_img)
 
         # Plot the center point in red
@@ -60,10 +72,8 @@ def display_piece_corners(
 
         # Plot each corner in blue and draw red lines to center
         for corner in corners:
-            plt.plot(corner[0], corner[1], "bo")  # Blue corner points
-            plt.plot(
-                [center_coords[0], corner[0]], [center_coords[1], corner[1]], "r-"
-            )  # Red line to center
+            plt.plot(corner[0], corner[1], "bo")
+            plt.plot([center_coords[0], corner[0]], [center_coords[1], corner[1]], "r-")
 
         # Plot sides with different colors and labels
         # Side A: Green
@@ -130,11 +140,9 @@ def display_piece_corners(
             fontsize=10,
         )
 
-        # Add title and remove axis for clarity
         plt.title(f"Piece {piece_index} ({piece_classification})")
         plt.axis("off")
 
-    # Adjust layout to avoid overlap.
     plt.tight_layout()
 
     # Save the figure as an image file if needed.
@@ -142,7 +150,6 @@ def display_piece_corners(
         plt.savefig(f"{save_name}.png", dpi=300)
 
     if display_steps:
-        # Show the plot.
         plt.show()
 
     # Clear the figure after saving and showing to avoid issues.

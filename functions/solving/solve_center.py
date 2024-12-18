@@ -14,13 +14,13 @@ from functions.utils.visualize_solution import visualize_solution
 
 def solve_center(
     pieces_path: str,
-    solved_border_matrix: List[List[Tuple[str, Any]]],
+    solved_border_matrix: List[List[dict | None]],
     middle_piece_indices: List[int],
     display_steps: bool = True,
     save: bool = False,
     save_name: str | None = None,
     visualize_each_step: bool = False,
-):
+) -> List[List[dict | None]]:
     """
     Solve the center pieces of the puzzle using the solved border matrix as a guide.
 
@@ -28,6 +28,15 @@ def solve_center(
         pieces_path (str): Path to the pieces data
         solved_border_matrix (List[List[Dict]]): Matrix of solved border pieces
         middle_piece_indices (List[int]): Indices of pieces in the center area
+        display_steps (bool, optional): Flag to display intermediate steps.
+            Defaults to True.
+        save (bool, optional): Flag to save the solution. Defaults to False.
+        save_name (str | None, optional): Name of the saved image. Defaults to None.
+        visualize_each_step (bool, optional): Flag to visualize each step.
+            Defaults to False.
+
+    Returns:
+        List[List[dict | None]]: The solved center matrix
     """
     # Create a copy of the solution matrix to modify
     solution_matrix = copy.deepcopy(solved_border_matrix)
@@ -81,7 +90,7 @@ def solve_center(
 
         # Select best match
         best_match = match_error[0][0]
-        best_match_index, best_match_side = best_match
+        best_match_index, best_match_side = best_match  # type: ignore
 
         # Add best match to solution matrix
         solution_matrix[curr_row][curr_col] = {  # type: ignore
@@ -113,12 +122,22 @@ def solve_center(
     return solution_matrix
 
 
-def find_center_start(solution_matrix: List[List[Dict[str, Any]]]) -> Tuple[int, int]:
-    """Find the starting cell for solving center pieces."""
+def find_center_start(solution_matrix: List[List[dict | None]]) -> Tuple[int, int]:
+    """
+    Find the starting cell for solving center pieces.
+
+    Args:
+        solution_matrix (List[List[dict | None]]): The solution matrix.
+
+    Returns:
+        Tuple[int, int]: The row and column of the starting cell.
+    """
+    # Find the first empty cell
     for row in range(len(solution_matrix)):
         for col in range(len(solution_matrix[row])):
             if solution_matrix[row][col] is None:
                 return row, col
+
     raise ValueError("No empty cell found in solution matrix")
 
 
@@ -130,8 +149,23 @@ def calculate_match_error(
     left_piece_match_side: str,
     potential_matches: List[Tuple[int, str]],
     visualize_each_step: bool = False,
-) -> List[Tuple[Tuple[int, str], float]]:
-    """Calculate match errors for potential pieces."""
+) -> List[List[dict | None]]:
+    """
+    Calculate match errors for potential pieces.
+
+    Args:
+        pieces_path (str): Path to the pieces data.
+        top_piece_index (int): Index of the top piece.
+        top_piece_match_side (str): Match side of the top piece.
+        left_piece_index (int): Index of the left piece.
+        left_piece_match_side (str): Match side of the left piece.
+        potential_matches (List[Tuple[int, str]]): List of potential matches.
+        visualize_each_step (bool, optional): Flag to visualize each step. Defaults to
+            False.
+
+    Returns:
+        List[List[dict | None]]: List of match errors.
+    """
     hausdorff_distance = []
     hu_moments_distance = []
     corners_distance = []
@@ -190,9 +224,6 @@ def calculate_match_error(
     hu_moments_weight = 0
     corner_dist_weight = 1
     color_weight = 0
-    sum_weights = (
-        hausdorff_weight + hu_moments_weight + corner_dist_weight + color_weight
-    )
 
     print("Match sides shown are always the potential 'top' side")
 
@@ -223,7 +254,18 @@ def calculate_match_error(
 def move_to_next_cell(
     solution_matrix: List[List[Dict[str, Any] | None]], curr_col: int, curr_row: int
 ) -> Tuple[int, int] | None:
-    """Move to the next empty cell in the solution matrix."""
+    """
+    Move to the next empty cell in the solution matrix.
+
+    Args:
+        solution_matrix (List[List[Dict[str, Any] | None]]): The solution matrix.
+        curr_col (int): The current column.
+        curr_row (int): The current row.
+
+    Returns:
+        Tuple[int, int] | None: The new column and row, or None if no empty cell is
+            found.
+    """
     # First try to move right
     if (
         curr_col + 1 < len(solution_matrix[curr_row])
@@ -237,4 +279,5 @@ def move_to_next_cell(
             if solution_matrix[row][col] is None:
                 return col, row
 
+    # If no empty cell is found, return -1, -1
     return -1, -1

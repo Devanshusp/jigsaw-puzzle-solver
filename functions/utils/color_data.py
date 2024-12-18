@@ -1,3 +1,7 @@
+"""
+color_data.py - Extract colors along an edge of a puzzle piece.
+"""
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -9,10 +13,21 @@ def piece_color_data(
     piece_path: str,
     piece_number: int,
     piece_side: str,
-    pixels: int = 25,
     display_steps: bool = True,
 ) -> dict:
-    # Read the image
+    """
+    Extract colors along an edge of a puzzle piece.
+
+    Args:
+        piece_path (str): Path to the pieces data
+        piece_number (int): Index of the piece
+        piece_side (str): Side of the piece
+        display_steps (bool, optional): Flag to display intermediate steps.
+            Defaults to True.
+
+    Returns:
+        dict: Dictionary of color data
+    """
     piece_img = cv2.imread(piece_path + f"/piece_{piece_number}.png")
 
     # Initialize save dictionary
@@ -20,8 +35,6 @@ def piece_color_data(
 
     # Get contours and centroid data for the piece
     piece_side_data = get_data_for_piece(piece_path, piece_number, "piece_side_data")
-
-    # Get the contours and centroid data for the piece side
     piece_side_contours = piece_side_data[piece_side]["contour_points"]
     piece_side_centroid = get_data_for_piece(piece_path, piece_number, "center_coords")
 
@@ -29,7 +42,7 @@ def piece_color_data(
     piece_side_contours = np.array(piece_side_contours)
     piece_side_centroid = np.array(piece_side_centroid)
 
-    # Compute the gradients along the contour (approximating edge normals)
+    # Compute the gradients along the contour
     dx = np.gradient(piece_side_contours[:, 0])
     dy = np.gradient(piece_side_contours[:, 1])
 
@@ -40,7 +53,7 @@ def piece_color_data(
     normals /= np.linalg.norm(normals, axis=1, keepdims=True)
 
     # Define the inward movement distance
-    inward_pixels = 3  # len(piece_side_contours) * 0.1  # Adjust as needed
+    inward_pixels = 3  # len(piece_side_contours) * 0.1
 
     # Move contour points inward along their normals
     contours = piece_side_contours - normals * inward_pixels
@@ -55,18 +68,14 @@ def piece_color_data(
     for x, y in contours:
         x = int(x)
         y = int(y)
-        # Check bounds to avoid index errors
         if 0 <= y < piece_img.shape[0] and 0 <= x < piece_img.shape[1]:
-            color = piece_img[y, x]  # OpenCV uses (row, col) indexing
-            colors.append(color)  # Append the RGB color values
+            color = piece_img[y, x]
+            colors.append(color)
 
     # Visualize the extracted colors as a color strip
-    color_strip = np.array(colors)  # Convert colors list to NumPy array
-
-    # Separate channels
+    color_strip = np.array(colors)
     R, G, B = color_strip[:, 0], color_strip[:, 1], color_strip[:, 2]
 
-    # Summary Statistics for Each Channel
     def summary_statistics(channel):
         return {
             "mean": int(np.mean(channel)),
@@ -79,7 +88,6 @@ def piece_color_data(
     G_stats = summary_statistics(G)
     B_stats = summary_statistics(B)
 
-    # Store summary statistics for each channel
     color_strip_int = color_strip.astype(int)
     color_strip_list = color_strip_int.tolist()
 
@@ -91,31 +99,23 @@ def piece_color_data(
     }
 
     if display_steps:
-        # Create a figure with two subplots
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-
-        # Ensure proper coloring for piece image
         piece_img = cv2.cvtColor(piece_img, cv2.COLOR_BGR2RGB)
 
-        # First subplot: Piece image with contour
         ax1.imshow(piece_img)
         ax1.scatter(contours[:, 0], contours[:, 1], color="red", s=10)
         ax1.set_title("Piece Image with Contour")
-        ax1.axis("off")  # Remove axes for image
+        ax1.axis("off")
 
-        # Create a thick color strip
-        strip_height = 50  # Adjust thickness as needed
+        strip_height = 50
         thick_color_strip = np.tile(color_strip[np.newaxis, :, :], (strip_height, 1, 1))
 
-        # Ensure proper coloring for color strip
         thick_color_strip = cv2.cvtColor(thick_color_strip, cv2.COLOR_BGR2RGB)
 
-        # Second subplot: Color Strip
         ax2.imshow(thick_color_strip)
         ax2.set_title("Color Strip")
-        ax2.axis("off")  # Remove axes for color strip
+        ax2.axis("off")
 
-        # Adjust layout and display
         plt.tight_layout()
         plt.show()
 

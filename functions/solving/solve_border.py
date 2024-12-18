@@ -24,7 +24,28 @@ def solve_border(
     visualize_each_step: bool = False,
     save: bool = False,
     save_name: str | None = None,
-):
+) -> List[List[dict | None]]:
+    """
+    Solve the border of a puzzle.
+
+    Args:
+        pieces_path (str): Path to the pieces data
+        corner_piece_indices (List[int]): Indices of corner pieces in the puzzle
+        edge_piece_indices (List[int]): Indices of edge pieces in the puzzle
+        display_steps (bool, optional): Flag to display intermediate steps.
+            Defaults to True.
+        start_corner_index (int, optional): Index of the corner piece to start with.
+            Defaults to 0.
+        backtracking_threshold (float, optional): Threshold for backtracking.
+            Defaults to 0.1.
+        backtracking_enabled (bool, optional): Flag to enable backtracking.
+            Defaults to False.
+        visualize_each_step (bool, optional): Flag to visualize each step.
+            Defaults to False.
+
+    Returns:
+        List[List[Dict[str, Any]]]: Matrix of solved border pieces
+    """
     unsolved_piece_indices = set(corner_piece_indices + edge_piece_indices)
 
     # 1. Select a corner piece to begin with.
@@ -194,13 +215,6 @@ def solve_border(
 
         # Sort potential matches by match score
         match_error.sort(key=lambda x: x[1], reverse=True)
-
-        # over here, save a dict that allows for backtracking
-        # we need to save the piece we we're on before we went to the next one
-        # we need to save a list of potential matches, these essentially skip the
-        # "matching phase" and directly get accepted as the solution
-        # one way to do this is by doing the following:
-
         pprint(match_error)
 
         # Get best match piece data
@@ -342,6 +356,17 @@ def get_piece_relative_side(
     piece_top: Literal["A", "B", "C", "D"],
     piece_side_orientation: Literal["right", "down", "left", "up"],
 ) -> str:
+    """
+    Get the relative side of a piece based on its top side and orientation
+
+    Args:
+        piece_top (Literal["A", "B", "C", "D"]): The top side of the piece
+        piece_side_orientation (Literal["right", "down", "left", "up"]): The orientation
+            of the piece
+
+    Returns:
+        str: The relative side of the piece
+    """
     if piece_side_orientation == "up":
         return piece_top
 
@@ -364,7 +389,17 @@ def get_piece_top_side(
     piece_side: Literal["A", "B", "C", "D"],
     piece_side_orientation: Literal["right", "down", "left", "up"],
 ) -> str:
+    """
+    Get the top side of a piece based on its current relative side and orientation
 
+    Args:
+        piece_side (Literal["A", "B", "C", "D"]): The relative side of the piece
+        piece_side_orientation (Literal["right", "down", "left", "up"]): The orientation
+            of the piece
+
+    Returns:
+        str: The top side of the piece
+    """
     if piece_side_orientation == "up":
         return piece_side
 
@@ -390,6 +425,19 @@ def add_to_solution_matrix(
     piece_index: int,
     piece_top_side: Literal["A", "B", "C", "D"],
 ) -> List[List[dict | None]]:
+    """
+    Add a piece to the solution matrix
+
+    Args:
+        solution_matrix (List[List[dict | None]]): The solution matrix
+        curr_row (int): The current row
+        curr_col (int): The current column
+        piece_index (int): The index of the piece
+        piece_top_side (Literal["A", "B", "C", "D"]): The top side of the piece
+
+    Returns:
+        List[List[dict | None]]: The updated solution matrix
+    """
     # Ensure the matrix has at least one row
     if len(solution_matrix) == 0:
         solution_matrix.append([None] * (curr_col + 1))

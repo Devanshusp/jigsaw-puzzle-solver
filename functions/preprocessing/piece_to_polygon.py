@@ -26,10 +26,21 @@ def piece_to_polygon(
     Extracts piece data from a puzzle image.
 
     Args:
-        image_path (str): Path to the input puzzle image.
+        image_path (str): Path to the puzzle image.
+        epsilon_ratio (float, optional): Approximation accuracy parameter.
+        corner_distance_weight (float, optional): Weight for corner distance.
+        center_distance_weight (float, optional): Weight for center distance.
+        corner_angle_weight (float, optional): Weight for corner angle.
+        center_angle_weight (float, optional): Weight for center angle.
+        intrusion_threshold (float, optional): Threshold for intrusion detection.
+        display_steps (bool, optional): Flag to display intermediate steps.
 
     Returns:
-        List[np.ndarray]: A list of extracted piece data as image arrays.
+        Tuple[List[Tuple[int, int]], Tuple[int, int], str, dict]:
+            - List[Tuple[int, int]]: List of coordinates of the piece's vertices.
+            - Tuple[int, int]: Coordinates of the piece's center.
+            - str: Name of the piece.
+            - dict: Dictionary containing the piece data.
     """
     # Reading image and converting to rgb and grayscale.
     img = cv2.imread(image_path)

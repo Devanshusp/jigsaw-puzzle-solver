@@ -43,6 +43,9 @@ def preprocess_puzzle(
             Defaults to "images".
         puzzle_folder (str, optional): Directory where the input puzzle image is
             located. Defaults to "puzzles".
+        display_steps (bool, optional): Flag to display intermediate steps.
+        add_random_rotation (bool, optional): Flag to apply random rotation to
+            puzzle pieces.
 
     Steps:
         1. Reads the specified puzzle image.
@@ -114,6 +117,9 @@ def preprocess_pieces(
             False.
         save_folder (str, optional): Directory where the output images will be saved.
             Defaults to "images".
+        display_steps (bool, optional): Flag to display intermediate steps.
+        display_non_essential_steps (bool, optional): Flag to display non-essential
+            steps. Defaults to False.
     Steps:
         1. Reads the specified puzzle image.
         2. Extracts individual puzzle pieces using `puzzle_to_pieces`.
@@ -239,6 +245,21 @@ def solve_puzzle(
     display_steps: bool = True,
     display_non_essential_steps: bool = False,
 ):
+    """
+    Solves a puzzle and displays the solution.
+
+    Args:
+        PUZZLE_IMAGE_NAME (str): The name of the puzzle image to be solved.
+        save (bool, optional): Whether to save the solution. Defaults to False.
+        save_folder (str, optional): Directory where the output images will be saved.
+            Defaults to "images".
+        display_steps (bool, optional): Flag to display intermediate steps.
+        display_non_essential_steps (bool, optional): Flag to display non-essential
+            steps. Defaults to False.
+
+    Returns:
+        None
+    """
     # Define the folder path
     PIECES_SAVE_PATH = f"{save_folder}/pieces/{PUZZLE_IMAGE_NAME}"
     PIECES_DATA_GRID_SAVE_PATH = f"{save_folder}/pieces_grid"

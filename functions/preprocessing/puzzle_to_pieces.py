@@ -22,12 +22,15 @@ def puzzle_to_pieces(
     Processes an image of a puzzle to extract individual pieces as separate images.
 
     Args:
-        image_path (str): Path to the input puzzle image.
-        kernel_size (Tuple[int, int], optional): Kernel size for Gaussian blur.
+        image_path (str): Path to the puzzle image.
+        kernel_size (Tuple[int, int], optional): Kernel size for Gaussian blurring.
+            Defaults to (5, 5).
+        display_steps (bool, optional): Flag to display intermediate steps.
+        add_random_rotation (bool, optional): Flag to apply random rotation to
+            puzzle pieces.
 
     Returns:
-        Tuple[int, List[np.ndarray]]:
-            - List[np.ndarray]: A list of extracted puzzle pieces as image arrays.
+        List[np.ndarray]: List of extracted piece images.
     """
     # Read the image in BGR using OpenCV and convert it to RGB for Matplotlib.
     img = cv2.imread(image_path)

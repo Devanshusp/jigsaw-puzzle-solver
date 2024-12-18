@@ -5,23 +5,32 @@ main.py - The main script to run the Jigsaw Puzzle Solver.
 from functions import preprocess_pieces, preprocess_puzzle, solve_puzzle
 
 if __name__ == "__main__":
-    # set settings before run
-    DISPLAY_STEPS = False
+    # Visualize every solving step
+    DISPLAY_STEPS = True
 
+    # Skip visualizing preprocessing solving steps for extracting pieces from initial
+    # image, preprocessing solving steps for each piece, and  piece matching steps
+    # respectively
     SKIP_DISPLAY_PREPROCESS_PUZZLE = False
     SKIP_DISPLAY_PREPROCESS_PIECES = False
     SKIP_DISPLAY_SOLVE = False
 
+    # Display non-essential visualizing steps for deeper understanding of the process
     DISPLAY_NON_ESSENTIAL_PREPROCESS_STEPS = False
     DISPLAY_NON_ESSENTIAL_SOLVE_STEPS = False
 
+    # Skip preprocessing if already done before
     SKIP_PREPROCESS = False
 
+    # Save preprocessing data in set folder
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = "images"
+    SAVE_PREPROCESS_FOLDER = ".images"
 
+    # Include random rotation for pieces after preprocessing and extracting puzzle
+    # pieces
     ADD_RANDOM_ROTATION_TO_PIECES = True
 
+    # Select puzzles to solve by commenting or uncommenting entries in this list:
     PUZZLES_TO_PROCESS = [
         "aurora12",
         "aurora30",

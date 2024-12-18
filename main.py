@@ -6,7 +6,7 @@ from functions import preprocess_pieces, preprocess_puzzle, solve_puzzle
 
 if __name__ == "__main__":
     # set settings before run
-    DISPLAY_STEPS = True
+    DISPLAY_STEPS = False
 
     SKIP_DISPLAY_PREPROCESS_PUZZLE = False
     SKIP_DISPLAY_PREPROCESS_PIECES = False
@@ -18,26 +18,26 @@ if __name__ == "__main__":
     SKIP_PREPROCESS = False
 
     SAVE_PREPROCESS = True
-    SAVE_PREPROCESS_FOLDER = ".images"
+    SAVE_PREPROCESS_FOLDER = "images"
 
     ADD_RANDOM_ROTATION_TO_PIECES = True
 
     PUZZLES_TO_PROCESS = [
-        # "aurora12",
-        # "aurora30",
-        # "aurora63",
+        "aurora12",
+        "aurora30",
+        "aurora63",
         "corn12",
-        # "corn30",
-        # "corn63",
-        # "path12",
-        # "path30",
-        # "path63",
-        # "red9",
-        # "red25",
-        # "red49",
-        # "younker12",
-        # "younker30",
-        # "younker63",
+        "corn30",
+        "corn63",
+        "path12",
+        "path30",
+        "path63",
+        "red9",
+        "red25",
+        "red49",
+        "younker12",
+        "younker30",
+        "younker63",
     ]
 
     for puzzle in PUZZLES_TO_PROCESS:

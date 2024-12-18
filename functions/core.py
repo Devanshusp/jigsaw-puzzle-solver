@@ -102,6 +102,7 @@ def preprocess_pieces(
     save: bool = False,
     save_folder: str = "images",
     display_steps: bool = True,
+    display_non_essential_steps: bool = False,
 ) -> None:
     """
     Processes a folder of puzzle pieces to extract their polygons and optionally saves
@@ -192,7 +193,10 @@ def preprocess_pieces(
         # Extracting additional color data from each piece.
         for side in ["A", "B", "C", "D"]:
             piece_side_data_with_color_data[side]["color_data"] = piece_color_data(
-                PIECES_SAVE_PATH, piece_index, side, display_steps=display_steps
+                PIECES_SAVE_PATH,
+                piece_index,
+                side,
+                display_steps=display_non_essential_steps,
             )
 
         # Saving extracted color data.
@@ -233,6 +237,7 @@ def solve_puzzle(
     save: bool = False,
     save_folder: str = "images",
     display_steps: bool = True,
+    display_non_essential_steps: bool = False,
 ):
     # Define the folder path
     PIECES_SAVE_PATH = f"{save_folder}/pieces/{PUZZLE_IMAGE_NAME}"
@@ -307,7 +312,7 @@ def solve_puzzle(
         try:
             # 2. Pass the border pieces to solve_border
             solved_border_matrix = solve_border(
-                PIECES_SAVE_PATH,
+                pieces_path=PIECES_SAVE_PATH,
                 corner_piece_indices=corner_piece_indices,
                 edge_piece_indices=edge_piece_indices,
                 start_corner_index=start_corner_index,
@@ -315,6 +320,7 @@ def solve_puzzle(
                 save=save,
                 save_name=PIECES_DATA_GRID_SAVE_PATH
                 + f"/{PUZZLE_IMAGE_NAME}_5_border_{start_corner_index}",
+                visualize_each_step=display_non_essential_steps,
             )
         except Exception as e:
             print(
@@ -333,6 +339,7 @@ def solve_puzzle(
                 save=save,
                 save_name=PIECES_DATA_GRID_SAVE_PATH
                 + f"/{PUZZLE_IMAGE_NAME}_6_solution_{start_corner_index}",
+                visualize_each_step=display_non_essential_steps,
             )
         except Exception as e:
             print(f"Error solving center pieces: {e}")

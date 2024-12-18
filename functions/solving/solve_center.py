@@ -76,6 +76,7 @@ def solve_center(
             left_neighbor["piece_index"],  # type: ignore
             left_matching_side,
             potential_matches,
+            visualize_each_step=visualize_each_step,
         )
 
         # Select best match
@@ -128,13 +129,13 @@ def calculate_match_error(
     left_piece_index: int,
     left_piece_match_side: str,
     potential_matches: List[Tuple[int, str]],
+    visualize_each_step: bool = False,
 ) -> List[Tuple[Tuple[int, str], float]]:
     """Calculate match errors for potential pieces."""
     hausdorff_distance = []
     hu_moments_distance = []
     corners_distance = []
     color_difference = []
-    color_shape_distance = []
 
     print("Match scores:")
     for potential_match in potential_matches:
@@ -153,7 +154,7 @@ def calculate_match_error(
             potential_match_index,
             top_piece_match_side,  # type: ignore
             potential_match_top_side,  # type: ignore
-            display_steps=False,
+            display_steps=visualize_each_step,
         )
 
         match_left_score = match_pieces(
@@ -162,7 +163,7 @@ def calculate_match_error(
             potential_match_index,
             left_piece_match_side,  # type: ignore
             potential_match_left_side,  # type: ignore
-            display_steps=False,
+            display_steps=visualize_each_step,
         )
 
         total_match_score = {}
@@ -177,27 +178,20 @@ def calculate_match_error(
         hu_moments_distance.append(total_match_score["Hu Moments Distance"])
         corners_distance.append(total_match_score["Corners Distance"])
         color_difference.append(total_match_score["Color Difference"])
-        color_shape_distance.append(total_match_score["Color Shape Distance"])
 
     # Normalize match scores
     normalized_hausdorff_distance = normalize_list(hausdorff_distance)
     normalized_hu_moments_distance = normalize_list(hu_moments_distance)
     normalized_corners_distance = normalize_list(corners_distance)
     normalized_color_difference = normalize_list(color_difference)
-    normalized_color_shape_distance = normalize_list(color_shape_distance)
 
     # Weights for match error
     hausdorff_weight = 2
     hu_moments_weight = 0
     corner_dist_weight = 1
-    color_weight = 1
-    color_shape_weight = 0
+    color_weight = 0
     sum_weights = (
-        hausdorff_weight
-        + hu_moments_weight
-        + corner_dist_weight
-        + color_weight
-        + color_shape_weight
+        hausdorff_weight + hu_moments_weight + corner_dist_weight + color_weight
     )
 
     print("Match sides shown are always the potential 'top' side")
@@ -209,16 +203,14 @@ def calculate_match_error(
             hausdorff_weight * hausdorff
             + hu_moments_weight * hu_moments
             + corner_dist_weight * corner_dist
-            + color_weight * color
-            + color_shape_weight * color_shape,
+            + color_weight * color,
         )
-        for match, hausdorff, hu_moments, corner_dist, color, color_shape in zip(
+        for match, hausdorff, hu_moments, corner_dist, color in zip(
             potential_matches,
             normalized_hausdorff_distance,
             normalized_hu_moments_distance,
             normalized_corners_distance,
             normalized_color_difference,
-            normalized_color_shape_distance,
         )
     ]
 

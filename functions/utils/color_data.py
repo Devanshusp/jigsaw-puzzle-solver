@@ -91,19 +91,32 @@ def piece_color_data(
     }
 
     if display_steps:
-        plt.imshow(piece_img)
-        plt.scatter(contours[:, 0], contours[:, 1])
-        plt.show()
+        # Create a figure with two subplots
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-        # Create a thick color strip for easier visibility
+        # Ensure proper coloring for piece image
+        piece_img = cv2.cvtColor(piece_img, cv2.COLOR_BGR2RGB)
+
+        # First subplot: Piece image with contour
+        ax1.imshow(piece_img)
+        ax1.scatter(contours[:, 0], contours[:, 1], color="red", s=10)
+        ax1.set_title("Piece Image with Contour")
+        ax1.axis("off")  # Remove axes for image
+
+        # Create a thick color strip
         strip_height = 50  # Adjust thickness as needed
         thick_color_strip = np.tile(color_strip[np.newaxis, :, :], (strip_height, 1, 1))
 
-        # Display the thick color strip
-        plt.figure(figsize=(10, 2))
-        plt.imshow(thick_color_strip)
-        plt.axis("off")
-        plt.title("Color Strip")
+        # Ensure proper coloring for color strip
+        thick_color_strip = cv2.cvtColor(thick_color_strip, cv2.COLOR_BGR2RGB)
+
+        # Second subplot: Color Strip
+        ax2.imshow(thick_color_strip)
+        ax2.set_title("Color Strip")
+        ax2.axis("off")  # Remove axes for color strip
+
+        # Adjust layout and display
+        plt.tight_layout()
         plt.show()
 
     return color_data

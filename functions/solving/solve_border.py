@@ -130,7 +130,6 @@ def solve_border(
         hu_moments_distance = []
         corners_distance = []
         color_difference = []
-        color_shape_distance = []
 
         print("Match scores:")
         for potential_match in potential_matches:
@@ -141,7 +140,7 @@ def solve_border(
                 potential_match_index,
                 curr_piece_matching_side,  # type: ignore
                 potential_match_side,
-                display_steps=False,
+                display_steps=visualize_each_step,
             )
 
             print(potential_match)
@@ -150,7 +149,6 @@ def solve_border(
             hu_moments_distance.append(match_score["Hu Moments Distance"])
             corners_distance.append(match_score["Corners Distance"])
             color_difference.append(match_score["Color Difference"])
-            color_shape_distance.append(match_score["Color Shape Distance"])
 
         # Normalize match scores
         normalized_hausdorff_distance = normalize_list(
@@ -165,20 +163,14 @@ def solve_border(
         normalized_color_difference = normalize_list(
             color_difference, apply_non_linear=True
         )
-        normalized_color_shape_distance = normalize_list(color_shape_distance)
 
         # Create wieghts for match error
-        hausdorff_weight = 1
-        hu_moments_weight = 1
+        hausdorff_weight = 2
+        hu_moments_weight = 0
         corner_dist_weight = 1
-        color_weight = 1
-        color_shape_weight = 0
+        color_weight = 0
         sum_weights = (
-            hausdorff_weight
-            + hu_moments_weight
-            + corner_dist_weight
-            + color_weight
-            + color_shape_weight
+            hausdorff_weight + hu_moments_weight + corner_dist_weight + color_weight
         )
 
         # Calculate match error
@@ -189,16 +181,14 @@ def solve_border(
                 hausdorff_weight * hausdorff
                 + hu_moments_weight * hu_moments
                 + corner_dist_weight * corner_dist
-                + color_weight * color
-                + color_shape_weight * color_shape,
+                + color_weight * color,
             )
-            for match, hausdorff, hu_moments, corner_dist, color, color_shape in zip(
+            for match, hausdorff, hu_moments, corner_dist, color in zip(
                 potential_matches,
                 normalized_hausdorff_distance,
                 normalized_hu_moments_distance,
                 normalized_corners_distance,
                 normalized_color_difference,
-                normalized_color_shape_distance,
             )
         ]
 

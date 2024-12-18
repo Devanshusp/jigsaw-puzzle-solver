@@ -9,44 +9,6 @@ from functions.utils.orient_piece_contours import orient_piece_contours
 from functions.utils.save_data import get_data_for_piece
 
 
-def color_and_shape_distance(color1, color2, shape1, shape2):
-    """
-    Using the color and shape similarity metrics, calculate the distance between two
-    pieces.
-
-    Args:
-        color1 (dict): Color data for the first piece
-        color2 (dict): Color data for the second piece
-        shape1 (np.ndarray): Contour shape for the first piece
-        shape2 (np.ndarray): Contour shape for the second piece
-
-    Returns:
-        float: Combined distance metric where lower values indicate higher similarity
-    """
-    # Calculate color distance using Hausdorff color distance
-    color_distance = hausdorff_color(color1, color2)
-
-    # Calculate shape distances using multiple metrics
-    hausdorff_dist = directed_hausdorff_distance(shape1, shape2)
-    hu_moments_dist = hu_moments_distance(shape1, shape2)
-    corners_dist = corners_similarity(shape1, shape2)
-
-    # Normalize and combine shape distances
-    # We'll use a weighted approach that penalizes dissimilarity
-    shape_distances = [hausdorff_dist, hu_moments_dist, corners_dist]
-
-    # Compute the geometric mean of shape distances
-    # This ensures that all shape metrics contribute to the final score
-    shape_distance = np.prod(shape_distances) ** (1 / len(shape_distances))
-
-    # Combine color and shape distances
-    # We use multiplication to ensure both color and shape need to be similar
-    # Adding a small constant to prevent division by zero
-    combined_distance = color_distance * shape_distance
-
-    return combined_distance
-
-
 def hausdorff_color(color1, color2):
     pixels1 = color1["color_strip"]
     pixels2 = color2["color_strip"]
@@ -188,23 +150,17 @@ def match_pieces(
     # Calculate color Difference
     color_difference = hausdorff_color(color_data1, color_data2)
 
-    # Calculate Color and Shape Distance
-    color_shape_distance = color_and_shape_distance(
-        color_data1, color_data2, contour1_resampled, contour2_resampled
-    )
-
     # Return results in a dictionary
     results = {
         "Hausdorff Distance": hausdorff_dist,
         "Hu Moments Distance": hu_moments_dist,
         "Corners Distance": corners_dist,
         "Color Difference": color_difference,
-        "Color Shape Distance": color_shape_distance,
     }
 
     # Visualize comparison results using resampled contours
     if display_steps:
-        visualize_comparison_results(
+        return visualize_comparison_results(
             contour1_resampled,
             contour2_resampled,
             results,
@@ -272,18 +228,8 @@ def visualize_comparison_results(
             f"{results['Hausdorff Distance']:.4f}",
             "Lower is better",
         ],
-        [
-            "Hu Moments Distance",
-            f"{results['Hu Moments Distance']:.4f}",
-            "Lower is better",
-        ],
         ["Corners Distance", f"{results['Corners Distance']:.4f}", "Lower is better"],
         ["Color Difference", f"{results['Color Difference']:.4f}", "Lower is better"],
-        [
-            "Color and Shape Distance",
-            f"{results['Color and Shape Distance']:.4f}",
-            "Lower is better",
-        ],
     ]
 
     # Turn off axis for the table subplot
@@ -298,7 +244,12 @@ def visualize_comparison_results(
 
     # Adjust layout and display
     plt.tight_layout()
-    plt.show()
+    plt.show(block=True)
+
+    # Close the figure
+    plt.close()
+
+    return results
 
 
 def plot_piece(ax, title, center_coords, contours, label_color):
